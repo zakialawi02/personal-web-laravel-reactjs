@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Lato&family=Montserrat");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*=============== SCROLL BAR ===============*/
+::-webkit-scrollbar {
+    width: 0.5rem;
+    background: theme("colors.light");
+}
+
+::-webkit-scrollbar-thumb {
+    background: theme("colors.accent");
+    border-radius: 0.5rem;
+}
+
+* {
+    scroll-behavior: smooth;
+}
+
+@layer base {
+    body {
+        @apply font-Poppins;
+    }
+}
+
+@layer components {
+    #hamMenu {
+        @apply text-xl cursor-pointer md:hidden text-light;
+    }
+
+    .welcome-thumb-1,
+    .welcome-thumb-2,
+    .welcome-thumb-3,
+    .welcome-thumb-4 {
+        position: absolute;
+    }
+
+    .welcome-thumb-1 {
+        top: 70%;
+        right: 65%;
+        max-width: 14%;
+    }
+
+    .welcome-thumb-2 {
+        top: 5%;
+        right: 5%;
+        max-width: 18%;
+    }
+
+    .welcome-thumb-3 {
+        top: 58%;
+        right: 17%;
+        max-width: 10%;
+    }
+
+    .sosial-media {
+        @apply py-4 my-3;
+    }
+
+    .sosial-media a {
+        @apply text-lg text-center m-[6px] rounded-[5px] p-3 shadow-[-3px_-3px_5px_0px_theme(colors.secondary),_3px_3px_5px_0px_theme(colors.dark)] hover:shadow-[-3px_-3px_5px_0px_theme(colors.secondary)_inset,_3px_3px_5px_0px_theme(colors.dark)_inset] transition-all duration-300;
+    }
+
+    .sosial-media a i {
+        @apply w-[1.7rem] h-[1.7rem];
+    }
+
+    #portfolio .active {
+        @apply text-light bg-accent dark:bg-dark-accent;
+    }
+
+    #portfolio .portfolio-item.hide {
+        display: none;
+    }
+
+    #chatBox::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    #chatBox::-webkit-scrollbar-track {
+        background: #ddd;
+    }
+
+    #chatBox::-webkit-scrollbar-thumb {
+        background: #bdbdbd;
+    }
+}

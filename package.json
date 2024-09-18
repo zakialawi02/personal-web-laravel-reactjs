@@ -1,0 +1,34 @@
+{
+    "name": "blog-laravel-reactjs",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build && vite build --ssr"
+    },
+    "devDependencies": {
+        "@headlessui/react": "^1.4.2",
+        "@inertiajs/react": "^1.0.0",
+        "@tailwindcss/aspect-ratio": "^0.4.2",
+        "@tailwindcss/forms": "^0.5.7",
+        "@tailwindcss/typography": "^0.5.13",
+        "@vitejs/plugin-react": "^4.2.0",
+        "autoprefixer": "^10.4.19",
+        "axios": "^1.1.2",
+        "laravel-vite-plugin": "^0.7.2",
+        "postcss": "^8.4.40",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "tailwindcss": "^3.4.7",
+        "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "@gsap/react": "^2.1.1",
+        "@tailwindcss/container-queries": "^0.1.1",
+        "gsap": "^3.12.5",
+        "lightbox.js-react": "^1.1.3",
+        "react-select": "^5.8.0",
+        "remixicon": "^4.3.0",
+        "typewriter-effect": "^2.21.0"
+    }
+}
