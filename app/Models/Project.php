@@ -18,4 +18,9 @@ class Project extends Model
         'github_url',
         'techs',
     ];
+
+    public function images()
+    {
+        return $this->hasMany(ProjectImages::class);
+    }
 }

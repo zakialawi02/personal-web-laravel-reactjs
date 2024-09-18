@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Project;
+use App\Models\ProjectImages;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -54,7 +55,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-
+        // dd($request->all());
         $request->validate([
             'name' => 'required|min:4|max:200',
             'description' => 'nullable|max:5000',
@@ -62,10 +63,13 @@ class ProjectController extends Controller
             'demo_url' => 'nullable|url',
             'github_url' => 'nullable|url',
             'techs' => 'nullable',
+            'project_image.*' => 'nullable',
         ]);
 
         $data = $request->all();
-        $data['techs'] = json_encode($data['techs']);
+        if (isset($data['techs']) && !empty($data['techs'])) {
+            $data['techs'] = json_encode($data['techs']);
+        }
 
         if ($request->hasFile('cover_image') && $request->file('cover_image')) {
             $file = $request->file('cover_image');
@@ -74,8 +78,23 @@ class ProjectController extends Controller
             $path = asset('storage/img/' . $filename);
             $data['cover_image'] = $filename;
         }
-        // dd($data);
         $project = Project::create($data);
+
+        // Handle project_image array if present
+        if (isset($data['project_image']) && is_array($data['project_image'])) {
+            if ($request->hasFile('project_image')) {
+                foreach ($request->file('project_image') as $file) {
+                    $filename = time() . '_' . Str::random(20) . '.' . $file->getClientOriginalExtension();
+                    $file->storeAs('public/img', $filename);
+                    ProjectImages::create([
+                        'project_id' => $project->id,
+                        'image' => $filename,
+                    ]);
+                }
+            }
+         }
+
+        // dd($data);
 
         return redirect()->route('admin.project.index')->with('success', 'Post created successfully');
     }
@@ -89,9 +108,11 @@ class ProjectController extends Controller
             'title' => 'View My Project',
         ];
 
+        $projectData = Project::with('images')->where('id', $project->id)->first();
+
         return Inertia::render('Front/ShowProject', [
             'meta' => $data,
-            'procjData' => $project
+            'procjData' => $projectData
         ]);
     }
 
@@ -104,6 +125,7 @@ class ProjectController extends Controller
             'title' => 'Edit My Project',
         ];
 
+        $project = Project::with('images')->where('id', $project->id)->first();
         $project->techs = json_decode($project->techs);
 
         return Inertia::render('Dashboard/Project/FormData', [
@@ -144,6 +166,20 @@ class ProjectController extends Controller
 
         $project->update($data);
 
+        // Handle project_image array if present
+        if (isset($data['project_image']) && is_array($data['project_image'])) {
+            if ($request->hasFile('project_image')) {
+                foreach ($request->file('project_image') as $file) {
+                    $filename = time() . '_' . Str::random(20) . '.' . $file->getClientOriginalExtension();
+                    $file->storeAs('public/img', $filename);
+                    ProjectImages::create([
+                        'project_id' => $project->id,
+                        'image' => $filename,
+                    ]);
+                }
+            }
+        }
+
         return redirect()->route('admin.project.index')->with('success', 'Project updated successfully');
     }
 
@@ -161,10 +197,28 @@ class ProjectController extends Controller
         }
         $project = Project::where('id', $project->id)->delete();
 
+        // Delete all related images
+        $images = ProjectImages::where('project_id', $project->id)->get();
+        foreach ($images as $image) {
+            Storage::delete('public/img/' . $image->image);
+            $image->delete();
+        }
+
         if ($project) {
             return redirect()->back()->with('success', 'Project deleted successfully');
         }
 
         return redirect()->back()->with('error', 'Project delete failed');
+    }
+
+    public function destroyScreenshot(request $request)
+    {
+        $data = $request->all();
+        $filename = $data['fileName'];
+        $image = ProjectImages::where('image', $filename)->first();
+        $image->delete();
+        Storage::delete('public/img/' . $filename);
+
+        return redirect()->back()->with(['success', 'Screenshot deleted successfully'], 201);
     }
 }

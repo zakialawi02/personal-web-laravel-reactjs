@@ -49,6 +49,7 @@ Route::prefix('dashboard')->as('admin.')->group(function () {
         Route::get('/my-project/{project:id}', [ProjectController::class, 'edit'])->name('project.edit');
         Route::put('/my-project/{project:id}', [ProjectController::class, 'update'])->name('project.update');
         Route::delete('/my-project/{project:id}', [ProjectController::class, 'destroy'])->name('project.destroy');
+        Route::post('/deleteScreenshot/', [ProjectController::class, 'destroyScreenshot'])->name('deleteScreenshot');
 
 
         Route::get('/empty', function () {

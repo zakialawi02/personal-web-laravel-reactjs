@@ -13,6 +13,8 @@ const ShowProject = ({ meta, procjData }) => {
         setTechStack(techs);
     }, []);
 
+    console.log(procjData);
+
     return (
         <>
             <Head>
@@ -31,7 +33,7 @@ const ShowProject = ({ meta, procjData }) => {
                     <div className="w-full p-3 mt-3 text-3xl font-bold text-center">
                         <div id="feature-image" className="mb-3">
                             <img
-                                className="max-h-[26rem] w-full rounded-lg object-cover object-center"
+                                className="max-h-[30rem] w-full rounded-lg object-cover object-center"
                                 src={`/storage/img/${procjData.cover_image}`}
                                 alt="Feature image"
                                 loading="lazy"
@@ -83,27 +85,28 @@ const ShowProject = ({ meta, procjData }) => {
                             <h3>Project Screenshots</h3>
                         </div>
 
-                        <SlideshowLightbox
-                            className="container grid grid-cols-6 gap-2 mx-auto"
-                            showThumbnails={true}
-                        >
-                            <img
-                                className="object-cover w-48 rounded h-36"
-                                src="https://images.pexels.com/photos/580151/pexels-photo-580151.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                            />
-                            <img
-                                className="object-cover w-48 rounded h-36"
-                                src="https://images.pexels.com/photos/13996896/pexels-photo-13996896.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                            />
-                            <img
-                                className="object-cover w-48 rounded h-36"
-                                src="https://images.pexels.com/photos/13208323/pexels-photo-13208323.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                            />
-                            <img
-                                className="object-cover w-48 rounded h-36"
-                                src="https://images.pexels.com/photos/13208323/pexels-photo-13208323.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                            />
-                        </SlideshowLightbox>
+                        {procjData.images.length > 0 && (
+                            <SlideshowLightbox
+                                className="container grid grid-cols-2 gap-2 mx-auto md:grid-cols-6"
+                                showThumbnails={true}
+                            >
+                                {procjData.images.map((image, index) => (
+                                    <img
+                                        key={index}
+                                        className="object-cover rounded w-80 h-36 md:w-48"
+                                        src={`/storage/img/${image.image}`}
+                                        alt="Screenshot"
+                                        loading="lazy"
+                                        decoding="async"
+                                        onError={(e) => {
+                                            e.target.onerror = null;
+                                            e.target.src =
+                                                "/assets/img/image-placeholder.webp";
+                                        }}
+                                    />
+                                ))}
+                            </SlideshowLightbox>
+                        )}
                     </div>
 
                     <div className="w-full p-3">
@@ -112,21 +115,25 @@ const ShowProject = ({ meta, procjData }) => {
                         </div>
 
                         <div className="flex flex-wrap gap-3">
-                            {techStack.map((tech, index) => (
-                                <div
-                                    key={index}
-                                    className="flex items-center gap-1"
-                                >
-                                    <img
-                                        src={tech.label}
-                                        alt={tech.text}
-                                        className="w-5 h-5"
-                                    />
-                                    <span className="text-sm font-semibold">
-                                        {tech.text}
-                                    </span>
-                                </div>
-                            ))}
+                            {techStack != null ? (
+                                techStack.map((tech, index) => (
+                                    <div
+                                        key={index}
+                                        className="flex items-center gap-1"
+                                    >
+                                        <img
+                                            src={tech.label}
+                                            alt={tech.text}
+                                            className="w-5 h-5"
+                                        />
+                                        <span className="text-sm font-semibold">
+                                            {tech.text}
+                                        </span>
+                                    </div>
+                                ))
+                            ) : (
+                                <p>-</p>
+                            )}
                         </div>
                     </div>
                 </div>

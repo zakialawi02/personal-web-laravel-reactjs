@@ -47,16 +47,10 @@ const NavBar = () => {
         };
 
         const handleClickOutside = (event) => {
-            const header = document.getElementById("navBar");
-            const navMenu = document.getElementById("navMenu");
-
-            if (
-                navBarMobile &&
-                header &&
-                !header.contains(event.target) &&
-                !navMenu.contains(event.target)
-            ) {
-                toggleMenu(); // Close the menu if clicked outside
+            const isOpen =
+                navBarMobile && navMenu.classList.contains("scale-y-100");
+            if (isOpen) {
+                toggleMenu();
             }
         };
 

@@ -13,7 +13,7 @@ const NavMenuHome = (props) => {
             <MenuItemHome event={event} link="#home">
                 Home
             </MenuItemHome>
-            <MenuItemHome event={event} link="https://zakialawi.my.id/blog">
+            <MenuItemHome event={event} link="https://zakialawi.com">
                 Blog
             </MenuItemHome>
             <MenuItemHome event={event} link="#about">

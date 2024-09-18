@@ -7,12 +7,15 @@ import InputError from "@/Components/Element/Input/InputError";
 import { useEffect, useRef, useState } from "react";
 import ButtonBE from "@/Components/Element/Button/ButtonBE";
 import Select from "react-select";
+import IterateUplaod from "@/Components/Element/IterateUplaod";
 
 const FormData = ({ auth, meta, procjData = null }) => {
     const isUpdate = useRef(procjData ? true : false);
     const [imagePreview, setImagePreview] = useState(null);
     const [dragging, setDragging] = useState(false);
     const [selectOptions, setSelectOptions] = useState([]);
+    const [screenshots, setScreenshots] = useState([]);
+    const [displayScreenshot, setDisplayScreenshot] = useState(null);
     const { data, setData, errors, setError, post, processing } = useForm({
         id: procjData?.id ?? "",
         name: procjData?.name ?? "",
@@ -21,7 +24,15 @@ const FormData = ({ auth, meta, procjData = null }) => {
         demo_url: procjData?.demo_url ?? "",
         github_url: procjData?.github_url ?? "",
         techs: [],
+        project_image: [],
     });
+
+    // Function to handle data from the child
+    const handleScreenshots = (data) => {
+        setScreenshots(data);
+        setData("project_image", data);
+        // console.log(data);
+    };
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -101,6 +112,9 @@ const FormData = ({ auth, meta, procjData = null }) => {
                 ? `/storage/img/${procjData.cover_image}`
                 : null
         );
+
+        let picts = procjData?.images.map((x) => `/storage/img/${x.image}`);
+        setDisplayScreenshot(picts);
     }, []);
 
     useEffect(() => {
@@ -222,7 +236,7 @@ const FormData = ({ auth, meta, procjData = null }) => {
                         {imagePreview && (
                             <>
                                 <div className="mt-3 mb-10 space-y-1">
-                                    <span>Preview</span>
+                                    <span>Preview Cover Image</span>
                                     <img
                                         src={imagePreview}
                                         alt="Preview featured image"
@@ -231,6 +245,19 @@ const FormData = ({ auth, meta, procjData = null }) => {
                                 </div>
                             </>
                         )}
+                    </div>
+                    <div className="mb-4">
+                        <InputLabel
+                            htmlFor="screenshots"
+                            value="Screenshots Project"
+                        />
+                        <p className="text-[12px] text-muted mb-3">
+                            *Add Image one by one
+                        </p>
+                        <IterateUplaod
+                            getScreenshots={handleScreenshots}
+                            displayScreenshot={displayScreenshot}
+                        />
                     </div>
                     <div className="mb-3">
                         <InputLabel
