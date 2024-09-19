@@ -52,19 +52,44 @@ const ShowProject = ({ meta, procjData }) => {
                             </div>
 
                             <div className="mt-3 space-x-2 text-xl font-normal normal-case md:mt-0">
-                                <a
-                                    href={`/project/${procjData.slug ?? "#"}`}
-                                    className="px-4 py-2 transition-all duration-300 shadow-sm bg-accent rounded-xl text-light hover:bg-secondary hover:text-dark"
+                                <button
+                                    className={`px-4 py-2 transition-all duration-300 shadow-sm rounded-xl text-light ${
+                                        !procjData.demo_url
+                                            ? "bg-gray-400 cursor-not-allowed"
+                                            : "bg-accent hover:bg-secondary hover:text-dark"
+                                    }`}
+                                    onClick={() =>
+                                        window.open(
+                                            procjData.demo_url ?? "#",
+                                            "_blank",
+                                            "noopener,noreferrer"
+                                        )
+                                    }
+                                    type="button"
+                                    disabled={!procjData.demo_url}
                                 >
                                     Demo{" "}
                                     <i className="ri-external-link-line"></i>
-                                </a>
-                                <a
-                                    href={`/project/${procjData.slug ?? "#"}`}
-                                    className="px-4 py-2 text-xl transition-all duration-300 shadow-sm bg-warning rounded-xl text-light hover:bg-secondary hover:text-dark"
+                                </button>
+
+                                <button
+                                    className={`px-4 py-2 text-xl transition-all duration-300 shadow-sm rounded-xl text-light ${
+                                        !procjData.github_url
+                                            ? "bg-gray-400 cursor-not-allowed"
+                                            : "bg-warning hover:bg-secondary hover:text-dark"
+                                    }`}
+                                    onClick={() =>
+                                        window.open(
+                                            procjData.github_url ?? "#",
+                                            "_blank",
+                                            "noopener,noreferrer"
+                                        )
+                                    }
+                                    type="button"
+                                    disabled={!procjData.github_url}
                                 >
                                     <i className="ri-github-fill"></i>
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
