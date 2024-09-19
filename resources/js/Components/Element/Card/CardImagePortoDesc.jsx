@@ -11,7 +11,7 @@ const CardImagePortoDesc = (props) => {
 
     return (
         <div
-            className="relative flex flex-col overflow-hidden md:w-1/3-custom xl:w-1/4-custom group animate-scaleUp portfolio-item"
+            className="relative flex flex-col overflow-hidden md:w-1/3-custom group animate-scaleUp portfolio-item"
             data-name={type}
         >
             <span>

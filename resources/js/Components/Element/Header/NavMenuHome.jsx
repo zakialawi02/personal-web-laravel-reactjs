@@ -27,7 +27,7 @@ const NavMenuHome = (props) => {
             </MenuItemHome>
             <MenuItemHome
                 event={event}
-                link="https://gallery.zakialawi.my.id/"
+                link="/gallery"
                 className="px-4 mx-1 mb-2 shadow-xl rounded-2xl bg-accent hover:bg-primary hover:border-accent hover:border-2 hover:-translate-y-1 dark:bg-dark-accent dark:hover:border-dark-accent dark:hover:bg-dark-primary dark:hover:text-dark-light"
             >
                 Gallery

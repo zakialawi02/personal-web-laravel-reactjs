@@ -9,6 +9,7 @@ use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GalleryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,10 @@ Route::prefix('dashboard')->as('admin.')->group(function () {
         Route::delete('/my-project/{project:id}', [ProjectController::class, 'destroy'])->name('project.destroy');
         Route::post('/deleteScreenshot/', [ProjectController::class, 'destroyScreenshot'])->name('deleteScreenshot');
 
+        Route::get('/my-gallery', [GalleryController::class, 'index'])->name('gallery');
+        Route::post('/my-gallery', [GalleryController::class, 'store'])->name('gallery.store');
+        Route::delete('/my-gallery/{gallery:id}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
+
 
         Route::get('/empty', function () {
             return Inertia::render('EmptyPage');
@@ -64,6 +69,8 @@ Route::prefix('dashboard')->as('admin.')->group(function () {
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 });
+
+Route::get('/gallery', [GalleryController::class, 'index2'])->name('gallery');
 
 Route::get('/project/{project:id}', [ProjectController::class, 'show'])->name('project.show');
 

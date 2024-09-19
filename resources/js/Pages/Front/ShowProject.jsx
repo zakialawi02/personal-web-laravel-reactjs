@@ -85,7 +85,7 @@ const ShowProject = ({ meta, procjData }) => {
                             <h3>Project Screenshots</h3>
                         </div>
 
-                        {procjData.images.length > 0 && (
+                        {procjData.images.length > 0 ? (
                             <SlideshowLightbox
                                 className="container grid grid-cols-2 gap-2 mx-auto md:grid-cols-6"
                                 showThumbnails={true}
@@ -106,6 +106,8 @@ const ShowProject = ({ meta, procjData }) => {
                                     />
                                 ))}
                             </SlideshowLightbox>
+                        ) : (
+                            <p>No screenshots</p>
                         )}
                     </div>
 

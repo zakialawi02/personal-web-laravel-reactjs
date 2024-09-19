@@ -11,6 +11,7 @@ const CardImagePorto = (props) => {
                     className="object-cover w-full h-[250px] group-hover:scale-110 transition-all duration-300"
                     src={photo}
                     alt=""
+                    loading="lazy"
                 />
             </span>
         </div>

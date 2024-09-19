@@ -75,6 +75,12 @@ const SidebarAdmin = ({ show, toggleSidebar }) => {
                         />
 
                         <NavMenu
+                            icon="ri-gallery-fill mr-3 text-lg"
+                            text="Gallery"
+                            to="/dashboard/my-gallery"
+                        />
+
+                        <NavMenu
                             icon="ri-chat-heart-line mr-3 text-lg"
                             text="Pesan"
                             to="/dashboard/pesan"

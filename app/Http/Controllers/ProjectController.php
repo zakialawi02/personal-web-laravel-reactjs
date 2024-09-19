@@ -92,7 +92,7 @@ class ProjectController extends Controller
                     ]);
                 }
             }
-         }
+        }
 
         // dd($data);
 
@@ -160,7 +160,7 @@ class ProjectController extends Controller
             $file->storeAs('public/img/' .  $filename);
             $path = asset('storage/img/' . $filename);
             $data['cover_image'] = $filename;
-        }else{
+        } else {
             unset($data['cover_image']);
         }
 
@@ -192,13 +192,14 @@ class ProjectController extends Controller
             abort(403);
         }
 
-        if ($project->image) {
-            Storage::delete('public/img/' . $project->image);
+        $project_id = $project->id;
+        if ($project->cover_image) {
+            Storage::delete('public/img/' . $project->cover_image);
         }
+        $images = ProjectImages::where('project_id', $project_id)->get();
         $project = Project::where('id', $project->id)->delete();
 
         // Delete all related images
-        $images = ProjectImages::where('project_id', $project->id)->get();
         foreach ($images as $image) {
             Storage::delete('public/img/' . $image->image);
             $image->delete();
@@ -220,5 +221,12 @@ class ProjectController extends Controller
         Storage::delete('public/img/' . $filename);
 
         return redirect()->back()->with(['success', 'Screenshot deleted successfully'], 201);
+    }
+
+    public function getPortfolio()
+    {
+        $projects = Project::all();
+
+        return response()->json($projects);
     }
 }
