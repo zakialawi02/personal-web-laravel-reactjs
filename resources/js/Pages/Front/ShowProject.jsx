@@ -5,7 +5,8 @@ import "lightbox.js-react/dist/index.css";
 import { SlideshowLightbox, initLightboxJS } from "lightbox.js-react";
 import { useEffect, useState } from "react";
 
-const ShowProject = ({ meta, procjData }) => {
+const ShowProject = ({ procjData }) => {
+    const url = window.location.href;
     const [techStack, setTechStack] = useState([]);
 
     useEffect(() => {
@@ -13,12 +14,31 @@ const ShowProject = ({ meta, procjData }) => {
         setTechStack(techs);
     }, []);
 
-    console.log(procjData);
-
     return (
         <>
             <Head>
                 <title>Project</title>
+
+                <meta
+                    name="description"
+                    content="Personal Web Zaki alawi, web developer, webgis developer, Laravel, ReactJs"
+                />
+                <meta
+                    name="keywords"
+                    content="Laravel, ReactJs, WebGIS, Web Developer, application, openlayers, leaflet, wms,wfs,geoserver, mapping, aerial mapping, photogrametric mapping, geospatial, geodetic, engineering, Personal Web"
+                />
+
+                <meta name="author" content="Ahmad Zaki Alawi" />
+
+                <meta property="og:title" content="Personal Web Zaki alawi" />
+                <meta
+                    property="og:description"
+                    content="Personal Web Zaki alawi, web developer, Laravel, ReactJs"
+                />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={url} />
+
+                <meta name="robots" content="index, follow" />
             </Head>
 
             <HeaderNavHome></HeaderNavHome>

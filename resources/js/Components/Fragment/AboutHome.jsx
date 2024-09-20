@@ -34,6 +34,7 @@ const AboutHome = () => {
                                     strings: [
                                         "Geomatics Engineer",
                                         "GIS & WebGIS Enthusiast",
+                                        "Web Developer",
                                     ],
                                     autoStart: true,
                                     loop: true,
@@ -42,13 +43,16 @@ const AboutHome = () => {
                         </span>
                     </h1>
                     <p className="leading-7">
-                        My diverse interests include video production,
-                        photography, website development, and technology, which
-                        have provided me with a well-rounded skill set and a
-                        holistic approach to problem-solving. With a strong
-                        passion for learning and an innate curiosity, I am
-                        committed to continuously refining my skills and
-                        expertise across these domains.
+                        As a dedicated Geomatics Engineering graduate with a
+                        strong interest in GIS and WebGIS, I am determined to
+                        utilize my expertise in spatial data analysis and web
+                        development to contribute effectively to innovative
+                        projects. My diverse interests in website development,
+                        and technology, which have provided me with a
+                        well-rounded skill set and a holistic approach to
+                        problem-solving. With a strong passion for learning and
+                        an innate curiosity, I am committed to continuously
+                        refining my skills and expertise across these domains.
                     </p>
 
                     <div className="m-auto my-3">
@@ -61,7 +65,7 @@ const AboutHome = () => {
                                             <label className="mr-1 font-semibold">
                                                 &nbsp;&nbsp; Birthday:{" "}
                                             </label>
-                                            2 December 2***
+                                            2 December ****
                                         </span>
                                     </li>
                                     <li className="mb-2">
@@ -112,7 +116,8 @@ const AboutHome = () => {
                                             <label className="mr-1 font-semibold">
                                                 &nbsp;&nbsp; Interest:{" "}
                                             </label>
-                                            xxxxxxxxxxxxxxxx
+                                            Photography, Gaming, Technology,
+                                            Japan Culture
                                         </span>
                                     </li>
                                     <li className="mb-2">

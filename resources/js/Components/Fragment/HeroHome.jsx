@@ -76,9 +76,10 @@ const HeroHome = () => {
                                     options={{
                                         strings: [
                                             "Human",
-                                            "Not Developer",
-                                            "Not Programmer",
-                                            "Not Designer",
+                                            "Web Developer",
+                                            "Programmer",
+                                            "WebGIS Developer",
+                                            "Laravel Developer",
                                         ],
                                         autoStart: true,
                                         loop: true,
