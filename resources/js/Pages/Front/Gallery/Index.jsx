@@ -27,7 +27,7 @@ const Index = () => {
 
     useEffect(() => {
         axios
-            .get(route("api.getPhotosGallery") + "?max=12")
+            .get(route("api.getPhotosGallery"))
             .then((response) => {
                 setPhotos(response.data);
                 setLoading(false);
