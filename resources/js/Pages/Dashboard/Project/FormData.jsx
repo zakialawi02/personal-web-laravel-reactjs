@@ -518,6 +518,30 @@ const FormData = ({ auth, meta, procjData = null }) => {
                                     ),
                                 },
                                 {
+                                    value: "codeigniter3",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/ci.png"
+                                                className="w-3 h-3"
+                                            />
+                                            CodeIgniter 3
+                                        </div>
+                                    ),
+                                },
+                                {
+                                    value: "codeigniter4",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/ci.png"
+                                                className="w-3 h-3"
+                                            />
+                                            CodeIgniter 4
+                                        </div>
+                                    ),
+                                },
+                                {
                                     value: "ruby_on_rails",
                                     label: (
                                         <div className="flex items-center">
