@@ -71,6 +71,7 @@ Route::prefix('dashboard')->as('admin.')->group(function () {
 });
 
 Route::get('/gallery', [GalleryController::class, 'index2'])->name('gallery');
+Route::get('/my-portfolio', [ProjectController::class, 'index2'])->name('myproject');
 
 Route::get('/project/{project:id}', [ProjectController::class, 'show'])->name('project.show');
 

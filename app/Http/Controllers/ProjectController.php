@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
+    public function index2()
+    {
+        return Inertia::render('Front/Portfolio/Index');
+    }
+
+
     /**
      * Display a listing of the resource.
      */

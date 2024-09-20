@@ -3,6 +3,7 @@ import NavPortoButton from "../Element/Button/NavPortoButton";
 import SkeletonOneLine from "../Element/Skeleton/SkeletonOneLine";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "@inertiajs/react";
 
 const Gallery = () => {
     const [loading, setLoading] = useState(true);
@@ -49,15 +50,34 @@ const Gallery = () => {
                     ) : (
                         <>
                             <div className="flex flex-col flex-wrap gap-2 p-2 mt-4 md:flex-row">
-                                {photos.map((photo, index) => (
-                                    <CardImagePorto
-                                        key={index}
-                                        photo={`/storage/img/gallery/${photo.image}`}
-                                        type="photo"
-                                    />
-                                ))}
+                                {photos.length === 0 ? (
+                                    <div className="w-full p-4 text-center text-dark-primary dark:text-light">
+                                        No photos yet
+                                    </div>
+                                ) : (
+                                    <>
+                                        {photos.map((photo, index) => (
+                                            <CardImagePorto
+                                                key={index}
+                                                photo={`/storage/img/gallery/${photo.image}`}
+                                                type="photo"
+                                            />
+                                        ))}
+                                    </>
+                                )}
                             </div>
                         </>
+                    )}
+
+                    {photos.length > 9 && (
+                        <div className="w-full p-4 text-center">
+                            <Link
+                                className="px-4 py-2 text-lg font-bold transition-all duration-300 rounded-lg text-light bg-accent hover:bg-primary dark:hover:text-light dark:bg-dark-accent dark:hover:bg-dark-primary"
+                                href={route("gallery")}
+                            >
+                                View More
+                            </Link>
+                        </div>
                     )}
                 </div>
             </div>

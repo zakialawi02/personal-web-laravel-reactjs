@@ -1,34 +1,33 @@
 import DarkModeToogle from "@/Components/Element/Button/DarkModeToogle";
 import HeaderNavHome from "@/Components/Fragment/HeaderNavHome";
-import NavPortoButton from "@/Components/Element/Button/NavPortoButton";
+import CardImagePortoDesc from "@/Components/Element/Card/CardImagePortoDesc";
 import SkeletonOneLine from "@/Components/Element/Skeleton/SkeletonOneLine";
-import CardImagePorto from "@/Components/Element/Card/CardImagePorto";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import { Head } from "@inertiajs/react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const Index = () => {
     const [loading, setLoading] = useState(true);
-    const [photos, setPhotos] = useState([]);
+    const [portfolios, setPortfolios] = useState([]);
 
     useEffect(() => {
         axios
-            .get(route("api.getPhotosGallery") + "?max=12")
+            .get(route("api.getPortfolio"))
             .then((response) => {
-                setPhotos(response.data);
+                setPortfolios(response.data);
                 setLoading(false);
             })
             .catch((error) => {
                 console.log(error);
                 setLoading(false);
-                setPhotos([]);
+                setPortfolios([]);
             });
     }, []);
 
     return (
         <>
             <Head>
-                <title>Gallery | Personal Web</title>
+                <title>My Work | Personal Web</title>
             </Head>
 
             <HeaderNavHome></HeaderNavHome>
@@ -41,41 +40,34 @@ const Index = () => {
             >
                 <div className="container min-h-[90vh] flex flex-col px-2 mt-6 gap-2 md:gap-10 lg:px-24 mb-28">
                     <div className="w-full p-4 mt-16 text-3xl font-bold text-center uppercase text-light">
-                        <h2>Gallery</h2>
+                        <h2>Portfolio</h2>
                     </div>
 
                     <div className="w-full p-2 px-4 mb-4">
-                        <div
-                            id="type-list"
-                            className="flex flex-wrap gap-1 px-2 py-4 text-accent dark:text-dark-accent"
-                        >
-                            <NavPortoButton active="true" type="all">
-                                All
-                            </NavPortoButton>
-                            <NavPortoButton type="photo">Photo</NavPortoButton>
-                            <NavPortoButton type="design">
-                                Design
-                            </NavPortoButton>
-                        </div>
-
                         {loading ? (
                             <SkeletonOneLine height={64} />
                         ) : (
                             <>
                                 <div className="flex flex-col flex-wrap gap-2 p-2 mt-4 md:flex-row">
-                                    {photos.length === 0 ? (
-                                        <div className="w-full p-4 text-center text-dark-primary dark:text-light">
-                                            No photos yet
+                                    {portfolios.length === 0 ? (
+                                        <div className="w-full p-4 mt-16 text-3xl font-bold text-center uppercase text-dark-primary dark:text-light">
+                                            <h2>No Portfolio</h2>
                                         </div>
                                     ) : (
                                         <>
-                                            {photos.map((photo, index) => (
-                                                <CardImagePorto
-                                                    key={index}
-                                                    photo={`/storage/img/gallery/${photo.image}`}
-                                                    type="photo"
-                                                />
-                                            ))}
+                                            {portfolios.map(
+                                                (portfolio, index) => (
+                                                    <CardImagePortoDesc
+                                                        key={index}
+                                                        to={`/project/${portfolio.id}`}
+                                                        photo={`/storage/img/${portfolio.cover_image}`}
+                                                        type="web"
+                                                        title={portfolio.name}
+                                                    >
+                                                        {portfolio.description}
+                                                    </CardImagePortoDesc>
+                                                )
+                                            )}
                                         </>
                                     )}
                                 </div>

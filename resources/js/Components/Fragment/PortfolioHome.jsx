@@ -34,17 +34,25 @@ const Portfolio = () => {
                     ) : (
                         <>
                             <div className="flex flex-col flex-wrap gap-2 p-2 mt-4 md:flex-row">
-                                {portfolios.map((portfolio, index) => (
-                                    <CardImagePortoDesc
-                                        key={index}
-                                        to={`/project/${portfolio.id}`}
-                                        photo={`/storage/img/${portfolio.cover_image}`}
-                                        type="web"
-                                        title={portfolio.name}
-                                    >
-                                        {portfolio.description}
-                                    </CardImagePortoDesc>
-                                ))}
+                                {portfolios.length === 0 ? (
+                                    <div className="w-full p-4 mt-16 text-3xl font-bold text-center uppercase text-dark-primary dark:text-light">
+                                        <h2>No Portfolio</h2>
+                                    </div>
+                                ) : (
+                                    <>
+                                        {portfolios.map((portfolio, index) => (
+                                            <CardImagePortoDesc
+                                                key={index}
+                                                to={`/project/${portfolio.id}`}
+                                                photo={`/storage/img/${portfolio.cover_image}`}
+                                                type="web"
+                                                title={portfolio.name}
+                                            >
+                                                {portfolio.description}
+                                            </CardImagePortoDesc>
+                                        ))}
+                                    </>
+                                )}
                             </div>
                         </>
                     )}
