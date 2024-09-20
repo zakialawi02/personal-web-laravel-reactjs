@@ -1,4 +1,38 @@
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
+
 const Contact = () => {
+    const [processing, setProcessing] = useState(false);
+    const [error, setError] = useState(null);
+    const form = useRef();
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        setError(null);
+        setProcessing(true);
+        emailjs
+            .sendForm(
+                import.meta.env.VITE_GMAIL_SERVICE_ID,
+                "template_20331zc",
+                form.current,
+                {
+                    publicKey: import.meta.env.VITE_EMAILJS_API_KEY,
+                }
+            )
+            .then(
+                () => {
+                    e.target.reset();
+                    setProcessing(false);
+                },
+                (error) => {
+                    console.log("FAILED...", error.text);
+                    setError(error.text);
+                    setProcessing(false);
+                }
+            );
+    };
+
     return (
         <section id="contact" className="p-4 bg-accent dark:bg-[#1e1e2c]">
             <div className="container min-h-[90vh] flex flex-col px-2 mt-6 gap-2 md:gap-10 lg:px-24 mb-16">
@@ -51,9 +85,10 @@ const Contact = () => {
                             Message Me
                         </div>
 
-                        <div className="p-4 m-1">
+                        <div className="p-4 m-1 text-dark">
                             <form
-                                method="POST"
+                                ref={form}
+                                onSubmit={sendEmail}
                                 className="form"
                                 id="contact"
                                 name="contact"
@@ -81,8 +116,8 @@ const Contact = () => {
                                     className="w-full p-2 my-2 border border-gray-300 rounded-md"
                                     type="text"
                                     placeholder="Your Subject"
-                                    name="subject"
-                                    id="subject"
+                                    name="judul"
+                                    id="judul"
                                 />
 
                                 <textarea
@@ -95,12 +130,17 @@ const Contact = () => {
                                     required
                                 />
 
+                                <div className="text-error">
+                                    <p>{error}</p>
+                                </div>
+
                                 <button
                                     id="sendMessage"
                                     type="submit"
                                     className="w-full p-2 mt-4 transition-all duration-300 rounded-xl bg-light text-accent hover:bg-primary hover:text-light hover:-translate-y-1 dark:hover:bg-dark-primary dark:border-dark-light dark:hover:border-2"
+                                    disabled={processing}
                                 >
-                                    Send
+                                    {processing ? "Sending..." : "Send Message"}
                                 </button>
                             </form>
                         </div>
