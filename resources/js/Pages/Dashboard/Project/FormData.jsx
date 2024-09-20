@@ -1021,6 +1021,224 @@ const FormData = ({ auth, meta, procjData = null }) => {
                                         </div>
                                     ),
                                 },
+                                {
+                                    value: "openlayers",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/openlayers.png"
+                                                className="w-3 h-3"
+                                            />
+                                            OpenLayers
+                                        </div>
+                                    ),
+                                },
+                                {
+                                    value: "leaflet",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/leaflet.png"
+                                                className="w-3 h-3"
+                                            />
+                                            Leaflet
+                                        </div>
+                                    ),
+                                },
+                                {
+                                    value: "mapbox",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/mapbox.png"
+                                                className="w-3 h-3"
+                                            />
+                                            Mapbox
+                                        </div>
+                                    ),
+                                },
+                                {
+                                    value: "cesiumjs",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/cesium.png"
+                                                className="w-3 h-3"
+                                            />
+                                            Cesium JS
+                                        </div>
+                                    ),
+                                },
+                                {
+                                    value: "postgis",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/postgis.png"
+                                                className="w-3 h-3"
+                                            />
+                                            PostGIS
+                                        </div>
+                                    ),
+                                },
+                                {
+                                    value: "geoserver",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/geoserver.png"
+                                                className="w-3 h-3"
+                                            />
+                                            GeoServer
+                                        </div>
+                                    ),
+                                },
+                                {
+                                    value: "arcgis",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/esri.jpeg"
+                                                className="w-3 h-3"
+                                            />
+                                            ArcGIS REST API
+                                        </div>
+                                    ),
+                                },
+                                {
+                                    value: "google_earth_engine",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/earthengine.png"
+                                                className="w-3 h-3"
+                                            />
+                                            Google Earth Engine
+                                        </div>
+                                    ),
+                                },
+                                {
+                                    value: "turfjs",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/turf.png"
+                                                className="w-3 h-3"
+                                            />
+                                            Turf.js
+                                        </div>
+                                    ),
+                                },
+                                {
+                                    value: "gdal",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/gdal.png"
+                                                className="w-3 h-3"
+                                            />
+                                            GDAL
+                                        </div>
+                                    ),
+                                },
+                                {
+                                    value: "rasterio",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/rasterio.png"
+                                                className="w-3 h-3"
+                                            />
+                                            Rasterio
+                                        </div>
+                                    ),
+                                },
+                                {
+                                    value: "owslib",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/owslib.png"
+                                                className="w-3 h-3"
+                                            />
+                                            OWSLib (for Web Map Service API)
+                                        </div>
+                                    ),
+                                },
+                                {
+                                    value: "pycsw",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/pycsw.png"
+                                                className="w-3 h-3"
+                                            />
+                                            pycsw (OGC CSW for metadata)
+                                        </div>
+                                    ),
+                                },
+                                {
+                                    value: "mapserver",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/mapserver.png"
+                                                className="w-3 h-3"
+                                            />
+                                            MapServer
+                                        </div>
+                                    ),
+                                },
+                                {
+                                    value: "mapproxy",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/mapproxy.png"
+                                                className="w-3 h-3"
+                                            />
+                                            MapProxy
+                                        </div>
+                                    ),
+                                },
+                                {
+                                    value: "geonode",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/geonode.png"
+                                                className="w-3 h-3"
+                                            />
+                                            GeoNode (Spatial Data
+                                            Infrastructure)
+                                        </div>
+                                    ),
+                                },
+                                {
+                                    value: "geonetwork",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/geonetwork.png"
+                                                className="w-3 h-3"
+                                            />
+                                            GeoNetwork (Catalog Service for the
+                                            Web)
+                                        </div>
+                                    ),
+                                },
+                                {
+                                    value: "maplibre",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/maplibre.png"
+                                                className="w-3 h-3"
+                                            />
+                                            MapLibre
+                                        </div>
+                                    ),
+                                },
                             ]}
                         />
                         <InputError message={errors.techs} className="mb-3" />
