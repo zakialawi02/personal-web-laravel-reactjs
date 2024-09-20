@@ -85,7 +85,6 @@ const Index = () => {
                                         <>
                                             {photos.map((photo, index) => (
                                                 <CardImagePorto
-                                                    data-index={index}
                                                     key={index}
                                                     photo={`/storage/img/gallery/${photo.image}`}
                                                     type={photo.type}
@@ -93,6 +92,7 @@ const Index = () => {
                                                         setIsOpen(true);
                                                         setIndexImg(index);
                                                     }}
+                                                    cursor="pointer"
                                                 />
                                             ))}
                                         </>
@@ -108,6 +108,7 @@ const Index = () => {
                                         setIsOpen(false);
                                     }}
                                     startingSlideIndex={indexImg}
+                                    downloadImages={true}
                                 ></SlideshowLightbox>
                             </>
                         )}
