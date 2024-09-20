@@ -50,7 +50,7 @@ const Index = () => {
                             <>
                                 <div className="flex flex-col flex-wrap gap-2 p-2 mt-4 md:flex-row">
                                     {portfolios.length === 0 ? (
-                                        <div className="w-full p-4 mt-16 text-3xl font-bold text-center uppercase text-dark-primary dark:text-light">
+                                        <div className="w-full p-4 text-center text-dark-primary dark:text-light">
                                             <h2>No Portfolio</h2>
                                         </div>
                                     ) : (
