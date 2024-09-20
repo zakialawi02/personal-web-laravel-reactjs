@@ -1,6 +1,4 @@
-const NavPortoButton = (props) => {
-    const { active = false, type = "all", children = "..." } = props;
-
+const NavPortoButton = ({ active = false, type = "all", children = "..." }) => {
     const changeType = (type) => {
         document
             .querySelectorAll("#portfolio .active")

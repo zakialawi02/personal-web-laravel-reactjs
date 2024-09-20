@@ -94,9 +94,9 @@ class GalleryController extends Controller
     public function getPhotosGallery()
     {
         if (request('max')) {
-            $images = Gallery::where('type', 'photo')->take(request('max'))->get();
+            $images = Gallery::take(request('max'))->get();
         } else {
-            $images = Gallery::where('type', 'photo')->get();
+            $images = Gallery::get();
         }
 
         return response()->json($images);

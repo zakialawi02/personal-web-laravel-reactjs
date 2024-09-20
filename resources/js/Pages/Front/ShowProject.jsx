@@ -2,7 +2,7 @@ import HeaderNavHome from "@/Components/Fragment/HeaderNavHome";
 import DarkModeToogle from "@/Components/Element/Button/DarkModeToogle";
 import { Head } from "@inertiajs/react";
 import "lightbox.js-react/dist/index.css";
-import { SlideshowLightbox, initLightboxJS } from "lightbox.js-react";
+import { SlideshowLightbox } from "lightbox.js-react";
 import { useEffect, useState } from "react";
 
 const ShowProject = ({ procjData }) => {

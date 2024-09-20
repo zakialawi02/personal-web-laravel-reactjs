@@ -1,10 +1,9 @@
-const CardImagePorto = (props) => {
-    const { photo = "#", type = "photo" } = props;
-
+const CardImagePorto = ({ photo = "#", type = "photo", ...props }) => {
     return (
         <div
             className="relative flex flex-col overflow-hidden md:w-1/3-custom xl:w-1/4-custom group animate-scaleUp portfolio-item"
             data-name={type}
+            {...props}
         >
             <span>
                 <img

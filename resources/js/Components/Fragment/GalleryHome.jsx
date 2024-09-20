@@ -1,6 +1,9 @@
 import CardImagePorto from "../Element/Card/CardImagePorto";
 import NavPortoButton from "../Element/Button/NavPortoButton";
 import SkeletonOneLine from "../Element/Skeleton/SkeletonOneLine";
+import "lightbox.js-react/dist/index.css";
+import { SlideshowLightbox } from "lightbox.js-react";
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "@inertiajs/react";
@@ -8,10 +11,22 @@ import { Link } from "@inertiajs/react";
 const Gallery = () => {
     const [loading, setLoading] = useState(true);
     const [photos, setPhotos] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
+    const [indexImg, setIndexImg] = useState(0);
+
+    const images = photos.map((photo, index) => {
+        return {
+            index: index,
+            src: `/storage/img/gallery/${photo.image}`,
+            thumbnail: `/storage/img/gallery/${photo.image}`,
+            alt: photo.name,
+            type: photo.type,
+        };
+    });
 
     useEffect(() => {
         axios
-            .get(route("api.getPhotosGallery") + "?max=9")
+            .get(route("api.getPhotosGallery") + "?max=12")
             .then((response) => {
                 setPhotos(response.data);
                 setLoading(false);
@@ -46,7 +61,7 @@ const Gallery = () => {
                     </div>
 
                     {loading ? (
-                        <SkeletonOneLine height={80} />
+                        <SkeletonOneLine height={64} />
                     ) : (
                         <>
                             <div className="flex flex-col flex-wrap gap-2 p-2 mt-4 md:flex-row">
@@ -58,18 +73,34 @@ const Gallery = () => {
                                     <>
                                         {photos.map((photo, index) => (
                                             <CardImagePorto
+                                                data-index={index}
                                                 key={index}
                                                 photo={`/storage/img/gallery/${photo.image}`}
-                                                type="photo"
+                                                type={photo.type}
+                                                onClick={() => {
+                                                    setIsOpen(true);
+                                                    setIndexImg(index);
+                                                }}
                                             />
                                         ))}
                                     </>
                                 )}
                             </div>
+
+                            <SlideshowLightbox
+                                images={images}
+                                showThumbnails={true}
+                                open={isOpen}
+                                lightboxIdentifier="lbox1"
+                                onClose={() => {
+                                    setIsOpen(false);
+                                }}
+                                startingSlideIndex={indexImg}
+                            ></SlideshowLightbox>
                         </>
                     )}
 
-                    {photos.length > 9 && (
+                    {photos.length >= 12 && (
                         <div className="w-full p-4 text-center">
                             <Link
                                 className="px-4 py-2 text-lg font-bold transition-all duration-300 rounded-lg text-light bg-accent hover:bg-primary dark:hover:text-light dark:bg-dark-accent dark:hover:bg-dark-primary"

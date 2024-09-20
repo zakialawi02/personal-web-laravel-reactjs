@@ -3,6 +3,8 @@ import HeaderNavHome from "@/Components/Fragment/HeaderNavHome";
 import NavPortoButton from "@/Components/Element/Button/NavPortoButton";
 import SkeletonOneLine from "@/Components/Element/Skeleton/SkeletonOneLine";
 import CardImagePorto from "@/Components/Element/Card/CardImagePorto";
+import "lightbox.js-react/dist/index.css";
+import { SlideshowLightbox } from "lightbox.js-react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Head } from "@inertiajs/react";
@@ -10,6 +12,18 @@ import { Head } from "@inertiajs/react";
 const Index = () => {
     const [loading, setLoading] = useState(true);
     const [photos, setPhotos] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
+    const [indexImg, setIndexImg] = useState(0);
+
+    const images = photos.map((photo, index) => {
+        return {
+            index: index,
+            src: `/storage/img/gallery/${photo.image}`,
+            thumbnail: `/storage/img/gallery/${photo.image}`,
+            alt: photo.name,
+            type: photo.type,
+        };
+    });
 
     useEffect(() => {
         axios
@@ -71,14 +85,30 @@ const Index = () => {
                                         <>
                                             {photos.map((photo, index) => (
                                                 <CardImagePorto
+                                                    data-index={index}
                                                     key={index}
                                                     photo={`/storage/img/gallery/${photo.image}`}
-                                                    type="photo"
+                                                    type={photo.type}
+                                                    onClick={() => {
+                                                        setIsOpen(true);
+                                                        setIndexImg(index);
+                                                    }}
                                                 />
                                             ))}
                                         </>
                                     )}
                                 </div>
+
+                                <SlideshowLightbox
+                                    images={images}
+                                    showThumbnails={true}
+                                    open={isOpen}
+                                    lightboxIdentifier="lbox1"
+                                    onClose={() => {
+                                        setIsOpen(false);
+                                    }}
+                                    startingSlideIndex={indexImg}
+                                ></SlideshowLightbox>
                             </>
                         )}
                     </div>
