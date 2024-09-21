@@ -1,14 +1,14 @@
 import { Link } from "@inertiajs/react";
 
-const CardImagePortoDesc = (props) => {
-    const {
-        to = "#",
-        photo = "#",
-        type = "web",
-        title = "Untitled",
-        children = "...",
-    } = props;
-
+const CardImagePortoDesc = ({
+    to = "#",
+    photo = "#",
+    type = "web",
+    title = "Untitled",
+    children = "...",
+    cursor = "",
+    ...props
+}) => {
     return (
         <div
             className="relative flex flex-col overflow-hidden md:w-1/3-custom group animate-scaleUp portfolio-item"
@@ -16,7 +16,17 @@ const CardImagePortoDesc = (props) => {
         >
             <span>
                 <img
-                    className="object-cover w-full h-[250px] group-hover:scale-110 transition-all duration-300"
+                    className={`object-cover w-full h-[250px] group-hover:scale-110 grayscale-[30%] hover:grayscale-0 transition-all duration-300 ${
+                        cursor === "zoom-in"
+                            ? "cursor-zoom-in"
+                            : cursor === "zoom-out"
+                            ? "cursor-zoom-out"
+                            : cursor === "pointer"
+                            ? "cursor-pointer"
+                            : cursor === "not-allowed"
+                            ? "cursor-not-allowed"
+                            : ""
+                    }`}
                     src={photo}
                     alt=""
                 />

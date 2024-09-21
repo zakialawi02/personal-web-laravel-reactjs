@@ -506,6 +506,18 @@ const FormData = ({ auth, meta, procjData = null }) => {
                                     ),
                                 },
                                 {
+                                    value: "inertia",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/inertia.png"
+                                                className="w-3 h-3"
+                                            />
+                                            Inertia Js
+                                        </div>
+                                    ),
+                                },
+                                {
                                     value: "laravel",
                                     label: (
                                         <div className="flex items-center">

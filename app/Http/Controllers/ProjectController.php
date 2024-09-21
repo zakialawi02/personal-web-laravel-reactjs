@@ -68,7 +68,6 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'name' => 'required|min:4|max:200',
             'description' => 'nullable|max:5000',
@@ -82,6 +81,8 @@ class ProjectController extends Controller
         $data = $request->all();
         if (isset($data['techs']) && !empty($data['techs'])) {
             $data['techs'] = json_encode($data['techs']);
+        } else {
+            unset($data['techs']);
         }
 
         if ($request->hasFile('cover_image') && $request->file('cover_image')) {
@@ -90,7 +91,11 @@ class ProjectController extends Controller
             $file->storeAs('public/img/' .  $filename);
             $path = asset('storage/img/' . $filename);
             $data['cover_image'] = $filename;
+        } else {
+            unset($data['cover_image']);
         }
+        // dd($data);
+
         $project = Project::create($data);
 
         // Handle project_image array if present
@@ -160,6 +165,7 @@ class ProjectController extends Controller
             'demo_url' => 'nullable|url',
             'github_url' => 'nullable|url',
             'techs' => 'nullable',
+            'project_image.*' => 'nullable',
         ]);
 
         $data = $request->all();
@@ -240,6 +246,13 @@ class ProjectController extends Controller
     public function getPortfolio()
     {
         $projects = Project::all();
+
+        // Mapping data untuk memotong description dan menambahkan script_tag()
+        $projects->transform(function ($item) {
+            $item->description = strip_tags($item->description); // Menghapus semua tag HTML
+            $item->description = Str::limit($item->description, 100); // Memotong description jadi 100 karakter
+            return $item;
+        });
 
         return response()->json($projects);
     }
