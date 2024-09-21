@@ -119,9 +119,12 @@ const ShowProject = ({ procjData }) => {
                             <h3>Project Description</h3>
                         </div>
 
-                        <div className="py-2 text-[1.1rem]">
-                            {/* <p>{procjData.description}</p> */}
-                            <p>{procjData.description}</p>
+                        <div id="post-content" className="py-2 text-[1.1rem]">
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: procjData.description,
+                                }}
+                            />
                         </div>
                     </div>
 

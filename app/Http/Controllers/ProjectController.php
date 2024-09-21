@@ -35,6 +35,13 @@ class ProjectController extends Controller
 
         $project = $project->paginate(25)->withQueryString();
 
+        // Mapping data untuk memotong description dan menambahkan script_tag()
+        $project->getCollection()->transform(function ($item) {
+            $item->description = strip_tags($item->description); // Menghapus semua tag HTML
+            $item->description = Str::limit($item->description, 100); // Memotong description jadi 100 karakter
+            return $item;
+        });
+
         return Inertia::render('Dashboard/Project/Index', [
             'meta' => $data,
             'projects' => $project,
@@ -145,6 +152,7 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required|min:4|max:200',
             'description' => 'nullable|max:5000',

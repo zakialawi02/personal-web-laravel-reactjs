@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import ButtonBE from "@/Components/Element/Button/ButtonBE";
 import Select from "react-select";
 import IterateUplaod from "@/Components/Element/IterateUplaod";
+import ArticlePost from "@/Components/Element/WYSWYG/ArticlePost";
 
 const FormData = ({ auth, meta, procjData = null }) => {
     const isUpdate = useRef(procjData ? true : false);
@@ -76,6 +77,10 @@ const FormData = ({ auth, meta, procjData = null }) => {
             text: x.label?.props.children[1],
         }));
         return a;
+    };
+
+    const handleChangeContent = (content) => {
+        setData("description", content);
     };
 
     const handleSubmit = (e) => {
@@ -164,25 +169,20 @@ const FormData = ({ auth, meta, procjData = null }) => {
                         />
                         <InputError message={errors.name} className="mb-3" />
                     </div>
-                    <div className="mb-3">
+
+                    <div className="mb-5">
                         <InputLabel
                             htmlFor="description"
                             value="Description"
                             className="mb-2"
                         />
-                        <textarea
-                            id="description"
-                            name="description"
-                            rows="5"
-                            className="w-full border-gray-300 rounded-md shadow-sm focus:border-backend-primary focus:ring-backend-primary"
-                            value={data.description}
-                            onChange={(e) =>
-                                setData("description", e.target.value)
-                            }
-                        ></textarea>
                         <InputError
                             message={errors.description}
                             className="mb-3"
+                        />
+                        <ArticlePost
+                            data={data.description}
+                            onChange={handleChangeContent}
                         />
                     </div>
 

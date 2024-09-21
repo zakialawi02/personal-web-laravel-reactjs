@@ -69,16 +69,18 @@ const ForgotPassword = () => {
                         </Link>
                     </div>
 
-                    <div className="mt-2">
-                        Don't have an account?
-                        <Link
-                            preserveState
-                            href={route("register")}
-                            className="ml-1 text-backend-primary hover:text-backend-secondary"
-                        >
-                            Register
-                        </Link>
-                    </div>
+                    {route().has("register") && (
+                        <div className="mt-2">
+                            Don't have an account?
+                            <Link
+                                preserveState
+                                href={route("register")}
+                                className="ml-1 text-backend-primary hover:text-backend-secondary"
+                            >
+                                Register
+                            </Link>
+                        </div>
+                    )}
                 </div>
             </AuthLayout>
         </>

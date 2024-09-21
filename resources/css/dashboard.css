@@ -33,3 +33,187 @@
     background: #bdbdbd;
     border-radius: 50px;
 }
+
+/* CKEDITOR */
+#post-content .ck div {
+    margin-bottom: 0rem;
+}
+.ck.ck-content.ck-editor__editable_inline {
+    padding: 10px 25px;
+}
+
+.ck-editor__editable_inline {
+    min-height: 300px;
+}
+
+.ck.ck-sticky-panel__content {
+    z-index: 10 !important;
+}
+
+/* format style */
+.ck.ck-content span.spoiler {
+    background: #000;
+    color: #000;
+}
+
+.ck.ck-content span.marker {
+    background: yellow;
+}
+
+.ck.ck-content span.spoiler:hover {
+    background: #000;
+    color: #fff;
+}
+
+.ck.ck-content h2.document-title {
+    text-transform: uppercase;
+    font-size: 50px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.ck.ck-content h3.document-subtitle {
+    font-size: 20px;
+    color: theme("colors.primary");
+    margin: 0 0 1em;
+    font-weight: normal;
+    padding: 0;
+}
+
+.ck.ck-content blockquote.side-quote {
+    font-style: normal;
+    float: right;
+    width: 40%;
+    position: relative;
+    border: 0;
+    overflow: visible;
+    z-index: 1;
+    margin-left: 1em;
+    background-color: transparent !important;
+    border-left: none !important;
+}
+
+.ck.ck-content blockquote.side-quote::before {
+    content: "“";
+    position: absolute;
+    top: -60px;
+    left: -10px;
+    display: block;
+    font-size: 200px;
+    color: #e7e7e7;
+    z-index: -1;
+    line-height: 1;
+}
+
+.ck.ck-content blockquote {
+    position: relative;
+    overflow: visible;
+    z-index: 1;
+}
+
+.ck.ck-content blockquote::before {
+    content: "“";
+    position: absolute;
+    top: -60px;
+    left: -30px;
+    display: block;
+    font-size: 200px;
+    color: #e7e7e7;
+    z-index: -1;
+    line-height: 1;
+}
+
+.ck.ck-content p.info-box {
+    --background-size: 30px;
+    --background-color: theme("colors.primary");
+    padding: 1.2em 2em;
+    border: 1px solid var(--background-color);
+    background: linear-gradient(
+            135deg,
+            var(--background-color) 0%,
+            var(--background-color) var(--background-size),
+            transparent var(--background-size)
+        ),
+        linear-gradient(
+            135deg,
+            transparent calc(100% - var(--background-size)),
+            var(--background-color) calc(100% - var(--background-size)),
+            var(--background-color)
+        );
+    border-radius: 5px;
+    margin: 1.5em 2em;
+    box-shadow: 5px 5px 0 #e6f3ff;
+}
+
+.ck.ck-editor__editable pre {
+    position: relative;
+}
+
+.ck.ck-editor__editable pre code {
+    color: #6b6b6b;
+}
+
+.ck.ck-content pre.fancy-code {
+    border: 0;
+    /* margin: 0.5em 1em; */
+    border-radius: 6px;
+}
+
+.ck.ck-content pre.fancy-code-bright {
+    background: #dddfe0;
+    color: #000 !important;
+    box-shadow: 5px 5px 0 #b3b3b3;
+}
+
+.ck.ck-content pre.fancy-code-dark {
+    background: #272822;
+    color: #fff !important;
+    box-shadow: 5px 5px 0 #0000001f;
+}
+
+.ck.ck-content pre.fancy-code::before {
+    --ck-fancy-code-disc-radius: 6px;
+    content: "";
+    display: block;
+    height: calc(var(--ck-fancy-code-disc-radius) * 2);
+    background-image: radial-gradient(
+            circle,
+            #f16b5d var(--ck-fancy-code-disc-radius),
+            #0000 var(--ck-fancy-code-disc-radius)
+        ),
+        radial-gradient(
+            circle,
+            #f5be4d var(--ck-fancy-code-disc-radius),
+            #0000 var(--ck-fancy-code-disc-radius)
+        ),
+        radial-gradient(
+            circle,
+            #56c452 var(--ck-fancy-code-disc-radius),
+            #0000 var(--ck-fancy-code-disc-radius)
+        );
+    background-size: calc(var(--ck-fancy-code-disc-radius) * 2)
+        calc(var(--ck-fancy-code-disc-radius) * 2);
+    background-position: 0 0, calc(var(--ck-fancy-code-disc-radius) * 3) 0,
+        calc(var(--ck-fancy-code-disc-radius) * 6) 0;
+    margin-bottom: 8px;
+    background-repeat: no-repeat;
+}
+
+.ck.ck-editor__editable pre[data-language]:after {
+    background: var(--ck-color-code-block-label-background);
+    color: #fff;
+    font-family: var(--ck-font-face);
+    font-size: 10px;
+    line-height: 16px;
+    padding: var(--ck-spacing-tiny) var(--ck-spacing-medium);
+    right: 10px;
+    top: -1px;
+    white-space: nowrap;
+}
+
+.ck.ck-editor__editable pre[data-language]:after {
+    content: attr(data-language);
+    position: absolute;
+}
