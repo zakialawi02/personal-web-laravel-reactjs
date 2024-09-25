@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import NavLogo from "../Element/Header/NavLogoHome";
 import NavMenu from "../Element/Header/NavMenuHome";
 
 const NavBar = () => {
     const [navBarMobile, setNavBarMobile] = useState(false);
     const [isSticky, setIsSticky] = useState(false);
+    const navBarRef = useRef(null);
 
     const toggleMenu = () => {
         const navMenu = document.getElementById("navMenu");
@@ -28,6 +29,15 @@ const NavBar = () => {
         }
     };
 
+    const handleClickOutside = (event) => {
+        if (navBarRef.current && !navBarRef.current.contains(event.target)) {
+            const navMenu = document.getElementById("navMenu");
+            if (navBarMobile && navMenu.classList.contains("scale-y-100")) {
+                toggleMenu(); // Close the menu if it's open and the click is outside
+            }
+        }
+    };
+
     useEffect(() => {
         const handleResize = () => {
             const navMenu = document.getElementById("navMenu");
@@ -44,14 +54,6 @@ const NavBar = () => {
             const scrollY = window.scrollY;
             const stickyThreshold = 50;
             setIsSticky(scrollY > stickyThreshold);
-        };
-
-        const handleClickOutside = (event) => {
-            const isOpen =
-                navBarMobile && navMenu.classList.contains("scale-y-100");
-            if (isOpen) {
-                toggleMenu();
-            }
         };
 
         window.addEventListener("resize", handleResize);
@@ -71,6 +73,7 @@ const NavBar = () => {
 
     return (
         <header
+            ref={navBarRef}
             id="navBar"
             className={`z-[100] w-full bg-primary transition-all duration-500 ${
                 isSticky ? "sticky top-0 shadow-md" : ""
