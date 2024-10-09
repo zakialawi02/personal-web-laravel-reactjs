@@ -10,7 +10,7 @@ const NavMenuHome = (props) => {
     return (
         <div
             id="navMenu"
-            className="absolute items-start md:items-center left-0 right-0 flex flex-col p-3 text-[1.1rem] md:w-[50rem] md:flex-wrap lg:w-full md:justify-end font-semibold md:relative md:flex-row md:opacity-100 scale-y-0 opacity-0 md:top-0 md:p-0 uppercase  md:bg-transparent z-[100] bg-primary text-light origin-top transition-all duration-300"
+            className="absolute items-start md:items-center left-0 right-0 flex flex-col p-3 text-[1.1rem] md:w-[50rem] md:flex-wrap lg:w-full md:justify-end font-semibold md:relative md:flex-row md:opacity-100 scale-y-0 opacity-0 md:top-0 md:p-0 uppercase  md:bg-transparent z-[100] bg-primary dark:bg-dark-primary text-light origin-top transition-all duration-300 shadow-xl md:shadow-none"
         >
             <MenuItemHome
                 event={event}
