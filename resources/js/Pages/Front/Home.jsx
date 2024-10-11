@@ -9,9 +9,20 @@ import Contact from "@/Components/Fragment/Contact";
 import FooterHome from "@/Components/Fragment/FooterHome";
 import { Head } from "@inertiajs/react";
 import Gallery from "@/Components/Fragment/GalleryHome";
+import { useEffect } from "react";
 
 const Home = () => {
     const url = window.location.href;
+
+    useEffect(() => {
+        // Ini akan dieksekusi ketika komponen sudah dimount
+        console.log("Component is mounted");
+
+        // Jika ingin cleanup (seperti unbinding event listener), return function dari useEffect
+        return () => {
+            console.log("Component is unmounted");
+        };
+    }, []);
 
     return (
         <>

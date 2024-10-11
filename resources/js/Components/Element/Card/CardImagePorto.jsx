@@ -29,6 +29,7 @@ const CardImagePorto = ({
                     alt="Cover image"
                     effect="blur"
                     src={photo}
+                    placeholderSrc="/assets/img/img-loading.png"
                     height="100%"
                     width="100%"
                     threshold={100}

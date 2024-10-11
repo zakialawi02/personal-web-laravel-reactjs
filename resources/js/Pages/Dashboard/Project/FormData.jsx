@@ -534,7 +534,7 @@ const FormData = ({ auth, meta, procjData = null }) => {
                                     label: (
                                         <div className="flex items-center">
                                             <img
-                                                src="/assets/img/logo/ci.png"
+                                                src="/assets/img/logo/ci.svg"
                                                 className="w-3 h-3"
                                             />
                                             CodeIgniter 3
@@ -546,7 +546,7 @@ const FormData = ({ auth, meta, procjData = null }) => {
                                     label: (
                                         <div className="flex items-center">
                                             <img
-                                                src="/assets/img/logo/ci.png"
+                                                src="/assets/img/logo/ci.svg"
                                                 className="w-3 h-3"
                                             />
                                             CodeIgniter 4

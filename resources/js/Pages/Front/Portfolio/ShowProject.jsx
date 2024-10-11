@@ -57,6 +57,7 @@ const ShowProject = ({ procjData }) => {
                             <LazyLoadImage
                                 className="max-h-[30rem] w-full rounded-lg object-cover object-center"
                                 src={`/storage/img/${procjData.cover_image}`}
+                                placeholderSrc="/assets/img/img-loading.png"
                                 alt="Feature image"
                                 effect="blur"
                                 height="100%"
@@ -143,15 +144,13 @@ const ShowProject = ({ procjData }) => {
                                 showThumbnails={true}
                             >
                                 {procjData.images.map((image, index) => (
-                                    <LazyLoadImage
+                                    <img
                                         key={index}
                                         className="object-cover rounded w-80 h-36 md:w-48"
                                         src={`/storage/img/${image.image}`}
                                         alt="Screenshot"
-                                        effect="blur"
-                                        height="100%"
-                                        width="100%"
-                                        threshold={100}
+                                        loading="lazy"
+                                        decoding="async"
                                         onError={(e) => {
                                             e.target.onerror = null;
                                             e.target.src =
