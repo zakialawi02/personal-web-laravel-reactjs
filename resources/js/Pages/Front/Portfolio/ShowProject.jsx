@@ -4,6 +4,8 @@ import { Head } from "@inertiajs/react";
 import "lightbox.js-react/dist/index.css";
 import { SlideshowLightbox } from "lightbox.js-react";
 import { useEffect, useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const ShowProject = ({ procjData }) => {
     const url = window.location.href;
@@ -52,12 +54,14 @@ const ShowProject = ({ procjData }) => {
                 <div className="container min-h-[90vh] flex flex-col px-2 mt-5 gap-2 lg:px-24 mb-20">
                     <div className="w-full p-3 mt-3 text-3xl font-bold text-center">
                         <div id="feature-image" className="mb-3">
-                            <img
+                            <LazyLoadImage
                                 className="max-h-[30rem] w-full rounded-lg object-cover object-center"
                                 src={`/storage/img/${procjData.cover_image}`}
                                 alt="Feature image"
-                                loading="lazy"
-                                decoding="async"
+                                effect="blur"
+                                height="100%"
+                                width="100%"
+                                threshold={100}
                                 onError={(e) => {
                                     e.target.onerror = null;
                                     e.target.src =
@@ -139,13 +143,15 @@ const ShowProject = ({ procjData }) => {
                                 showThumbnails={true}
                             >
                                 {procjData.images.map((image, index) => (
-                                    <img
+                                    <LazyLoadImage
                                         key={index}
                                         className="object-cover rounded w-80 h-36 md:w-48"
                                         src={`/storage/img/${image.image}`}
                                         alt="Screenshot"
-                                        loading="lazy"
-                                        decoding="async"
+                                        effect="blur"
+                                        height="100%"
+                                        width="100%"
+                                        threshold={100}
                                         onError={(e) => {
                                             e.target.onerror = null;
                                             e.target.src =

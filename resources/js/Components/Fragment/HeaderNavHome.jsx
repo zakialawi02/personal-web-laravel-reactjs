@@ -75,9 +75,9 @@ const NavBar = () => {
         <header
             ref={navBarRef}
             id="navBar"
-            className={`z-[100] w-full bg-primary transition-all duration-500 ${
+            className={`z-[100] w-full bg-primary  ${
                 isSticky ? "sticky top-0 shadow-md" : ""
-            } transition-all duration-700 ease-in-out dark:bg-dark-primary`}
+            } dark:bg-dark-primary`}
         >
             <div
                 id="navHead"

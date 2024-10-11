@@ -1,4 +1,6 @@
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import Typewriter from "typewriter-effect";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const AboutHome = () => {
     return (
@@ -15,10 +17,14 @@ const AboutHome = () => {
 
             <div className="container min-h-[80vh] flex flex-col items-center justify-center gap-2  px-2 lg:px-20 md:flex-row md:-mt-10 m-0">
                 <div className="flex items-center justify-center w-full p-2 md:w-1/2 lg:w-1/3 xl:w-2/5">
-                    <img
+                    <LazyLoadImage
                         src="/assets/img/pasfoto.jpg"
                         alt="Photo"
                         className="p-2 lg:p-6 m-1 w-[100%] max-w-[30rem] md:max-w-[50rem] lg:w-[90%]"
+                        effect="blur"
+                        height="100%"
+                        width="100%"
+                        threshold={100}
                     />
                 </div>
 

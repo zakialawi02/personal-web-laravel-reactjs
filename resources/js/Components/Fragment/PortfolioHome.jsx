@@ -1,3 +1,4 @@
+import { Link } from "@inertiajs/react";
 import CardImagePortoDesc from "../Element/Card/CardImagePortoDesc";
 import SkeletonOneLine from "../Element/Skeleton/SkeletonOneLine";
 import axios from "axios";
@@ -55,6 +56,17 @@ const Portfolio = () => {
                                 )}
                             </div>
                         </>
+                    )}
+
+                    {portfolios.length >= 12 && (
+                        <div className="w-full p-4 text-center">
+                            <Link
+                                className="px-4 py-2 text-lg font-bold transition-all duration-300 rounded-lg text-light bg-accent hover:bg-primary dark:hover:text-light dark:bg-dark-accent dark:hover:bg-dark-primary"
+                                href={route("myproject")}
+                            >
+                                View More
+                            </Link>
+                        </div>
                     )}
                 </div>
             </div>

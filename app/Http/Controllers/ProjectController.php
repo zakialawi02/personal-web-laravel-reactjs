@@ -128,7 +128,7 @@ class ProjectController extends Controller
 
         $projectData = Project::with('images')->where('id', $project->id)->first();
 
-        return Inertia::render('Front/ShowProject', [
+        return Inertia::render('Front/Portfolio/ShowProject', [
             'meta' => $data,
             'procjData' => $projectData
         ]);

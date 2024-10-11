@@ -20,11 +20,11 @@ const Home = () => {
 
                 <meta
                     name="description"
-                    content="Personal Web Zaki alawi, web developer, webgis developer, Laravel, ReactJs"
+                    content="Personal Web Zaki alawi, web developer and fullstack developer, webgis developer, Laravel, ReactJs"
                 />
                 <meta
                     name="keywords"
-                    content="Laravel, ReactJs, WebGIS, Web Developer, application, openlayers, leaflet, wms,wfs,geoserver, mapping, aerial mapping, photogrametric mapping, geospatial, geodetic, engineering, Personal Web"
+                    content="Laravel, ReactJs, WebGIS, Web Developer, Fullstack Developer, application, openlayers, leaflet, wms,wfs,geoserver, mapping, aerial mapping, photogrametric mapping, geospatial, geodetic, engineering, Personal Web"
                 />
 
                 <meta name="author" content="Ahmad Zaki Alawi" />
