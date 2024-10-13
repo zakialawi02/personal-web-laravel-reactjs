@@ -77,6 +77,7 @@ const HeroHome = () => {
                                         strings: [
                                             "Human",
                                             "Web Developer",
+                                            "Fullstack Developer",
                                             "Programmer",
                                             "WebGIS Developer",
                                             "Laravel Developer",

@@ -57,7 +57,7 @@ const ShowProject = ({ procjData }) => {
                             <LazyLoadImage
                                 className="max-h-[30rem] w-full rounded-lg object-cover object-center"
                                 src={`/storage/img/${procjData.cover_image}`}
-                                placeholderSrc="/assets/img/img-loading.png"
+                                placeholderSrc="/assets/img/img-loading.gif"
                                 alt="Feature image"
                                 effect="blur"
                                 height="100%"

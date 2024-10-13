@@ -1,6 +1,7 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Typewriter from "typewriter-effect";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import SkillLogo from "../Element/ApplicationLogo/SkillLogo";
 
 const AboutHome = () => {
     return (
@@ -15,12 +16,12 @@ const AboutHome = () => {
                 <h3 className="text-3xl font-bold">About Me</h3>
             </div>
 
-            <div className="container min-h-[80vh] flex flex-col items-center justify-center gap-2  px-2 lg:px-20 md:flex-row md:-mt-10 m-0">
+            <div className="container min-h-[80vh] flex flex-col items-start p-14 justify-center gap-2  px-2 lg:px-20 md:flex-row md:-mt-10 m-0">
                 <div className="flex items-center justify-center w-full p-2 md:w-1/2 lg:w-1/3 xl:w-2/5">
                     <LazyLoadImage
                         className="p-2 lg:p-6 m-1 w-[100%] max-w-[30rem] md:max-w-[50rem] lg:w-[90%]"
                         src="/assets/img/pasfoto.jpg"
-                        placeholderSrc="/assets/img/img-loading.png"
+                        placeholderSrc="/assets/img/img-loading.gif"
                         alt="Photo"
                         effect="blur"
                         height="100%"
@@ -148,15 +149,92 @@ const AboutHome = () => {
                                                 &nbsp;&nbsp; Phone:{" "}
                                             </label>
                                             <a
-                                                href="https://wa.me/18135501364"
+                                                href="https://wa.me/628974884990"
                                                 target="_blank"
                                             >
-                                                +1 (813) 550 1364
+                                                +62 897 4884 990
                                             </a>
                                         </span>
                                     </li>
                                 </ul>
                             </div>
+                        </div>
+                    </div>
+
+                    <div className="py-2 my-2">
+                        <h3 className="text-lg font-semibold text-[1.2em] text-accent dark:text-dark-accent">
+                            Tools and Technology
+                        </h3>
+
+                        <div className="flex flex-wrap w-full gap-4 py-3">
+                            <SkillLogo
+                                img={"/assets/img/logo/_html.png"}
+                                name="HTML"
+                            />
+                            <SkillLogo
+                                img={"/assets/img/logo/_css.png"}
+                                name="CSS"
+                            />
+                            <SkillLogo
+                                img={"/assets/img/logo/_js.png"}
+                                name="JavaScript"
+                            />
+                            <SkillLogo
+                                img={"/assets/img/logo/_php.png"}
+                                name="PHP"
+                            />
+                            <SkillLogo
+                                img={"/assets/img/logo/_bootstrap.png"}
+                                name="Bootstrap"
+                            />
+                            <SkillLogo
+                                img={"/assets/img/logo/_tailwind.png"}
+                                name="Tailwind CSS"
+                            />
+                            <SkillLogo
+                                img={"/assets/img/logo/_ci.png"}
+                                name="CodeIgniter 4"
+                            />
+                            <SkillLogo
+                                img={"/assets/img/logo/_laravel.png"}
+                                name="Laravel"
+                            />
+                            <SkillLogo
+                                img={"/assets/img/logo/_reactjs.png"}
+                                name="React JS"
+                            />
+                            <SkillLogo
+                                img={"/assets/img/logo/_mysql.png"}
+                                name="MySQL"
+                            />
+                            <SkillLogo
+                                img={"/assets/img/logo/_postgresql.png"}
+                                name="PostgreSQL"
+                            />
+                            <SkillLogo
+                                img={"/assets/img/logo/_geoserver.png"}
+                                name="GeoServer"
+                            />
+                            <SkillLogo
+                                img={"/assets/img/logo/_openlayers.png"}
+                                name="OpenLayers"
+                            />
+                            <SkillLogo
+                                img={"/assets/img/logo/_vscode.png"}
+                                name="VS Code"
+                            />
+                            <SkillLogo
+                                img={"/assets/img/logo/_linux.png"}
+                                name="Linux"
+                            />
+                            <SkillLogo
+                                img={"/assets/img/logo/_arcgis.png"}
+                                name="ArcGIS"
+                            />
+                            <SkillLogo
+                                img={"/assets/img/logo/_agisoft.png"}
+                                name="Agisoft"
+                            />
                         </div>
                     </div>
 
