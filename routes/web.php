@@ -39,6 +39,9 @@ Route::get('/', function () {
 Route::prefix('dashboard')->as('admin.')->group(function () {
     Route::middleware(['auth', 'verified', 'role:admin,writer,user'])->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    });
+
+    Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
 
         Route::resource('users', UserController::class)->except('create', 'edit');
         Route::get('/user/{user:id}', [UserController::class, 'getUser'])->name('getUser');
