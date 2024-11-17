@@ -26,7 +26,7 @@ const AboutHome = () => {
                         effect="blur"
                         height="100%"
                         width="100%"
-                        threshold={100}
+                        threshold={50}
                     />
                 </div>
 

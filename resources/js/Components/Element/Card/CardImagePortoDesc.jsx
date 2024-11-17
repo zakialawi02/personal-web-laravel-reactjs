@@ -35,7 +35,7 @@ const CardImagePortoDesc = ({
                     placeholderSrc="/assets/img/img-loading.gif"
                     height="100%"
                     width="100%"
-                    threshold={100}
+                    threshold={50}
                 />
             </span>
             <div className="absolute -bottom-[100%] w-full p-1 bg-opacity-60 bg-secondary max-h-[200px] overflow-hidden line-clamp-4 transition-all duration-200 group-hover:bottom-0 text-dark font-Montserrat">

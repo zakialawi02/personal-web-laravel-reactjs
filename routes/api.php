@@ -26,6 +26,6 @@ Route::prefix('v1')->as('api.')->group(function () {
     Route::get('/getPesan', [PesanController::class, 'getPesan'])->name('getPesan');
     Route::post('/storePesan', [PesanController::class, 'storePesan'])->name('storePesan');
 
-    Route::get('getPortfolio', [ProjectController::class, 'getPortfolio'])->name('getPortfolio');
+    Route::get('/getPortfolio', [ProjectController::class, 'getPortfolio'])->name('getPortfolio');
     Route::get('/getPhotosGallery', [GalleryController::class, 'getPhotosGallery'])->name('getPhotosGallery');
 });

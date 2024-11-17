@@ -245,7 +245,7 @@ class ProjectController extends Controller
 
     public function getPortfolio()
     {
-        $projects = Project::all();
+        $projects = Project::orderBy('created_at', 'desc')->get();
 
         // Mapping data untuk memotong description dan menambahkan script_tag()
         $projects->transform(function ($item) {

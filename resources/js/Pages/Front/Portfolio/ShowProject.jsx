@@ -62,7 +62,7 @@ const ShowProject = ({ procjData }) => {
                                 effect="blur"
                                 height="100%"
                                 width="100%"
-                                threshold={100}
+                                threshold={50}
                                 onError={(e) => {
                                     e.target.onerror = null;
                                     e.target.src =

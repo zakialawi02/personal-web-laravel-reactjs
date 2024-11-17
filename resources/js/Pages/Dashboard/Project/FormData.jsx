@@ -506,6 +506,18 @@ const FormData = ({ auth, meta, procjData = null }) => {
                                     ),
                                 },
                                 {
+                                    value: "wordpress",
+                                    label: (
+                                        <div className="flex items-center">
+                                            <img
+                                                src="/assets/img/logo/wordpress.png"
+                                                className="w-3 h-3"
+                                            />
+                                            Wordpress
+                                        </div>
+                                    ),
+                                },
+                                {
                                     value: "inertia",
                                     label: (
                                         <div className="flex items-center">

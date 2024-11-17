@@ -3,7 +3,6 @@ import NavPortoButton from "../Element/Button/NavPortoButton";
 import SkeletonOneLine from "../Element/Skeleton/SkeletonOneLine";
 import "lightbox.js-react/dist/index.css";
 import { SlideshowLightbox } from "lightbox.js-react";
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "@inertiajs/react";

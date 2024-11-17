@@ -32,7 +32,7 @@ const CardImagePorto = ({
                     placeholderSrc="/assets/img/img-loading.gif"
                     height="100%"
                     width="100%"
-                    threshold={100}
+                    threshold={50}
                 />
             </span>
         </div>
