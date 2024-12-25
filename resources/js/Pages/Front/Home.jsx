@@ -16,11 +16,11 @@ const Home = () => {
 
     useEffect(() => {
         // Ini akan dieksekusi ketika komponen sudah dimount
-        console.log("Component is mounted");
+        // console.log("Component is mounted");
 
         // Jika ingin cleanup (seperti unbinding event listener), return function dari useEffect
         return () => {
-            console.log("Component is unmounted");
+            // console.log("Component is unmounted");
         };
     }, []);
 

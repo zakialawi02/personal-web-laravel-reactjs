@@ -232,6 +232,10 @@ const AboutHome = () => {
                                 name="ArcGIS"
                             />
                             <SkillLogo
+                                img={"/assets/img/logo/_qgis.png"}
+                                name="QGIS"
+                            />
+                            <SkillLogo
                                 img={"/assets/img/logo/_agisoft.png"}
                                 name="Agisoft"
                             />
