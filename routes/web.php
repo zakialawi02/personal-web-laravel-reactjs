@@ -32,7 +32,10 @@ use App\Http\Controllers\GalleryController;
 // });
 
 Route::get('/', function () {
-    return Inertia::render('Front/Home');
+    return Inertia::render('Front/Home', [
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
 
 
