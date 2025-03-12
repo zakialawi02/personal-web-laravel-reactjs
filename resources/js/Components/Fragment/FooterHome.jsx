@@ -6,7 +6,7 @@ const FooterHome = () => {
             <h1 className="p-2 text-center">
                 Made with 💖 by{" "}
                 <a
-                    href="https://www.instagram.com/a.zaki.alawi/"
+                    href="https://www.instagram.com/zakialawi_/"
                     className="text-primary"
                 >
                     Zaki

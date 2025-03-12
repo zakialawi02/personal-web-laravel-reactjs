@@ -4,7 +4,7 @@ const SosialMedia = () => {
     return (
         <div className="sosial-media">
             <SosialItem
-                link="https://www.instagram.com/a.zaki.alawi/"
+                link="https://www.instagram.com/zakialawi_/"
                 icon="fab fa-instagram"
             ></SosialItem>
             <SosialItem
