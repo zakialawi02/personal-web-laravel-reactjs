@@ -69,6 +69,12 @@ const SidebarAdmin = ({ show, toggleSidebar }) => {
                         </div>
 
                         <NavMenu
+                            icon="ri-price-tag-3-line mr-3 text-lg"
+                            text="Tags"
+                            to="/dashboard/tags"
+                        />
+
+                        <NavMenu
                             icon="ri-file-list-3-line mr-3 text-lg"
                             text="Project"
                             to="/dashboard/my-project"
@@ -78,6 +84,12 @@ const SidebarAdmin = ({ show, toggleSidebar }) => {
                             icon="ri-gallery-fill mr-3 text-lg"
                             text="Gallery"
                             to="/dashboard/my-gallery"
+                        />
+
+                        <NavMenu
+                            icon="ri-sticky-note-line mr-3 text-lg"
+                            text="Note"
+                            to="/dashboard/my-notes"
                         />
 
                         <NavMenu

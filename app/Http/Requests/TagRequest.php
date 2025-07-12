@@ -11,8 +11,8 @@ class TagRequest extends FormRequest
     {
 
         $this->merge([
-            'tag_name' => ucwords($this->tag_name),
-            'slug' => (empty($this->slug)) ? Str::slug($this->tag_name) : Str::slug($this->slug)
+            'name' => ucwords($this->name),
+            'slug' => (empty($this->slug)) ? Str::slug($this->name) : Str::slug($this->slug)
         ]);
     }
 
@@ -33,7 +33,7 @@ class TagRequest extends FormRequest
     {
         $tag = $this->route('tag');
         return [
-            'tag_name' => 'required|min:3',
+            'name' => 'required|min:3',
             'slug' => 'required|unique:tags,slug,' . $tag?->id,
         ];
     }

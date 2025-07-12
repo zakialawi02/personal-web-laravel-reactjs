@@ -4,12 +4,14 @@ use Inertia\Inertia;
 use App\Models\Pesan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PesanController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\GalleryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +51,12 @@ Route::prefix('dashboard')->as('admin.')->group(function () {
         Route::resource('users', UserController::class)->except('create', 'edit');
         Route::get('/user/{user:id}', [UserController::class, 'getUser'])->name('getUser');
 
+        Route::get('/tags', [TagController::class, 'index'])->name('tag.index');
+        Route::post('/tags', [TagController::class, 'store'])->name('tag.store');
+        Route::get('/tags/create', [TagController::class, 'create'])->name('tag.create');
+        Route::get('/tags/{tag:slug}', [TagController::class, 'edit'])->name('tag.edit');
+        Route::put('/tags/{tag:slug}', [TagController::class, 'update'])->name('tag.update');
+        Route::delete('/tags/{tag:slug}', [TagController::class, 'destroy'])->name('tag.destroy');
 
         Route::get('/my-project', [ProjectController::class, 'index'])->name('project.index');
         Route::post('/my-project', [ProjectController::class, 'store'])->name('project.store');
@@ -61,6 +69,15 @@ Route::prefix('dashboard')->as('admin.')->group(function () {
         Route::get('/my-gallery', [GalleryController::class, 'index'])->name('gallery');
         Route::post('/my-gallery', [GalleryController::class, 'store'])->name('gallery.store');
         Route::delete('/my-gallery/{gallery:id}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
+
+        Route::get('/my-notes', [NoteController::class, 'index'])->name('note.index');
+        Route::get('/create-note', [NoteController::class, 'create'])->name('note.create');
+        Route::post('/create-note', [NoteController::class, 'store'])->name('note.store');
+        Route::get('/my-notes/{note:id}', [NoteController::class, 'edit'])->name('note.edit');
+        Route::put('/my-notes/{note:id}', [NoteController::class, 'update'])->name('note.update');
+        Route::delete('/my-notes/{note:id}', [NoteController::class, 'destroy'])->name('note.destroy');
+        Route::put('/my-notes/{note:id}/unpin', [NoteController::class, 'unpinNote'])->name('note.unpin');
+        Route::put('/my-notes/{note:id}/pin', [NoteController::class, 'pinNote'])->name('note.pin');
 
 
         Route::get('/empty', function () {

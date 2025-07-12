@@ -7,8 +7,8 @@ import InputError from "@/Components/Element/Input/InputError";
 import { useEffect, useRef, useState } from "react";
 import ButtonBE from "@/Components/Element/Button/ButtonBE";
 import Select from "react-select";
-import IterateUplaod from "@/Components/Element/IterateUplaod";
 import ArticlePost from "@/Components/Element/WYSWYG/ArticlePost";
+import IterateUpload from "@/Components/Element/IterateUplaod";
 
 const FormData = ({ auth, meta, procjData = null }) => {
     const isUpdate = useRef(procjData ? true : false);
@@ -254,7 +254,7 @@ const FormData = ({ auth, meta, procjData = null }) => {
                         <p className="text-[12px] text-muted mb-3">
                             *Add Image one by one
                         </p>
-                        <IterateUplaod
+                        <IterateUpload
                             getScreenshots={handleScreenshots}
                             displayScreenshot={displayScreenshot}
                         />

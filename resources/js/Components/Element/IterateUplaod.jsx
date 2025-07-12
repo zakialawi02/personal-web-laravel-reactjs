@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const IterateUplaod = ({ getScreenshots, displayScreenshot = null }) => {
+const IterateUpload = ({ getScreenshots, displayScreenshot = null }) => {
     const [singleFile, setSingleFile] = useState([]);
     const [files, setFiles] = useState([]);
     const [displaExisting, setDisplaExisting] = useState([]);
@@ -128,4 +128,4 @@ const IterateUplaod = ({ getScreenshots, displayScreenshot = null }) => {
     );
 };
 
-export default IterateUplaod;
+export default IterateUpload;

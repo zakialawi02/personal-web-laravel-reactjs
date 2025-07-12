@@ -224,10 +224,6 @@ const AboutHome = () => {
                                 name="VS Code"
                             />
                             <SkillLogo
-                                img={"/assets/img/logo/_linux.png"}
-                                name="Linux"
-                            />
-                            <SkillLogo
                                 img={"/assets/img/logo/_arcgis.png"}
                                 name="ArcGIS"
                             />
