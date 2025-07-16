@@ -1,5 +1,6 @@
 import CardNote from "@/Components/Element/Card/CardNote";
 import TextInput from "@/Components/Element/Input/TextInput";
+import PaginationDashboard from "@/Components/Element/Pagination/PaginationDashboard";
 import DashboardLayout from "@/Layouts/DashboardLayout";
 import { Link, router } from "@inertiajs/react";
 import { useState } from "react";
@@ -99,7 +100,7 @@ const Index = ({ auth, meta, notes, queryParams = null }) => {
     return (
         <>
             <DashboardLayout user={auth.user} metaTitle={meta.title}>
-                <div className="min-h-screen p-6">
+                <div className="min-h-screen p-2">
                     <div className="mx-auto max-w-7xl">
                         {/* Header */}
                         <div className="flex items-start justify-between mb-8">
@@ -200,14 +201,12 @@ const Index = ({ auth, meta, notes, queryParams = null }) => {
                                                     )
                                                 }
                                             >
-                                                <option value="all">
-                                                    Semua
-                                                </option>
+                                                <option value="all">All</option>
                                                 <option value="shared">
-                                                    Dibagikan
+                                                    Shared
                                                 </option>
                                                 <option value="private">
-                                                    Privat
+                                                    Private
                                                 </option>
                                             </select>
                                         </div>
@@ -223,15 +222,15 @@ const Index = ({ auth, meta, notes, queryParams = null }) => {
                                                 sortChanged(e.target.value)
                                             }
                                         >
-                                            <option value="new">Terbaru</option>
-                                            <option value="old">Terlama</option>
+                                            <option value="new">Newest</option>
+                                            <option value="old">Oldest</option>
                                             <option value="az">A-Z</option>
                                         </select>
                                     </div>
                                 </div>
 
-                                <span className="text-gray-600 whitespace-nowrap">
-                                    {notes.length || 0} notes
+                                <span className="text-gray-600 hidden md:block whitespace-nowrap">
+                                    {notes?.data?.length || 0} notes
                                 </span>
                             </div>
                         </div>
@@ -290,6 +289,9 @@ const Index = ({ auth, meta, notes, queryParams = null }) => {
                             </div>
                         )}
                     </div>
+                </div>
+                <div className="p-4">
+                    <PaginationDashboard links={notes.links} />
                 </div>
             </DashboardLayout>
         </>

@@ -77,7 +77,7 @@ import {
 } from "ckeditor5";
 import "ckeditor5/ckeditor5.css";
 
-const ArticlePost = ({ data = null, onChange }) => {
+const WYSWYG = ({ data = null, onChange, offsetTop = null }) => {
     const editorContainerRef = useRef(null);
     const editorRef = useRef(null);
     const [isLayoutReady, setIsLayoutReady] = useState(false);
@@ -85,6 +85,7 @@ const ArticlePost = ({ data = null, onChange }) => {
         window.innerWidth >= 768
     );
     const [editorKey, setEditorKey] = useState("editor-default");
+    const [offset, setOffset] = useState(48);
 
     const handleChangeContent = (event, editor) => {
         const data = editor.getData();
@@ -111,10 +112,16 @@ const ArticlePost = ({ data = null, onChange }) => {
         };
     }, []);
 
+    useEffect(() => {
+        const navbar = document.querySelector("#navHead");
+        const offset = navbar?.offsetHeight || null;
+        setOffset(offset);
+    }, []);
+
     const editorConfig = {
         ui: {
             viewportOffset: {
-                top: 48,
+                top: offset || 48,
             },
             heightOffset: 100,
         },
@@ -472,4 +479,4 @@ const ArticlePost = ({ data = null, onChange }) => {
     );
 };
 
-export default ArticlePost;
+export default WYSWYG;

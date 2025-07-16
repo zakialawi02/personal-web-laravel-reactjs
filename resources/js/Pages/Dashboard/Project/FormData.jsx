@@ -7,7 +7,7 @@ import InputError from "@/Components/Element/Input/InputError";
 import { useEffect, useRef, useState } from "react";
 import ButtonBE from "@/Components/Element/Button/ButtonBE";
 import Select from "react-select";
-import ArticlePost from "@/Components/Element/WYSWYG/ArticlePost";
+import WYSWYG from "@/Components/Element/WYSWYG/WYSWYG";
 import IterateUpload from "@/Components/Element/IterateUplaod";
 
 const FormData = ({ auth, meta, procjData = null }) => {
@@ -180,7 +180,7 @@ const FormData = ({ auth, meta, procjData = null }) => {
                             message={errors.description}
                             className="mb-3"
                         />
-                        <ArticlePost
+                        <WYSWYG
                             data={data.description}
                             onChange={handleChangeContent}
                         />

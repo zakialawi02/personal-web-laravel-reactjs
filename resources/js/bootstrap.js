@@ -9,6 +9,34 @@ window.axios = axios;
 
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
+function extractPlainText(htmlString) {
+    if (htmlString === "<p>&nbsp;</p>") {
+        return "The note content will be displayed here...";
+    }
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlString, "text/html");
+
+    // Hapus elemen yang tidak ingin ditampilkan (img, table, dll)
+    const unwantedTags = doc.querySelectorAll(
+        "img, table, iframe, video, audio"
+    );
+    unwantedTags.forEach((el) => el.remove());
+
+    // Hapus script
+    const scripts = doc.querySelectorAll("script");
+    scripts.forEach((el) => el.remove());
+
+    // Hapus style
+    const styles = doc.querySelectorAll("style");
+    styles.forEach((el) => el.remove());
+
+    // Ambil textContent saja
+    return doc.body.textContent || "";
+}
+
+window.extractPlainText = extractPlainText;
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

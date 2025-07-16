@@ -1,3 +1,4 @@
+import { Link, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
@@ -5,6 +6,7 @@ import { useState } from "react";
 const CardNote = ({ note, onEdit, onPin, onUnpin, onDelete }) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
+    const { meta } = usePage().props;
 
     // Handle klik di luar dropdown
     useEffect(() => {
@@ -57,7 +59,15 @@ const CardNote = ({ note, onEdit, onPin, onUnpin, onDelete }) => {
                 {/* Header */}
                 <div className="flex items-start justify-between mb-2">
                     <h3 className="font-semibold text-gray-900 line-clamp-1">
-                        {note?.title}
+                        <Link
+                            href={route("note.show", {
+                                note: note?.id,
+                                slug: note?.slug,
+                            })}
+                            className="hover:underline"
+                        >
+                            {note?.title}
+                        </Link>
                     </h3>
 
                     <div className="relative" ref={dropdownRef}>
@@ -126,32 +136,13 @@ const CardNote = ({ note, onEdit, onPin, onUnpin, onDelete }) => {
 
                 {/* Content Preview */}
                 <p className="mb-4 text-sm text-gray-700 line-clamp-3">
-                    {note?.content}
+                    {note?.content ? extractPlainText(note.content) : ""}
                 </p>
 
-                {/* Share Status */}
                 <div className="flex items-center gap-2 mt-auto mb-2">
-                    {note?.is_shared ? (
+                    {note?.is_private ? (
                         <>
-                            <svg
-                                className="w-4 h-4 text-gray-400"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"
-                                />
-                            </svg>
-                            <span className="text-sm text-gray-600">
-                                Dibagikan
-                            </span>
-                        </>
-                    ) : (
-                        <>
+                            {/* Private icon */}
                             <svg
                                 className="w-4 h-4 text-gray-400"
                                 fill="none"
@@ -166,8 +157,46 @@ const CardNote = ({ note, onEdit, onPin, onUnpin, onDelete }) => {
                                 />
                             </svg>
                             <span className="text-sm text-gray-600">
-                                Privat
+                                Private
                             </span>
+                        </>
+                    ) : (
+                        <>
+                            {/* Shared icon */}
+                            <svg
+                                className="w-4 h-4 text-gray-400"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"
+                                />
+                            </svg>
+                            <span className="text-sm text-gray-600">
+                                Shared
+                            </span>
+
+                            {/* Share link & copy button */}
+                            <div className="flex items-center space-x-1">
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        navigator.clipboard
+                                            .writeText(
+                                                `${meta?.base_url}/s/notes/${note?.sharable_link}`
+                                            )
+                                            .then(() => alert("Link copied!"))
+                                    }
+                                    className="p-1 bg-gray-100 rounded hover:bg-gray-200"
+                                    title="Copy link"
+                                >
+                                    <i class="ri-file-copy-line"></i>
+                                </button>
+                            </div>
                         </>
                     )}
                 </div>
@@ -178,7 +207,7 @@ const CardNote = ({ note, onEdit, onPin, onUnpin, onDelete }) => {
                         <img
                             className="w-8 h-8 rounded-full"
                             src={
-                                note.user?.profile_photo_path ||
+                                note?.user?.profile_photo_path ||
                                 "/default-profile.png"
                             }
                             alt="Profile"

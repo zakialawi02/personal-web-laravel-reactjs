@@ -3,9 +3,11 @@ import InputSelectColor from "@/Components/Element/Input/InputSelectColor";
 import InputError from "@/Components/Element/Input/InputError";
 import ToggleSwitch from "@/Components/Element/Input/ToggleSwitch";
 import DashboardLayout from "@/Layouts/DashboardLayout";
-import { Link, router, useForm } from "@inertiajs/react";
+import { router, useForm } from "@inertiajs/react";
 import { useRef } from "react";
-import ArticlePost from "@/Components/Element/WYSWYG/ArticlePost";
+import WYSWYG from "@/Components/Element/WYSWYG/WYSWYG";
+import InputLabel from "@/Components/Element/Input/InputLabel";
+import TextInput from "@/Components/Element/Input/TextInput";
 
 const FormData = ({ auth, meta, noteData = null }) => {
     const isUpdate = useRef(noteData ? true : false);
@@ -52,6 +54,9 @@ const FormData = ({ auth, meta, noteData = null }) => {
             }));
         }
     };
+    const generateRandomLink = () => {
+        return `${Math.random().toString(36).substr(2, 8)}`;
+    };
 
     const generateSlug = (value) => {
         return value
@@ -62,7 +67,6 @@ const FormData = ({ auth, meta, noteData = null }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(data);
 
         if (isUpdate.current) {
             router.post(
@@ -94,10 +98,10 @@ const FormData = ({ auth, meta, noteData = null }) => {
     return (
         <>
             <DashboardLayout user={auth.user} metaTitle={meta.title}>
-                <div className="min-h-screen p-6 bg-gray-50">
+                <div className="min-h-screen p-2 md:p-4 bg-gray-50">
                     <div className="mx-auto max-w-7xl">
                         {/* Header */}
-                        <div className="mb-8">
+                        <div className="mb-6">
                             <button
                                 onClick={() =>
                                     router.get(route("admin.note.index"))
@@ -127,9 +131,9 @@ const FormData = ({ auth, meta, noteData = null }) => {
                             </p>
                         </div>
 
-                        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+                        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
                             {/* Left Column - Form */}
-                            <div className="space-y-8 lg:col-span-2">
+                            <div className="space-y-5 lg:col-span-2">
                                 {/* Basic Information */}
                                 <div className="p-6 bg-white rounded-lg shadow-sm">
                                     <h2 className="mb-2 text-xl font-semibold text-gray-900">
@@ -209,7 +213,7 @@ const FormData = ({ auth, meta, noteData = null }) => {
                                                 *
                                             </span>
                                         </label>
-                                        <ArticlePost
+                                        <WYSWYG
                                             data={data.content}
                                             onChange={handleChangeContent}
                                         />
@@ -222,7 +226,7 @@ const FormData = ({ auth, meta, noteData = null }) => {
                             </div>
 
                             {/* Right Column - Settings & Preview */}
-                            <div className="space-y-8">
+                            <div className="space-y-5">
                                 {/* Settings */}
                                 <div className="p-6 bg-white rounded-lg shadow-sm">
                                     <h2 className="mb-2 text-xl font-semibold text-gray-900">
@@ -251,6 +255,97 @@ const FormData = ({ auth, meta, noteData = null }) => {
                                                 label="Can Share"
                                                 description="Anyone with the link can see this"
                                             />
+
+                                            {/* Tampilkan input kalau can_share aktif */}
+                                            {!data.is_private && (
+                                                <div className="ml-2 space-y-3">
+                                                    <div>
+                                                        <InputLabel value="Share Link" />
+                                                        <div className="flex overflow-hidden border border-gray-300 rounded">
+                                                            <span className="px-3 py-2 text-sm text-gray-700 bg-gray-100">
+                                                                {meta.base_url}
+                                                                /s/notes/
+                                                            </span>
+                                                            <TextInput
+                                                                type="text"
+                                                                name="sharable_link"
+                                                                defaultValue={
+                                                                    data.sharable_link ||
+                                                                    setData(
+                                                                        "sharable_link",
+                                                                        generateRandomLink()
+                                                                    )
+                                                                }
+                                                                onChange={(
+                                                                    event
+                                                                ) =>
+                                                                    handleInputChange(
+                                                                        event,
+                                                                        "sharable_link"
+                                                                    )
+                                                                }
+                                                                className="w-full px-2 py-1 border rounded-s-none rounded-e"
+                                                            />
+                                                        </div>
+                                                        <div className="flex items-center mt-2 space-x-2">
+                                                            <span className="text-sm text-blue-600 break-all">
+                                                                {meta.base_url}
+                                                                /s/notes/
+                                                                {
+                                                                    data.sharable_link
+                                                                }
+                                                            </span>
+                                                            <button
+                                                                type="button"
+                                                                onClick={() =>
+                                                                    navigator.clipboard
+                                                                        .writeText(
+                                                                            `https://example.com/${data.sharable_link}`
+                                                                        )
+                                                                        .then(
+                                                                            () =>
+                                                                                alert(
+                                                                                    "Link copied!"
+                                                                                )
+                                                                        )
+                                                                }
+                                                                className="hover:bg-gray-200"
+                                                                title="Copy link"
+                                                            >
+                                                                <i class="ri-file-copy-line"></i>
+                                                            </button>
+                                                        </div>
+                                                        <InputError
+                                                            message={
+                                                                errors.sharable_link
+                                                            }
+                                                            className="mt-2"
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <InputLabel value="Password (optional)" />
+                                                        <TextInput
+                                                            type="password"
+                                                            name="shared_password"
+                                                            value={
+                                                                data.shared_password ||
+                                                                ""
+                                                            }
+                                                            onChange={
+                                                                handleInputChange
+                                                            }
+                                                            className="w-full px-2 py-1 border rounded"
+                                                            placeholder="Enter password"
+                                                        />
+                                                        <InputError
+                                                            message={
+                                                                errors.shared_password
+                                                            }
+                                                            className="mt-2"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            )}
 
                                             {/* Pin Note */}
                                             <ToggleSwitch
@@ -304,9 +399,12 @@ const FormData = ({ auth, meta, noteData = null }) => {
                                                 {data.description ||
                                                     "Note Description"}
                                             </p>
-                                            <p className="mb-4 text-sm text-gray-700">
-                                                {data.content ||
-                                                    "The note content will be displayed here..."}
+                                            <p className="mb-4 text-sm text-gray-700 break-words line-clamp-3">
+                                                {data.content
+                                                    ? extractPlainText(
+                                                          data.content
+                                                      )
+                                                    : "The note content will be displayed here..."}
                                             </p>
 
                                             {/* Share Status */}
@@ -355,11 +453,17 @@ const FormData = ({ auth, meta, noteData = null }) => {
                                             {/* Author and Date */}
                                             <div className="flex items-center justify-between">
                                                 <div className="flex items-center gap-2">
-                                                    <div className="flex items-center justify-center w-8 h-8 text-xs font-medium text-gray-700 bg-gray-300 rounded-full">
-                                                        JD
-                                                    </div>
+                                                    <img
+                                                        className="w-8 h-8 rounded-full"
+                                                        src={
+                                                            auth?.user
+                                                                ?.profile_photo_path ||
+                                                            "/default-profile.png"
+                                                        }
+                                                        alt="Profile"
+                                                    />
                                                     <span className="text-sm text-gray-600">
-                                                        John Doe
+                                                        {auth?.user?.username}
                                                     </span>
                                                 </div>
                                                 <div className="flex items-center gap-1 text-sm text-gray-500">
@@ -373,11 +477,19 @@ const FormData = ({ auth, meta, noteData = null }) => {
                                                             strokeLinecap="round"
                                                             strokeLinejoin="round"
                                                             strokeWidth={2}
-                                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"
+                                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                                                         />
                                                     </svg>
                                                     <span>
-                                                        {data.created_at}
+                                                        {data?.created_at ||
+                                                            new Date().toLocaleString(
+                                                                "en-US",
+                                                                {
+                                                                    month: "long",
+                                                                    day: "numeric",
+                                                                    year: "numeric",
+                                                                }
+                                                            )}
                                                     </span>
                                                 </div>
                                             </div>

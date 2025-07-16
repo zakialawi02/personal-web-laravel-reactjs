@@ -75,6 +75,7 @@ Route::prefix('dashboard')->as('admin.')->group(function () {
         Route::post('/create-note', [NoteController::class, 'store'])->name('note.store');
         Route::get('/my-notes/{note:id}', [NoteController::class, 'edit'])->name('note.edit');
         Route::put('/my-notes/{note:id}', [NoteController::class, 'update'])->name('note.update');
+        Route::put('/my-notes/{note:id}', [NoteController::class, 'update2'])->name('note.update2');
         Route::delete('/my-notes/{note:id}', [NoteController::class, 'destroy'])->name('note.destroy');
         Route::put('/my-notes/{note:id}/unpin', [NoteController::class, 'unpinNote'])->name('note.unpin');
         Route::put('/my-notes/{note:id}/pin', [NoteController::class, 'pinNote'])->name('note.pin');
@@ -95,6 +96,10 @@ Route::prefix('dashboard')->as('admin.')->group(function () {
 
 Route::get('/gallery', [GalleryController::class, 'index2'])->name('gallery');
 Route::get('/my-portfolio', [ProjectController::class, 'index2'])->name('myproject');
+
+Route::get('/notes/{note}/{slug}', [NoteController::class, 'showPublic'])->name('note.show');
+Route::get('/notes/{note}/{slug}/edit', [NoteController::class, 'edit2'])->middleware('auth', 'verified', 'role:admin')->name('note.edit2');
+Route::get('/s/notes/{note:sharable_link}', [NoteController::class, 'sharedShow'])->name('note.sharedShow');
 
 Route::get('/project/{project:id}', [ProjectController::class, 'show'])->name('project.show');
 

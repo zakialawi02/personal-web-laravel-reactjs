@@ -12,7 +12,8 @@ class NoteController extends Controller
     public function index(Request $request)
     {
         $data = [
-            'title' => 'Manage My Notes',
+            'title' => 'My Notes',
+            'base_url' => rtrim(env('APP_URL'), '/'),
         ];
 
         $notes = Note::with('user', 'tags');
@@ -21,13 +22,14 @@ class NoteController extends Controller
         if ($request->filled('search')) {
             $notes->where(function ($query) use ($request) {
                 $query->where('title', 'like', '%' . $request->search . '%')
-                    ->orWhere('description', 'like', '%' . $request->search . '%');
+                    ->orWhere('description', 'like', '%' . $request->search . '%')
+                    ->orWhere('content', 'like', '%' . $request->search . '%');
             });
         }
         // Filter by status (shared/private)
         if ($request->filled('status') && $request->status !== 'all') {
             if ($request->status === 'shared') {
-                $notes->where('is_shared', true);
+                $notes->where('is_private', false);
             } elseif ($request->status === 'private') {
                 $notes->where('is_private', true);
             }
@@ -37,7 +39,7 @@ class NoteController extends Controller
         $sortDirection = $request->get('sort_direction', 'desc');
         $notes->orderBy($sortField, $sortDirection);
         // Pagination
-        $notes = $notes->paginate(25)->withQueryString();
+        $notes = $notes->paginate(30)->withQueryString();
 
         return Inertia::render('Dashboard/Note/Index', [
             'meta' => $data,
@@ -51,6 +53,7 @@ class NoteController extends Controller
     {
         $data = [
             'title' => 'Create My Note',
+            'base_url' => rtrim(env('APP_URL'), '/'),
         ];
 
         return Inertia::render('Dashboard/Note/FormData', [
@@ -71,6 +74,7 @@ class NoteController extends Controller
     {
         $data = [
             'title' => 'Edit My Note',
+            'base_url' => rtrim(env('APP_URL'), '/'),
         ];
 
         return Inertia::render('Dashboard/Note/FormData', [
@@ -86,6 +90,15 @@ class NoteController extends Controller
         $note->update($data);
 
         return redirect()->route('admin.note.index')->with('success', 'Note updated successfully');
+    }
+
+    public function update2(NoteRequest $request, Note $note)
+    {
+        $data = $request->all();
+
+        $note->update($data);
+
+        return redirect()->back()->with('success', 'Note updated successfully');
     }
 
     public function destroy(Note $note)
@@ -104,5 +117,78 @@ class NoteController extends Controller
     {
         $note->update(['is_sticky' => false]);
         return redirect()->route('admin.note.index')->with('success', 'Note unpinned successfully');
+    }
+
+    public function indexPublic(Request $request)
+    {
+        $data = [
+            'title' => 'My Notes',
+            'base_url' => rtrim(env('APP_URL'), '/'),
+        ];
+
+        $notes = Note::with('user', 'tags')->where('is_private', false);
+
+        return Inertia::render('Front/Note/Index', [
+            'meta' => $data,
+            'notes' => $notes->paginate(30)->withQueryString(),
+            'queryParams' => $request->query() ?: null,
+        ]);
+    }
+
+    public function edit2(Note $note, $slug)
+    {
+        if ($note->slug !== $slug) {
+            abort(404);
+        }
+        if (($note->is_private && !auth()->check()) || (auth()->check() && auth()->id() !== $note->user_id)) {
+            abort(403);
+        }
+
+        $data = [
+            'title' => $note->title || 'My Note',
+            'base_url' => rtrim(env('APP_URL'), '/'),
+        ];
+
+        return Inertia::render('Front/Note/Edit', [
+            'meta' => $data,
+            'note' => $note
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Note  $note
+     * @return \Inertia\Response
+     */
+    public function showPublic(Note $note, $slug)
+    {
+        if ($note->slug !== $slug) {
+            abort(404);
+        }
+        if (($note->is_private && !auth()->check()) || (auth()->check() && auth()->id() !== $note->user_id)) {
+            abort(403);
+        }
+        $data = [
+            'title' => $note->title || 'My Note',
+            'base_url' => rtrim(env('APP_URL'), '/'),
+        ];
+
+        return Inertia::render('Front/Note/Show', [
+            'meta' => $data,
+            'note' => $note
+        ]);
+    }
+
+    /**
+     * Short link for a shared note.
+     * This is used when the user wants to share a note.
+     *
+     * @param Note $note
+     * @return RedirectResponse
+     */
+    public function sharedShow(Note $note)
+    {
+        return redirect()->route('note.show', ['note' => $note->id, 'slug' => $note->slug]);
     }
 }

@@ -20,7 +20,7 @@
 
 /* SIDEBAR */
 #sidebar-menu-container::-webkit-scrollbar {
-    width: 8px;
+    width: 5px;
     border-radius: 50px;
 }
 

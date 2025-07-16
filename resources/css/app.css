@@ -7,13 +7,13 @@
 
 /*=============== SCROLL BAR ===============*/
 ::-webkit-scrollbar {
-    width: 0.5rem;
+    width: 0.4rem;
     background: theme("colors.light");
 }
 
 ::-webkit-scrollbar-thumb {
     background: theme("colors.accent");
-    border-radius: 0.5rem;
+    border-radius: 0.4rem;
 }
 
 * {

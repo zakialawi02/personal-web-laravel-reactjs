@@ -21,8 +21,8 @@ return new class extends Migration
             $table->text('content')->nullable();
             $table->boolean('is_private')->default(true);
             $table->boolean('is_sticky')->default(false);
-            $table->string('sharable_link')->nullable()->unique();
-            $table->string('shared_password')->nullable();
+            $table->string('sharable_link')->nullable()->unique()->collation('utf8mb4_bin');
+            $table->string('shared_password')->nullable()->collation('utf8mb4_bin');
             $table->string('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamp('created_at')->useCurrent()->nullable();
