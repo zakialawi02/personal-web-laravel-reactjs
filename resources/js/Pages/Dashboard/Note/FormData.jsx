@@ -8,8 +8,9 @@ import { useRef } from "react";
 import WYSWYG from "@/Components/Element/WYSWYG/WYSWYG";
 import InputLabel from "@/Components/Element/Input/InputLabel";
 import TextInput from "@/Components/Element/Input/TextInput";
+import InputTagify from "@/Components/Element/Input/InputTagify";
 
-const FormData = ({ auth, meta, noteData = null }) => {
+const FormData = ({ auth, meta, noteData = null, tagsList = [] }) => {
     const isUpdate = useRef(noteData ? true : false);
     const { data, setData, errors, setError, post, processing } = useForm({
         id: noteData?.id ?? "",
@@ -24,7 +25,7 @@ const FormData = ({ auth, meta, noteData = null }) => {
         sharable_link: noteData?.sharable_link ?? "",
         shared_password: noteData?.shared_password ?? "",
         user_id: noteData?.user_id ?? auth.user.id,
-        tags: noteData?.tags ?? "",
+        tags: noteData?.tags?.map((t) => t.name) ?? [],
     });
 
     const colorOptions = [
@@ -124,10 +125,12 @@ const FormData = ({ auth, meta, noteData = null }) => {
                                 Back
                             </button>
                             <h2 className="mb-2 text-3xl font-bold text-gray-900">
-                                Create New Note
+                                {isUpdate.current ? "Update" : "Create"} New
+                                Note
                             </h2>
                             <p className="text-gray-600">
-                                Create a new note with complete details
+                                {isUpdate.current ? "Update" : "Create"} a new
+                                note with complete details
                             </p>
                         </div>
 
@@ -145,45 +148,61 @@ const FormData = ({ auth, meta, noteData = null }) => {
 
                                     <div className="space-y-6">
                                         <div>
-                                            <label
-                                                htmlFor="title"
-                                                className="block mb-2 text-sm font-medium text-gray-700"
-                                            >
-                                                Title
-                                                <span className="text-red-500">
-                                                    *
-                                                </span>
-                                            </label>
-                                            <input
+                                            <InputLabel
+                                                value={
+                                                    <span>
+                                                        Title{" "}
+                                                        <span className="text-red-500">
+                                                            *
+                                                        </span>
+                                                    </span>
+                                                }
+                                            />
+                                            <TextInput
                                                 type="text"
                                                 id="title"
                                                 name="title"
                                                 value={data.title}
                                                 onChange={handleInputChange}
                                                 placeholder="Type your title here"
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                                className="w-full"
                                             />
                                             <InputError
                                                 message={errors.title}
                                                 className="mt-2"
                                             />
                                         </div>
-
                                         <div>
-                                            <label
+                                            <InputLabel
+                                                htmlFor="tags"
+                                                value="Tags"
+                                            />
+                                            <InputTagify
+                                                value={data.tags}
+                                                suggestions={tagsList}
+                                                onChange={(tagsArray) =>
+                                                    setData("tags", tagsArray)
+                                                }
+                                                className="w-full"
+                                            />
+                                            <InputError
+                                                message={errors.tags}
+                                                className="mt-2"
+                                            />
+                                        </div>
+                                        <div>
+                                            <InputLabel
                                                 htmlFor="description"
-                                                className="block mb-2 text-sm font-medium text-gray-700"
-                                            >
-                                                Description
-                                            </label>
-                                            <input
+                                                value="Description"
+                                            />
+                                            <TextInput
                                                 type="text"
                                                 id="description"
                                                 name="description"
                                                 value={data.description}
                                                 onChange={handleInputChange}
                                                 placeholder="Type your description here"
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                                className="w-full"
                                             />
                                             <InputError
                                                 message={errors.description}

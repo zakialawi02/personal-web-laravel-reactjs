@@ -75,7 +75,7 @@ Route::prefix('dashboard')->as('admin.')->group(function () {
         Route::post('/create-note', [NoteController::class, 'store'])->name('note.store');
         Route::get('/my-notes/{note:id}', [NoteController::class, 'edit'])->name('note.edit');
         Route::put('/my-notes/{note:id}', [NoteController::class, 'update'])->name('note.update');
-        Route::put('/my-notes/{note:id}', [NoteController::class, 'update2'])->name('note.update2');
+        Route::put('/my-notes/{note:id}/update', [NoteController::class, 'update2'])->name('note.update2');
         Route::delete('/my-notes/{note:id}', [NoteController::class, 'destroy'])->name('note.destroy');
         Route::put('/my-notes/{note:id}/unpin', [NoteController::class, 'unpinNote'])->name('note.unpin');
         Route::put('/my-notes/{note:id}/pin', [NoteController::class, 'pinNote'])->name('note.pin');

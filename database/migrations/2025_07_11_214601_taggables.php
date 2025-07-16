@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('taggables', function (Blueprint $table) {
             $table->foreignId('tag_id')->constrained()->cascadeOnDelete();
-            $table->morphs('taggable'); // ini otomatis buat 'taggable_id' bigint & 'taggable_type' string
-            $table->timestamps();
+            $table->uuidMorphs('taggable'); // ini otomatis buat 'taggable_id' bigint & 'taggable_type' string
+            $table->timestamp('created_at')->useCurrent()->nullable();
+            $table->timestamp('updated_at')->useCurrentOnUpdate()->nullable();
         });
     }
 

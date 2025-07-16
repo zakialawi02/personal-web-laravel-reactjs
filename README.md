@@ -30,3 +30,11 @@ Personal Web Portfolio was created using Laravel and React JS with Inertia JS as
 ## Contribution
 
 If you would like to contribute to this project, please make a pull request to this repository. Make sure you create a new branch and run the `composer install` and `npm install` commands before making the pull request.
+
+## Support and Donations
+
+If you find this project useful and would like to support its further development, you can make a donation via the following platforms:
+
+https://ko-fi.com/zakialawi
+
+Every contribution you make is greatly appreciated. Thank you!

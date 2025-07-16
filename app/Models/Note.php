@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -33,7 +34,12 @@ class Note extends Model
     protected static function booted()
     {
         static::saved(function ($note) {
-            $note->syncTags(request('tags'));
+            if (request()->filled('tags')) {
+                $note->syncTags(request('tags'));
+            }
+        });
+        static::forceDeleted(function ($note) {
+            $note->tags()->detach();
         });
     }
 
@@ -44,13 +50,28 @@ class Note extends Model
 
     public function tags()
     {
-        return $this->morphToMany(Tag::class, 'taggable');
+        return $this->morphToMany(Tag::class, 'taggable')->withTimestamps();
     }
 
-    public function syncTags($tags)
+    /**
+     * Sync tags to note
+     * @param array $tags (could be array of IDs or names)
+     */
+    public function syncTags(array $tags)
     {
-        if (request()->has('tags')) {
-            $this->tags()->sync($tags);
-        }
+        $tagIds = collect($tags)->map(function ($tag) {
+            if (is_numeric($tag)) {
+                return (int) $tag;
+            }
+
+            $tagModel = \App\Models\Tag::firstOrCreate(
+                ['name' => ucwords($tag['value'])],
+                ['slug' => Str::slug($tag['value'])]
+            );
+
+            return $tagModel->id;
+        });
+
+        $this->tags()->sync($tagIds);
     }
 }

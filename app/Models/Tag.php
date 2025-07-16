@@ -13,6 +13,6 @@ class Tag extends Model
 
     public function notes()
     {
-        return $this->morphedByMany(Note::class, 'taggable');
+        return $this->morphedByMany(Note::class, 'taggable')->withTimestamps();
     }
 }

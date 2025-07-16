@@ -6,6 +6,7 @@ use App\Models\Note;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Requests\NoteRequest;
+use App\Models\Tag;
 
 class NoteController extends Controller
 {
@@ -56,8 +57,11 @@ class NoteController extends Controller
             'base_url' => rtrim(env('APP_URL'), '/'),
         ];
 
+        $tags = Tag::select('name as value')->get(); // penting: as value
+
         return Inertia::render('Dashboard/Note/FormData', [
-            'meta' => $data
+            'meta' => $data,
+            'tagsList' => $tags
         ]);
     }
 
@@ -77,11 +81,15 @@ class NoteController extends Controller
             'base_url' => rtrim(env('APP_URL'), '/'),
         ];
 
+        $tags = Tag::select('name as value')->get(); // penting: as value
+
         return Inertia::render('Dashboard/Note/FormData', [
             'meta' => $data,
-            'noteData' => $note
+            'noteData' => $note->load('tags:name'),
+            'tagsList' => $tags
         ]);
     }
+
 
     public function update(NoteRequest $request, Note $note)
     {

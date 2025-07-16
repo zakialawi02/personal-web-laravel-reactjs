@@ -28,6 +28,7 @@
         "@emailjs/browser": "^4.4.1",
         "@gsap/react": "^2.1.1",
         "@tailwindcss/container-queries": "^0.1.1",
+        "@yaireo/tagify": "^4.35.2",
         "ckeditor5": "^43.0.0",
         "gsap": "^3.12.5",
         "lightbox.js-react": "^1.1.3",
