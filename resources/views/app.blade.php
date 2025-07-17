@@ -7,8 +7,8 @@
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
         <link type="image/png" href="/favicon.png" rel="icon" />
-        <meta name="description" content="Zakialawi Personal Blog & web platform" />
-        <meta name="keywords" content="resume,  portfolio, cv, ahmad zaki alawi, zakialawi, blog, personal, web, developer, laravel, wep programming, webgis, gis, geospatial, surveyor, tutorials, tips, ahmad zaki alawi, geomatika, geomatics, geography" />
+        <meta name="description" content="Personal Web Zaki Alawi, a web developer & software engineer with full-stack experience using Laravel, React, JavaScript, and PostgreSQL/MySQL. He specializes in REST APIs, SPAs, third-party integrations, performance optimization, and modern backend architecture." />
+        <meta name="keywords" content="Laravel, ReactJs, WebGIS, Web Developer, Fullstack Developer, application, openlayers, leaflet, wms, wfs, geoserver, mapping, aerial mapping, photogrametric mapping, geospatial, geodetic, web developer, software engineer, laravel developer, react developer, full-stack developer, REST API, SPA, backend engineer, frontend engineer, JavaScript, PostgreSQL, MySQL, Git, integrasi API" />
         <meta name="author" content="Ahmad Zaki Alawi" />
 
         {{-- <meta property="og:title" content="Ahmad Zaki Alawi" /> --}}

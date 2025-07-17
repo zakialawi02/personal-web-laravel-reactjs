@@ -1,5 +1,3 @@
-import { Children } from "react";
-
 const Card = ({ children, className = "", ...props }) => {
     return (
         <div

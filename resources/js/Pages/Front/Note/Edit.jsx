@@ -3,7 +3,6 @@ import HeaderNavHome from "@/Components/Fragment/HeaderNavHome";
 import {
     Calendar,
     Clock,
-    Cross,
     Eye,
     EyeOff,
     Link as LinkIcon,
@@ -204,7 +203,7 @@ const Edit = ({ note }) => {
                             </div>
 
                             {/* Meta */}
-                            <div className="flex flex-wrap flex-col md:flex-row gap-3  text-sm text-primary-foreground/70">
+                            <div className="flex flex-col flex-wrap gap-3 text-sm md:flex-row text-primary-foreground/70">
                                 <div className="flex items-center gap-1">
                                     <Calendar className="w-4 h-4" />
                                     <span>
@@ -259,7 +258,7 @@ const Edit = ({ note }) => {
                                 </div>
                             </div>
 
-                            <div className="-ml-3 p-4 prose prose-md max-w-none">
+                            <div className="p-4 -ml-3 prose prose-md max-w-none">
                                 <InputError
                                     message={errors.content}
                                     className="mt-2"
@@ -274,7 +273,7 @@ const Edit = ({ note }) => {
 
                         {/* Sharing Info */}
                         <div className="mt-8 overflow-hidden border rounded-lg bg-light/50">
-                            <div className="flex flex-col md:flex-row gap-2 justify-between p-6">
+                            <div className="flex flex-col justify-between gap-2 p-6 md:flex-row">
                                 {!note.is_private ? (
                                     <div className="flex items-center gap-2">
                                         <LinkIcon className="w-5 h-5 text-primary" />
