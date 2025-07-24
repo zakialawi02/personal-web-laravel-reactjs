@@ -5,7 +5,7 @@ import DashboardLayout from "@/Layouts/DashboardLayout";
 import { Link, router } from "@inertiajs/react";
 import { useState } from "react";
 
-const Index = ({ auth, meta, notes, queryParams = null }) => {
+const Index = ({ auth, meta, notes, tags, queryParams = null }) => {
     const [searchValue, setSearchValue] = useState(queryParams?.search || "");
     queryParams = queryParams || {};
 
@@ -82,6 +82,15 @@ const Index = ({ auth, meta, notes, queryParams = null }) => {
         return "new"; // default fallback
     };
 
+    const handleTagFilter = (tag) => {
+        if (queryParams.tag === tag) {
+            delete queryParams.tag;
+        } else {
+            queryParams.tag = tag;
+        }
+        router.get(route("admin.note.index"), queryParams);
+    };
+
     const pinNote = (data) => {
         router.put(route("admin.note.pin", data.id));
     };
@@ -122,7 +131,7 @@ const Index = ({ auth, meta, notes, queryParams = null }) => {
                         </div>
 
                         {/* Search and Filters */}
-                        <div className="flex flex-col gap-4 mb-6 sm:flex-row">
+                        <div className="flex flex-col gap-4 mb-3 sm:flex-row">
                             <div className="relative flex-1">
                                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                     <svg
@@ -152,7 +161,7 @@ const Index = ({ auth, meta, notes, queryParams = null }) => {
                                 <button
                                     onClick={handleSearchClick}
                                     type="button"
-                                    className="absolute inset-y-0 right-0 flex items-center px-3 text-white transition bg-blue-500 rounded-r-md hover:bg-blue-600"
+                                    className="absolute inset-y-0 right-0 flex items-center px-3 text-white transition bg-backend-primary rounded-r-md hover:bg-backend-primary/70"
                                 >
                                     <svg
                                         className="w-5 h-5"
@@ -189,7 +198,7 @@ const Index = ({ auth, meta, notes, queryParams = null }) => {
                                         </svg>
                                         <div className="relative">
                                             <select
-                                                className="px-3 py-2 pr-8 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none w-36 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                                className="px-3 py-2 pr-8 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none w-36 focus:ring-2 focus:backend-primary focus:border-transparent"
                                                 name="status"
                                                 defaultValue={
                                                     queryParams.status || "all"
@@ -215,7 +224,7 @@ const Index = ({ auth, meta, notes, queryParams = null }) => {
                                     {/* Sort Option */}
                                     <div className="relative">
                                         <select
-                                            className="px-3 py-2 pr-8 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none w-36 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            className="px-3 py-2 pr-8 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none w-36 focus:ring-2 focus:ring-backend-primary focus:border-transparent"
                                             name="sort"
                                             value={getSortValue()}
                                             onChange={(e) =>
@@ -229,15 +238,88 @@ const Index = ({ auth, meta, notes, queryParams = null }) => {
                                     </div>
                                 </div>
 
-                                <span className="text-gray-600 hidden md:block whitespace-nowrap">
+                                <span className="hidden text-gray-600 md:block whitespace-nowrap">
                                     {notes?.data?.length || 0} notes
                                 </span>
                             </div>
                         </div>
 
+                        {/* Tag Filter */}
+                        <div className="p-3 -mt-3 rounded-lg">
+                            <div className="flex items-center justify-between mb-2">
+                                <div className="flex items-center gap-2">
+                                    <svg
+                                        className="w-4 h-4 text-gray-600"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                                        />
+                                    </svg>
+                                    <h2 className="font-semibold text-gray-900 text-md">
+                                        Filter berdasarkan Tag
+                                    </h2>
+                                </div>
+                                {queryParams.tag && (
+                                    <button
+                                        onClick={() => {
+                                            delete queryParams.tag;
+                                            router.get(
+                                                route("admin.note.index"),
+                                                queryParams
+                                            );
+                                        }}
+                                        className="flex items-center gap-1 text-sm text-backend-primary hover:text-backend-primary/70"
+                                    >
+                                        <svg
+                                            className="w-4 h-4"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M6 18L18 6M6 6l12 12"
+                                            />
+                                        </svg>
+                                        Hapus Filter
+                                    </button>
+                                )}
+                            </div>
+
+                            <div className="flex gap-2 pb-2 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                                {tags.map((tag) => (
+                                    <button
+                                        key={tag.name}
+                                        onClick={() =>
+                                            handleTagFilter(tag.name)
+                                        }
+                                        className={`inline-flex items-center px-2 py-1 rounded-full text-sm font-medium transition-colors border-2 bg-white/80 ${
+                                            queryParams.tag === tag.name
+                                                ? "bg-backend-light text-backend-secondary border-backend-secondary"
+                                                : "bg-backend-light text-gray-700 hover:bg-gray-200 border-transparent"
+                                        }`}
+                                    >
+                                        <span className="mr-1">#</span>
+                                        {tag.name}
+                                        <span className="ml-2 px-1.5 py-0.5 text-xs bg-backend-light rounded-full">
+                                            {tag.notes_count}
+                                        </span>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
                         {/* Notes Grid */}
                         {notes.data.length > 0 ? (
-                            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                            <div className="grid grid-cols-1 gap-6 mt-3 md:grid-cols-2 lg:grid-cols-3">
                                 {notes.data
                                     .slice()
                                     .sort(

@@ -160,7 +160,7 @@ const Show = ({ note }) => {
                             </div>
 
                             {/* Meta */}
-                            <div className="flex flex-wrap flex-col md:flex-row gap-3  text-sm text-primary-foreground/70">
+                            <div className="flex flex-col flex-wrap gap-3 text-sm md:flex-row text-primary-foreground/70">
                                 <div className="flex items-center gap-1">
                                     <Calendar className="w-4 h-4" />
                                     <span>
@@ -206,7 +206,7 @@ const Show = ({ note }) => {
                                     </h2>
                                     <Link
                                         as="button"
-                                        className="inline-flex items-center px-3 py-1 text-sm font-medium transition border border-dark rounded hover:bg-white hover:text-primary"
+                                        className="inline-flex items-center px-3 py-1 text-sm font-medium transition border rounded border-dark hover:bg-white hover:text-primary"
                                         href={route("note.edit2", [
                                             note.id,
                                             note.slug,
@@ -217,26 +217,30 @@ const Show = ({ note }) => {
                                     </Link>
                                 </div>
                             </div>
-                            <div
-                                className="p-8 prose prose-md max-w-none"
-                                dangerouslySetInnerHTML={{
-                                    __html: note.content,
-                                }}
-                                style={{
-                                    "--tw-prose-body": "hsl(var(--foreground))",
-                                    "--tw-prose-headings":
-                                        "hsl(var(--foreground))",
-                                    "--tw-prose-links": note.color,
-                                    "--tw-prose-bold": "hsl(var(--foreground))",
-                                    "--tw-prose-hr": "hsl(var(--border))",
-                                    "--tw-prose-quote-borders": note.color,
-                                }}
-                            />
+                            <div id="post-content">
+                                <div
+                                    className="p-4 overflow-auto prose prose-md max-w-none"
+                                    dangerouslySetInnerHTML={{
+                                        __html: note.content,
+                                    }}
+                                    style={{
+                                        "--tw-prose-body":
+                                            "hsl(var(--foreground))",
+                                        "--tw-prose-headings":
+                                            "hsl(var(--foreground))",
+                                        "--tw-prose-links": note.color,
+                                        "--tw-prose-bold":
+                                            "hsl(var(--foreground))",
+                                        "--tw-prose-hr": "hsl(var(--border))",
+                                        "--tw-prose-quote-borders": note.color,
+                                    }}
+                                />
+                            </div>
                         </div>
 
                         {/* Sharing Info */}
                         <div className="mt-8 overflow-hidden border rounded-lg bg-light/50">
-                            <div className="flex flex-col md:flex-row gap-2 justify-between p-6">
+                            <div className="flex flex-col justify-between gap-2 p-6 md:flex-row">
                                 {!note.is_private ? (
                                     <div className="flex items-center gap-2">
                                         <LinkIcon className="w-5 h-5 text-primary" />

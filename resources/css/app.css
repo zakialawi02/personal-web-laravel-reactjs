@@ -8,6 +8,7 @@
 /*=============== SCROLL BAR ===============*/
 ::-webkit-scrollbar {
     width: 0.4rem;
+    height: 0.4rem;
     background: theme("colors.light");
 }
 
@@ -155,7 +156,7 @@
 }
 
 #post-content p {
-    margin-bottom: 0.5rem;
+    margin: 0.5rem 0;
 }
 
 #post-content div {

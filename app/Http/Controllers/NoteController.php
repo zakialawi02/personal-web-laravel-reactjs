@@ -35,6 +35,11 @@ class NoteController extends Controller
                 $notes->where('is_private', true);
             }
         }
+        if ($request->filled('tag')) {
+            $notes->whereHas('tags', function ($query) use ($request) {
+                $query->where('name', $request->tag);
+            });
+        }
         // Sorting
         $sortField = $request->get('sort_field', 'created_at');
         $sortDirection = $request->get('sort_direction', 'desc');
@@ -42,9 +47,12 @@ class NoteController extends Controller
         // Pagination
         $notes = $notes->paginate(30)->withQueryString();
 
+        $tags = Tag::whereHas('notes')->withCount('notes')->get();
+
         return Inertia::render('Dashboard/Note/Index', [
             'meta' => $data,
             'notes' => $notes,
+            'tags' => $tags,
             'queryParams' => $request->query() ?: null,
         ]);
     }
