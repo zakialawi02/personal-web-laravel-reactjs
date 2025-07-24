@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-
-use App\Models\Article;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -51,4 +49,26 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public static function getRoleOptions()
+    {
+        // Cek jenis database yang digunakan
+        $driver = DB::getDriverName();
+
+        if ($driver === 'mysql') {
+            // Ambil deskripsi kolom dari tabel users
+            $column = DB::select("SHOW COLUMNS FROM users WHERE Field = 'role'");
+            // Ekstrak tipe data dari hasil query
+            $type = $column[0]->Type;
+            // Ambil nilai enum menggunakan regex
+            preg_match('/enum\((.*)\)/', $type, $matches);
+            // Kembalikan nilai enum sebagai array
+            return str_getcsv($matches[1], ',', "'");
+        } elseif ($driver === 'sqlite') {
+            // Jika menggunakan SQLite, ENUM tidak didukung, harus dibuat solusi alternatif
+            return ['superadmin', 'admin', 'user']; // Sesuaikan dengan nilai yang diharapkan
+        }
+
+        return []; // Return kosong jika driver tidak dikenali
+    }
 }

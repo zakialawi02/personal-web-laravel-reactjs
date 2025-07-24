@@ -25,12 +25,13 @@ const SidebarAdmin = ({ show, toggleSidebar }) => {
                     className="flex items-center pb-4 border-b border-b-backend-muted"
                 >
                     <img
-                        src="https://placehold.co/32x32"
+                        src="/logo/logo.webp"
                         alt="Logo"
                         className="object-cover w-8 h-8 rounded"
                     />
+
                     <span className="ml-3 text-lg font-bold text-backend-base-100">
-                        Logo
+                        Dashboard
                     </span>
                 </Link>
                 <div

@@ -1,7 +1,7 @@
 import HeaderNavHome from "@/Components/Fragment/HeaderNavHome";
 import DarkModeToogle from "@/Components/Element/Button/DarkModeToogle";
 import { Head } from "@inertiajs/react";
-import "lightbox.js-react/dist/index.css";
+// import "lightbox.js-react/dist/index.css";
 import { SlideshowLightbox } from "lightbox.js-react";
 import { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -87,7 +87,7 @@ const ShowProject = ({ procjData }) => {
                                         window.open(
                                             procjData.demo_url ?? "#",
                                             "_blank",
-                                            "noopener,noreferrer"
+                                            "noopener,noreferrer",
                                         )
                                     }
                                     type="button"
@@ -107,7 +107,7 @@ const ShowProject = ({ procjData }) => {
                                         window.open(
                                             procjData.github_url ?? "#",
                                             "_blank",
-                                            "noopener,noreferrer"
+                                            "noopener,noreferrer",
                                         )
                                     }
                                     type="button"

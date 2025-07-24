@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Inertia\Inertia;
-use App\Models\Article;
 use Illuminate\Http\Request;
-use App\Mail\RequestContributorMail;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
-use App\Models\RequestContributor as ModelsRequestContributor;
 
 class UserController extends Controller
 {
+    protected $roles;
+
+    public function __construct()
+    {
+        // Inisialisasi nilai enum dari model
+        $this->roles = implode(',', User::getRoleOptions());
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -37,13 +40,16 @@ class UserController extends Controller
             'title' => 'List User',
         ];
 
+        // Ambil data enum role dari model
+        $roles = explode(',', $this->roles);
+
         return Inertia::render('Dashboard/User/Index', [
             'meta' => $data,
             'users' => $users,
+            'roles' => $roles,
             'queryParams' => request()->query() ?: null
         ]);
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -71,12 +77,6 @@ class UserController extends Controller
         return response()->json(['user' => $data]);
     }
 
-    /**
-     * Retrieves and returns a user object.
-     *
-     * @param User $user The user object to be retrieved.
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function getUser(User $user)
     {
         return response()->json(['user' => $user]);

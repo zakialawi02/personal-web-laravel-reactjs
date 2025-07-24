@@ -68,7 +68,7 @@ const AboutHome = () => {
                             <div className="detail-data-left">
                                 <ul>
                                     <li className="mb-2">
-                                        <i className="fas fa-birthday-cake"></i>
+                                        <i className="ri-calendar-2-line"></i>
                                         <span>
                                             <label className="mr-1 font-semibold">
                                                 &nbsp;&nbsp; Birthday:{" "}
@@ -77,7 +77,7 @@ const AboutHome = () => {
                                         </span>
                                     </li>
                                     <li className="mb-2">
-                                        <i className="fas fa-map-marker-alt"></i>
+                                        <i className="ri-map-pin-line"></i>
                                         <span>
                                             <label className="mr-1 font-semibold">
                                                 &nbsp;&nbsp; Location:{" "}
@@ -85,13 +85,14 @@ const AboutHome = () => {
                                             <a
                                                 href="https://goo.gl/maps/tH8JhhDNjorMd7Ed9"
                                                 target="_blank"
+                                                rel="noopener noreferrer"
                                             >
                                                 Surabaya, Indonesia
                                             </a>
                                         </span>
                                     </li>
                                     <li className="mb-2">
-                                        <i className="fas fa-school"></i>
+                                        <i className="ri-book-open-line"></i>
                                         <span>
                                             <label className="mr-1 font-semibold">
                                                 &nbsp;&nbsp; Study:{" "}
@@ -99,13 +100,14 @@ const AboutHome = () => {
                                             <a
                                                 href="https://www.google.com/maps/place/Sepuluh+Nopember+Institute+of+Technology+(ITS)/@-7.2820793,112.7943996,854m/data=!3m1!1e3!4m5!3m4!1s0x2dd7fa1323221a93:0x306c3c99adedb258!8m2!3d-7.282356!4d112.7949253"
                                                 target="_blank"
+                                                rel="noopener noreferrer"
                                             >
                                                 ITS
                                             </a>
                                         </span>
                                     </li>
                                     <li className="mb-2">
-                                        <i className="fas fa-graduation-cap"></i>
+                                        <i className="ri-graduation-cap-line"></i>
                                         <span>
                                             <label className="mr-1 font-semibold">
                                                 &nbsp;&nbsp; Degree:{" "}
@@ -119,7 +121,7 @@ const AboutHome = () => {
                             <div className="detail-data-right">
                                 <ul>
                                     <li className="mb-2">
-                                        <i className="fas fa-gamepad"></i>
+                                        <i className="ri-gamepad-line"></i>
                                         <span>
                                             <label className="mr-1 font-semibold">
                                                 &nbsp;&nbsp; Interest:{" "}
@@ -129,7 +131,7 @@ const AboutHome = () => {
                                         </span>
                                     </li>
                                     <li className="mb-2">
-                                        <i className="fas fa-envelope"></i>
+                                        <i className="ri-mail-line"></i>
                                         <span>
                                             <label className="mr-1 font-semibold">
                                                 &nbsp;&nbsp; E-mail:{" "}
@@ -137,13 +139,14 @@ const AboutHome = () => {
                                             <a
                                                 href="mailto:hallo@zakialawi.my.id"
                                                 target="_blank"
+                                                rel="noopener noreferrer"
                                             >
                                                 hallo@zakialawi.my.id
                                             </a>
                                         </span>
                                     </li>
                                     <li className="mb-2">
-                                        <i className="fab fa-whatsapp"></i>
+                                        <i className="ri-whatsapp-line"></i>
                                         <span>
                                             <label className="mr-1 font-semibold">
                                                 &nbsp;&nbsp; Phone:{" "}
@@ -151,6 +154,7 @@ const AboutHome = () => {
                                             <a
                                                 href="https://wa.me/628974884990"
                                                 target="_blank"
+                                                rel="noopener noreferrer"
                                             >
                                                 +62 897 4884 990
                                             </a>
@@ -244,7 +248,7 @@ const AboutHome = () => {
                             className="px-4 py-2 mr-2 rounded-md shadow-xl text-light bg-accent hover:border-2 hover:border-accent hover:bg-secondary hover:text-dark dark:text-dark-primary dark:bg-dark-light dark:hover:border-dark-accent dark:hover:bg-dark-secondary dark:hover:text-white"
                             target="_blank"
                         >
-                            <i className="fas fa-download"></i>
+                            <i className="ri-download-2-line"></i>
                             &nbsp; Download CV
                         </a>
                         <a
@@ -252,7 +256,7 @@ const AboutHome = () => {
                             className="px-4 py-2 mr-2 rounded-md shadow-xl text-light bg-accent hover:border-2 hover:border-accent hover:bg-secondary hover:text-dark dark:text-dark-primary dark:bg-dark-light dark:hover:border-dark-accent dark:hover:bg-dark-secondary dark:hover:text-white"
                             target="_blank"
                         >
-                            <i className="fas fa-external-link-alt"></i>
+                            <i className="ri-external-link-fill"></i>
                             &nbsp; Detail
                         </a>
                     </div>

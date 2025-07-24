@@ -45,7 +45,7 @@ const Register = () => {
                         <TextInputGroup
                             id="name"
                             name="name"
-                            icon="fa-regular fa-user"
+                            icon="ri-user-line"
                             label="Name"
                             type="text"
                             value={data.name}
@@ -61,7 +61,7 @@ const Register = () => {
                                 <TextInputGroup
                                     id="username"
                                     name="username"
-                                    icon="fa-regular fa-user"
+                                    icon="ri-user-line"
                                     label="Username"
                                     type="text"
                                     value={data.username}
@@ -81,7 +81,7 @@ const Register = () => {
                                 <TextInputGroup
                                     id="email"
                                     name="email"
-                                    icon="fa-solid fa-envelope"
+                                    icon="ri-mail-line"
                                     label="Email"
                                     type="email"
                                     value={data.email}
@@ -101,7 +101,7 @@ const Register = () => {
                         <TextInputGroup
                             id="password"
                             name="password"
-                            icon="fa-solid fa-lock"
+                            icon="ri-lock-2-fill"
                             label="Password"
                             type="password"
                             value={data.password}
@@ -119,7 +119,7 @@ const Register = () => {
                         <TextInputGroup
                             id="password_confirmation"
                             name="password_confirmation"
-                            icon="fa-solid fa-lock"
+                            icon="ri-lock-2-fill"
                             label="Confirm Password"
                             type="password"
                             value={data.password_confirmation}

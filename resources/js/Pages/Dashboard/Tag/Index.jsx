@@ -141,25 +141,25 @@ const Index = ({ auth, meta, tags, queryParams = null }) => {
                                                     </td>
                                                     <td className="px-3 py-2 min-w-72">
                                                         {new Date(
-                                                            tag.created_at
+                                                            tag.created_at,
                                                         ).toLocaleString(
                                                             "en-US",
                                                             {
                                                                 day: "numeric",
                                                                 month: "long",
                                                                 year: "numeric",
-                                                            }
+                                                            },
                                                         )}
                                                     </td>
                                                     <td className="text-nowrap">
                                                         <Link
                                                             href={route(
                                                                 "admin.tag.edit",
-                                                                tag.slug
+                                                                tag.slug,
                                                             )}
                                                             className="w-8 p-2 ml-1 font-medium rounded-md hover:bg-opacity-70 text-backend-light bg-backend-secondary"
                                                         >
-                                                            <i className="fa-solid fa-pen-to-square"></i>
+                                                            <i className="ri-pencil-line"></i>
                                                         </Link>
                                                         <button
                                                             onClick={(e) =>
@@ -167,7 +167,7 @@ const Index = ({ auth, meta, tags, queryParams = null }) => {
                                                             }
                                                             className="w-8 p-2 ml-1 font-medium rounded-md hover:bg-opacity-70 text-backend-light bg-backend-error"
                                                         >
-                                                            <i className="fa-solid fa-trash"></i>
+                                                            <i className="ri-delete-bin-line"></i>
                                                         </button>
                                                     </td>
                                                 </tr>

@@ -12,7 +12,7 @@ import { router, useForm } from "@inertiajs/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const Index = ({ auth, meta, users, queryParams = null }) => {
+const Index = ({ auth, meta, users, roles, queryParams = null }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [processing, setProcessing] = useState(false);
@@ -206,7 +206,7 @@ const Index = ({ auth, meta, users, queryParams = null }) => {
                                     <TextInputGroup
                                         id="name"
                                         name="name"
-                                        icon="fa-regular fa-user"
+                                        icon="ri-user-line"
                                         label="Name"
                                         type="text"
                                         value={data.name}
@@ -230,7 +230,7 @@ const Index = ({ auth, meta, users, queryParams = null }) => {
                                             <TextInputGroup
                                                 id="username"
                                                 name="username"
-                                                icon="fa-regular fa-user"
+                                                icon="ri-user-line"
                                                 label="Username"
                                                 type="text"
                                                 value={data.username}
@@ -238,13 +238,13 @@ const Index = ({ auth, meta, users, queryParams = null }) => {
                                                 onBlur={(e) =>
                                                     setData(
                                                         "username",
-                                                        e.target.value
+                                                        e.target.value,
                                                     )
                                                 }
                                                 onChange={(e) =>
                                                     setData(
                                                         "username",
-                                                        e.target.value
+                                                        e.target.value,
                                                     )
                                                 }
                                                 required
@@ -258,7 +258,7 @@ const Index = ({ auth, meta, users, queryParams = null }) => {
                                         <div className="w-1/2">
                                             <div className="relative mb-3">
                                                 <i
-                                                    className={`fa-regular fa-user absolute top-1/2 transform -translate-y-1/2 left-4 text-[24px] text-backend-primary`}
+                                                    className={`ri-user-line absolute top-1/2 transform -translate-y-1/2 left-4 text-[24px] text-backend-primary`}
                                                 ></i>
 
                                                 <label
@@ -276,28 +276,31 @@ const Index = ({ auth, meta, users, queryParams = null }) => {
                                                     onBlur={(e) =>
                                                         setData(
                                                             "role",
-                                                            e.target.value
+                                                            e.target.value,
                                                         )
                                                     }
                                                     onChange={(e) =>
                                                         setData(
                                                             "role",
-                                                            e.target.value
+                                                            e.target.value,
                                                         )
                                                     }
                                                 >
                                                     <option value="">
                                                         Select Role
                                                     </option>
-                                                    <option value="admin">
-                                                        Admin
-                                                    </option>
-                                                    <option value="writer">
-                                                        Writer
-                                                    </option>
-                                                    <option value="user">
-                                                        User
-                                                    </option>
+                                                    {[
+                                                        "superadmin",
+                                                        "admin",
+                                                        "user",
+                                                    ].map((role) => (
+                                                        <option
+                                                            key={role}
+                                                            value={role}
+                                                        >
+                                                            {role}
+                                                        </option>
+                                                    ))}
                                                 </select>
                                             </div>
 
@@ -311,7 +314,7 @@ const Index = ({ auth, meta, users, queryParams = null }) => {
                                     <TextInputGroup
                                         id="email"
                                         name="email"
-                                        icon="fa-solid fa-envelope"
+                                        icon="ri-mail-line"
                                         label="Email"
                                         type="email"
                                         value={data.email}
@@ -332,7 +335,7 @@ const Index = ({ auth, meta, users, queryParams = null }) => {
                                     <TextInputGroup
                                         id="password"
                                         name="password"
-                                        icon="fa-solid fa-lock"
+                                        icon="ri-lock-line"
                                         label="Password"
                                         type="password"
                                         value={data.password}
@@ -546,9 +549,9 @@ const Index = ({ auth, meta, users, queryParams = null }) => {
                                                                 "admin"
                                                                     ? "bg-backend-primary"
                                                                     : user.role ===
-                                                                      "user"
-                                                                    ? "bg-backend-secondary"
-                                                                    : "bg-backend-muted/75"
+                                                                        "user"
+                                                                      ? "bg-backend-secondary"
+                                                                      : "bg-backend-muted/75"
                                                             }`}
                                                         >
                                                             {user.role}
@@ -556,7 +559,7 @@ const Index = ({ auth, meta, users, queryParams = null }) => {
                                                     </td>
                                                     <td className="px-3 py-2 text-nowrap">
                                                         {new Date(
-                                                            user.created_at
+                                                            user.created_at,
                                                         ).toLocaleDateString(
                                                             "en-US",
                                                             {
@@ -565,12 +568,12 @@ const Index = ({ auth, meta, users, queryParams = null }) => {
                                                                 day: "numeric",
                                                                 hour: "numeric",
                                                                 minute: "numeric",
-                                                            }
+                                                            },
                                                         )}
                                                     </td>
                                                     <td className="px-3 py-2 text-nowrap">
                                                         {new Date(
-                                                            user.email_verified_at
+                                                            user.email_verified_at,
                                                         ).toLocaleDateString(
                                                             "en-US",
                                                             {
@@ -579,7 +582,7 @@ const Index = ({ auth, meta, users, queryParams = null }) => {
                                                                 day: "numeric",
                                                                 hour: "numeric",
                                                                 minute: "numeric",
-                                                            }
+                                                            },
                                                         )}
                                                     </td>
                                                     <td className="text-nowrap">
@@ -589,7 +592,7 @@ const Index = ({ auth, meta, users, queryParams = null }) => {
                                                             }
                                                             className="w-8 p-2 ml-1 font-medium rounded-md hover:bg-opacity-70 text-backend-light bg-backend-primary"
                                                         >
-                                                            <i className="fa-solid fa-pen-to-square"></i>
+                                                            <i className="ri-pencil-line"></i>
                                                         </button>
 
                                                         <button
@@ -598,7 +601,7 @@ const Index = ({ auth, meta, users, queryParams = null }) => {
                                                             }
                                                             className="w-8 p-2 ml-1 font-medium rounded-md hover:bg-opacity-70 text-backend-light bg-backend-error"
                                                         >
-                                                            <i className="fa-solid fa-trash"></i>
+                                                            <i className="ri-delete-bin-5-line"></i>
                                                         </button>
                                                     </td>
                                                 </tr>

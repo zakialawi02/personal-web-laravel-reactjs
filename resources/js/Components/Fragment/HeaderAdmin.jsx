@@ -1,11 +1,26 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import DropdownMenu from "../Element/Dropdown/DropdownMenu";
 import Search from "../Element/Search/Search";
 import Notification from "../Element/Notification/Notification";
 import DropdownItem from "../Element/Dropdown/DropdownItem";
 
 const HeaderAdmin = ({ user, toggleSidebar }) => {
+    const { auth } = usePage().props;
+    const pathname = window.location.pathname;
+    const url2 = pathname
+        .split("/")[2]
+        ?.split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ")
+        .trim();
+    const url3 = pathname
+        .split("/")[3]
+        ?.split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ")
+        .trim();
+
     const [isOpenDropdownUser, setIsOpenDropdownUser] = useState(false);
     const [isOpenSearch, setIsOpenSearch] = useState(false);
     const [isOpenNotification, setIsOpenNotification] = useState(false);
@@ -49,7 +64,7 @@ const HeaderAdmin = ({ user, toggleSidebar }) => {
                 <i className="ri-menu-line" />
             </button>
             <ul className="flex items-center ml-4 text-sm">
-                <li className="mr-2">
+                <li className="mr-1">
                     <Link
                         preserveState
                         href="/dashboard"
@@ -58,8 +73,18 @@ const HeaderAdmin = ({ user, toggleSidebar }) => {
                         Dashboard
                     </Link>
                 </li>
-                <li className="mr-2 font-medium text-backend-dark">/</li>
-                <li className="mr-2 font-medium text-backend-dark">Page</li>
+                <li className="mr-1 font-medium text-backend-dark">
+                    {url2 && "/"}
+                </li>
+                <li className="mr-1 font-medium truncate text-backend-dark max-w-20 sm:max-w-40">
+                    {url2}
+                </li>
+                <li className="mr-1 font-medium text-backend-dark">
+                    {url3 && "/"}
+                </li>
+                <li className="mr-1 font-medium truncate max-w-20 sm:max-w-40 text-backend-dark">
+                    {url3}
+                </li>
             </ul>
             <ul className="flex items-center ml-auto">
                 <li className="mr-1 dropdown" ref={searchRef}>
@@ -97,9 +122,12 @@ const HeaderAdmin = ({ user, toggleSidebar }) => {
                         }
                     >
                         <img
-                            src="https://placehold.co/32x32"
-                            alt=""
+                            src={auth.user.profile_photo_path}
+                            alt="Profile"
                             className="block object-cover w-8 h-8 align-middle rounded"
+                            onError={(e) => {
+                                e.target.src = "https://placehold.co/32x32";
+                            }}
                         />
                     </button>
                     {isOpenDropdownUser && (
@@ -113,11 +141,6 @@ const HeaderAdmin = ({ user, toggleSidebar }) => {
                                 icon="ri-user-line"
                                 text="Profile"
                                 to={route("admin.profile.edit")}
-                            />
-                            <DropdownItem
-                                icon="ri-settings-3-line"
-                                text="Settings"
-                                to="#"
                             />
                             <DropdownItem
                                 icon="ri-logout-box-line"

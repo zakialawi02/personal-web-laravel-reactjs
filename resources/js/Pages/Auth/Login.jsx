@@ -44,7 +44,7 @@ const Login = () => {
                         <TextInputGroup
                             id="id_user"
                             name="id_user"
-                            icon="fa-regular fa-user"
+                            icon="ri-user-line"
                             label="Email/Username"
                             type="text"
                             value={data.id_user}
@@ -58,7 +58,7 @@ const Login = () => {
                         <TextInputGroup
                             id="password"
                             name="password"
-                            icon="fa-solid fa-lock"
+                            icon="ri-lock-2-fill"
                             label="Password"
                             type="password"
                             value={data.password}

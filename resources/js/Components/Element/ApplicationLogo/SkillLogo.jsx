@@ -2,8 +2,8 @@ import React from "react";
 
 const SkillLogo = ({ img, name }) => {
     return (
-        <div class="p-1 mb-2 flex flex-col items-center w-16 h-16 group">
-            <span class="text-5xl lg:text-6xl transition grayscale group-[:hover]:grayscale-0">
+        <div className="flex flex-col items-center w-16 h-16 p-1 mb-2 group">
+            <span className="text-5xl lg:text-6xl transition grayscale group-[:hover]:grayscale-0">
                 <div className="relative w-full h-full">
                     <img
                         className="w-10 h-10 text-xs"
@@ -12,7 +12,7 @@ const SkillLogo = ({ img, name }) => {
                     />
                 </div>
             </span>
-            <p class="mt-1 text-gray-800/90 text-xs text-center">{name}</p>
+            <p className="mt-1 text-xs text-center text-gray-800/90">{name}</p>
         </div>
     );
 };

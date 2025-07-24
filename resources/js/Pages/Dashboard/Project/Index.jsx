@@ -137,13 +137,13 @@ const Index = ({ auth, meta, projects, queryParams = null }) => {
                                                             <Link
                                                                 href={route(
                                                                     "project.show",
-                                                                    project.id
+                                                                    project.id,
                                                                 )}
                                                                 className="w-8 font-medium rounded-md hover:opacity-70 text-backend-muted"
                                                             >
                                                                 {route(
                                                                     "project.show",
-                                                                    project.id
+                                                                    project.id,
                                                                 )}
                                                             </Link>
                                                         </td>
@@ -151,25 +151,25 @@ const Index = ({ auth, meta, projects, queryParams = null }) => {
                                                             <Link
                                                                 href={route(
                                                                     "admin.project.edit",
-                                                                    project.id
+                                                                    project.id,
                                                                 )}
                                                                 className="w-8 p-2 ml-1 font-medium rounded-md hover:bg-opacity-70 text-backend-light bg-backend-secondary"
                                                             >
-                                                                <i className="fa-solid fa-pen-to-square"></i>
+                                                                <i className="ri-pencil-line"></i>
                                                             </Link>
                                                             <button
                                                                 onClick={(e) =>
                                                                     deleteProject(
-                                                                        project
+                                                                        project,
                                                                     )
                                                                 }
                                                                 className="w-8 p-2 ml-1 font-medium rounded-md hover:bg-opacity-70 text-backend-light bg-backend-error"
                                                             >
-                                                                <i className="fa-solid fa-trash"></i>
+                                                                <i className="ri-delete-bin-line"></i>
                                                             </button>
                                                         </td>
                                                     </tr>
-                                                )
+                                                ),
                                             )}
                                         </>
                                     )}

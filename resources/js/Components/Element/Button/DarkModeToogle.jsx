@@ -41,9 +41,9 @@ const DarkModeToggle = () => {
             id="darkModeToggle"
             onClick={toggleDarkMode}
         >
-            <i className={`fas fa-moon D1 ${!darkMode ? "" : "hidden"}`}></i>
+            <i className={`ri-moon-fill D1 ${!darkMode ? "" : "hidden"}`}></i>
             <i
-                className={`fas fa-sun D2 text-warning ${
+                className={`ri-sun-fill D2 text-warning ${
                     !darkMode ? "hidden" : ""
                 }`}
             ></i>

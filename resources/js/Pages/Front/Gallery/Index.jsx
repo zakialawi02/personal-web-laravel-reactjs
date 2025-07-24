@@ -3,7 +3,7 @@ import HeaderNavHome from "@/Components/Fragment/HeaderNavHome";
 import NavPortoButton from "@/Components/Element/Button/NavPortoButton";
 import SkeletonOneLine from "@/Components/Element/Skeleton/SkeletonOneLine";
 import CardImagePorto from "@/Components/Element/Card/CardImagePorto";
-import "lightbox.js-react/dist/index.css";
+// import "lightbox.js-react/dist/index.css";
 import { SlideshowLightbox } from "lightbox.js-react";
 import { useEffect, useState } from "react";
 import axios from "axios";

@@ -5,23 +5,23 @@ const SosialMedia = () => {
         <div className="sosial-media">
             <SosialItem
                 link="https://www.instagram.com/zakialawi_/"
-                icon="fab fa-instagram"
+                icon="ri-instagram-line"
             ></SosialItem>
             <SosialItem
                 link="https://twitter.com/"
-                icon="fab fa-twitter"
+                icon="ri-twitter-x-fill"
             ></SosialItem>
             <SosialItem
                 link="https://www.facebook.com/"
-                icon="fab fa-facebook-f"
+                icon="ri-facebook-fill"
             ></SosialItem>
             <SosialItem
                 link="https://www.linkedin.com/in/ahmad-zaki-alawi/"
-                icon="fab fa-linkedin-in"
+                icon="ri-linkedin-box-fill"
             ></SosialItem>
             <SosialItem
                 link="https://github.com/zakialawi02/personal-web"
-                icon="fab fa-github"
+                icon="ri-github-fill"
             ></SosialItem>
         </div>
     );

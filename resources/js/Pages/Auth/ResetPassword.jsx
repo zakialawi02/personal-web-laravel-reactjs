@@ -41,7 +41,7 @@ const ResetPassword = ({ token, email }) => {
                         <TextInputGroup
                             id="email"
                             name="email"
-                            icon="fa-solid fa-envelope"
+                            icon="ri-mail-line"
                             label="Email"
                             type="email"
                             value={data.email}
@@ -54,7 +54,7 @@ const ResetPassword = ({ token, email }) => {
                         <TextInputGroup
                             id="password"
                             name="password"
-                            icon="fa-solid fa-lock"
+                            icon="r"
                             label="Password"
                             type="password"
                             value={data.password}
@@ -72,7 +72,7 @@ const ResetPassword = ({ token, email }) => {
                         <TextInputGroup
                             id="password_confirmation"
                             name="password_confirmation"
-                            icon="fa-solid fa-lock"
+                            icon="ri-lock-password-line"
                             label="Confirm Password"
                             type="password"
                             value={data.password_confirmation}

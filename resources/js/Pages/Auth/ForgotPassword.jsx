@@ -36,7 +36,7 @@ const ForgotPassword = () => {
                     <TextInputGroup
                         id="email"
                         name="email"
-                        icon="fa-solid fa-envelope"
+                        icon="ri-mail-line"
                         label="Email"
                         type="email"
                         value={data.email}

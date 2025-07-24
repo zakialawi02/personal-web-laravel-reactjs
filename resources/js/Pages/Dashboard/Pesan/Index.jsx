@@ -126,16 +126,16 @@ const Index = ({ auth, meta, messages, queryParams = null }) => {
                                                             <button
                                                                 onClick={(e) =>
                                                                     deletePesan(
-                                                                        message
+                                                                        message,
                                                                     )
                                                                 }
                                                                 className="w-8 p-2 ml-1 font-medium rounded-md hover:bg-opacity-70 text-backend-light bg-backend-error"
                                                             >
-                                                                <i className="fa-solid fa-trash"></i>
+                                                                <i className="ri-delete-bin-line"></i>
                                                             </button>
                                                         </td>
                                                     </tr>
-                                                )
+                                                ),
                                             )}
                                         </>
                                     )}

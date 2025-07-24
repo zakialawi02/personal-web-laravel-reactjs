@@ -18,7 +18,7 @@ const QuotesGenerator = () => {
             let utterance = new SpeechSynthesisUtterance(
                 `${document.getElementById("Qtext").innerText} by ${
                     document.getElementById("Qauthor").innerText
-                }`
+                }`,
             );
             speechSynthesis.speak(utterance);
             setInterval(() => {
@@ -33,7 +33,7 @@ const QuotesGenerator = () => {
 
     const copyBtn = () => {
         navigator.clipboard.writeText(
-            document.getElementById("Qtext").innerText
+            document.getElementById("Qtext").innerText,
         );
     };
 
@@ -57,14 +57,14 @@ const QuotesGenerator = () => {
                                 <h3>Quote of The Day</h3>
                             </div>
                             <div className="flex items-center justify-center p-6 m-2">
-                                <i className="place-self-start fas fa-quote-left"></i>
+                                <i className="place-self-start ri-double-quotes-l"></i>
                                 <p
                                     id="Qtext"
                                     className="p-2 text-md md:text-xl"
                                 >
                                     The beginning is always today.
                                 </p>
-                                <i className="place-self-end fas fa-quote-right"></i>
+                                <i className="place-self-end ri-double-quotes-r"></i>
                             </div>
                             <div className="flex items-center justify-end p-2">
                                 <span>~ </span>
@@ -81,19 +81,19 @@ const QuotesGenerator = () => {
                                         onClick={speech}
                                         className="p-1 text-center transition-all duration-300 border-2 rounded-full cursor-pointer hover:bg-primary hover:text-light min-w-10 border-primary speech dark:border-dark-primary dark:hover:bg-dark-primary"
                                     >
-                                        <i className="fas fa-volume-up"></i>
+                                        <i className="ri-volume-up-fill"></i>
                                     </li>
                                     <li
                                         onClick={copyBtn}
                                         className="p-1 text-center transition-all duration-300 border-2 rounded-full cursor-pointer hover:bg-primary hover:text-light min-w-10 border-primary copy dark:border-dark-primary dark:hover:bg-dark-primary"
                                     >
-                                        <i className="fas fa-copy"></i>
+                                        <i className="ri-file-copy-fill"></i>
                                     </li>
                                     <li
                                         onClick={twitterBtn}
                                         className="p-1 text-center transition-all duration-300 border-2 rounded-full cursor-pointer hover:bg-primary hover:text-light min-w-10 border-primary twitter dark:border-dark-primary dark:hover:bg-dark-primary"
                                     >
-                                        <i className="fab fa-twitter"></i>
+                                        <i className="ri-twitter-fill"></i>
                                     </li>
                                 </ul>
                                 <button
@@ -113,6 +113,7 @@ const QuotesGenerator = () => {
                             target="_blank"
                             href="https://github.com/lukePeavey/quotable"
                             className="text-info hover:text-accent dark:text-dark dark:hover:text-dark-primary"
+                            rel="noreferrer noopener"
                         >
                             &nbsp; Quotable
                         </a>

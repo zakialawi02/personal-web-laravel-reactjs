@@ -80,7 +80,7 @@ const FormData = ({ auth, meta, noteData = null, tagsList = [] }) => {
                     onError: (error) => {
                         setError(error);
                     },
-                }
+                },
             );
         } else {
             if (!isUpdate.current) {
@@ -292,15 +292,15 @@ const FormData = ({ auth, meta, noteData = null, tagsList = [] }) => {
                                                                     data.sharable_link ||
                                                                     setData(
                                                                         "sharable_link",
-                                                                        generateRandomLink()
+                                                                        generateRandomLink(),
                                                                     )
                                                                 }
                                                                 onChange={(
-                                                                    event
+                                                                    event,
                                                                 ) =>
                                                                     handleInputChange(
                                                                         event,
-                                                                        "sharable_link"
+                                                                        "sharable_link",
                                                                     )
                                                                 }
                                                                 className="w-full px-2 py-1 border rounded-s-none rounded-e"
@@ -319,19 +319,19 @@ const FormData = ({ auth, meta, noteData = null, tagsList = [] }) => {
                                                                 onClick={() =>
                                                                     navigator.clipboard
                                                                         .writeText(
-                                                                            `https://example.com/${data.sharable_link}`
+                                                                            `https://example.com/${data.sharable_link}`,
                                                                         )
                                                                         .then(
                                                                             () =>
                                                                                 alert(
-                                                                                    "Link copied!"
-                                                                                )
+                                                                                    "Link copied!",
+                                                                                ),
                                                                         )
                                                                 }
                                                                 className="hover:bg-gray-200"
                                                                 title="Copy link"
                                                             >
-                                                                <i class="ri-file-copy-line"></i>
+                                                                <i className="ri-file-copy-line"></i>
                                                             </button>
                                                         </div>
                                                         <InputError
@@ -421,7 +421,7 @@ const FormData = ({ auth, meta, noteData = null, tagsList = [] }) => {
                                             <p className="mb-4 text-sm text-gray-700 break-words line-clamp-3">
                                                 {data.content
                                                     ? extractPlainText(
-                                                          data.content
+                                                          data.content,
                                                       )
                                                     : "The note content will be displayed here..."}
                                             </p>
@@ -507,7 +507,7 @@ const FormData = ({ auth, meta, noteData = null, tagsList = [] }) => {
                                                                     month: "long",
                                                                     day: "numeric",
                                                                     year: "numeric",
-                                                                }
+                                                                },
                                                             )}
                                                     </span>
                                                 </div>
@@ -521,7 +521,7 @@ const FormData = ({ auth, meta, noteData = null, tagsList = [] }) => {
                                     <button
                                         onClick={() =>
                                             router.get(
-                                                route("admin.note.index")
+                                                route("admin.note.index"),
                                             )
                                         }
                                         type="button"

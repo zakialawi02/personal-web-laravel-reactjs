@@ -13,7 +13,7 @@ const Edit = ({ auth, mustVerifyEmail, status }) => {
                         <Card className="flex flex-col items-center justify-center w-full">
                             <img
                                 className="w-24 h-24 border-2 border-gray-300 rounded-full"
-                                src="https://via.placeholder.com/150"
+                                src={auth.user.profile_photo_path}
                                 alt="Profile Picture"
                             />
                             <div className="mt-4 text-center">

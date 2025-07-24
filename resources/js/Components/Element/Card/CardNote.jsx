@@ -187,14 +187,14 @@ const CardNote = ({ note, onEdit, onPin, onUnpin, onDelete }) => {
                                     onClick={() =>
                                         navigator.clipboard
                                             .writeText(
-                                                `${meta?.base_url}/s/notes/${note?.sharable_link}`
+                                                `${meta?.base_url}/s/notes/${note?.sharable_link}`,
                                             )
                                             .then(() => alert("Link copied!"))
                                     }
                                     className="p-1 bg-gray-100 rounded hover:bg-gray-200"
                                     title="Copy link"
                                 >
-                                    <i class="ri-file-copy-line"></i>
+                                    <i className="ri-file-copy-line"></i>
                                 </button>
                             </div>
                         </>
@@ -237,7 +237,7 @@ const CardNote = ({ note, onEdit, onPin, onUnpin, onDelete }) => {
                                     month: "long",
                                     day: "numeric",
                                     year: "numeric",
-                                }
+                                },
                             )}
                         </span>
                     </div>

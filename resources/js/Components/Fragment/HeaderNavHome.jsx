@@ -101,7 +101,7 @@ const NavBar = () => {
 
                 <div
                     id="hamMenu"
-                    className="fas fa-bars"
+                    className="ri-menu-line"
                     onClick={() => toggleMenu()}
                 ></div>
 

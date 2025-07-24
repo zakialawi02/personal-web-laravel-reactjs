@@ -130,7 +130,8 @@
     --background-color: theme("colors.primary");
     padding: 1.2em 2em;
     border: 1px solid var(--background-color);
-    background: linear-gradient(
+    background:
+        linear-gradient(
             135deg,
             var(--background-color) 0%,
             var(--background-color) var(--background-size),
@@ -178,7 +179,8 @@
     content: "";
     display: block;
     height: calc(var(--ck-fancy-code-disc-radius) * 2);
-    background-image: radial-gradient(
+    background-image:
+        radial-gradient(
             circle,
             #f16b5d var(--ck-fancy-code-disc-radius),
             #0000 var(--ck-fancy-code-disc-radius)
@@ -195,7 +197,9 @@
         );
     background-size: calc(var(--ck-fancy-code-disc-radius) * 2)
         calc(var(--ck-fancy-code-disc-radius) * 2);
-    background-position: 0 0, calc(var(--ck-fancy-code-disc-radius) * 3) 0,
+    background-position:
+        0 0,
+        calc(var(--ck-fancy-code-disc-radius) * 3) 0,
         calc(var(--ck-fancy-code-disc-radius) * 6) 0;
     margin-bottom: 8px;
     background-repeat: no-repeat;

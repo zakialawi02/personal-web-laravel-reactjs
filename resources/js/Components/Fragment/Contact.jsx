@@ -18,7 +18,7 @@ const Contact = () => {
                 form.current,
                 {
                     publicKey: import.meta.env.VITE_EMAILJS_API_KEY,
-                }
+                },
             )
             .then(
                 () => {
@@ -29,7 +29,7 @@ const Contact = () => {
                     console.log("FAILED...", error.text);
                     setError(error.text);
                     setProcessing(false);
-                }
+                },
             );
     };
 
@@ -61,7 +61,7 @@ const Contact = () => {
 
                         <div className="flex items-center gap-6 p-2 text-lg">
                             <span className="text-3xl text-center w-[2rem]">
-                                <i className="text-primary fas fa-map-marker-alt dark:text-dark-secondary"></i>
+                                <i className="text-primary ri-map-pin-2-line dark:text-dark-secondary"></i>
                             </span>
                             <div className="content">
                                 <h3 className="font-bold">Address</h3>
@@ -71,7 +71,7 @@ const Contact = () => {
 
                         <div className="flex items-center gap-6 p-2 text-lg">
                             <span className="text-3xl text-center w-[2rem]">
-                                <i className="text-primary fas fa-envelope dark:text-dark-secondary"></i>
+                                <i className="text-primary ri-mail-line dark:text-dark-secondary"></i>
                             </span>
                             <div className="content">
                                 <h3 className="font-bold">Email</h3>
