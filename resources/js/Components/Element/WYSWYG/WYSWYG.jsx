@@ -30,11 +30,13 @@ import {
     ImageBlock,
     ImageCaption,
     ImageInline,
+    ImageInsert,
     ImageInsertViaUrl,
     ImageResize,
     ImageStyle,
     ImageTextAlternative,
     ImageToolbar,
+    ImageUpload,
     Indent,
     IndentBlock,
     Italic,
@@ -75,6 +77,7 @@ import {
     Undo,
     StandardEditingMode,
 } from "ckeditor5";
+import MathType from "@wiris/mathtype-ckeditor5/dist/index.js";
 import "ckeditor5/ckeditor5.css";
 
 const WYSWYG = ({ data = null, onChange, offsetTop = null }) => {
@@ -82,7 +85,7 @@ const WYSWYG = ({ data = null, onChange, offsetTop = null }) => {
     const editorRef = useRef(null);
     const [isLayoutReady, setIsLayoutReady] = useState(false);
     const [shouldNotGroup, setShouldNotGroup] = useState(
-        window.innerWidth >= 768
+        window.innerWidth >= 768,
     );
     const [editorKey, setEditorKey] = useState("editor-default");
     const [offset, setOffset] = useState(48);
@@ -156,6 +159,7 @@ const WYSWYG = ({ data = null, onChange, offsetTop = null }) => {
                 "horizontalLine",
                 "pageBreak",
                 "link",
+                "insertImage",
                 "insertImageViaUrl",
                 "mediaEmbed",
                 "insertTable",
@@ -206,11 +210,13 @@ const WYSWYG = ({ data = null, onChange, offsetTop = null }) => {
             ImageBlock,
             ImageCaption,
             ImageInline,
+            ImageInsert,
             ImageInsertViaUrl,
             ImageResize,
             ImageStyle,
             ImageTextAlternative,
             ImageToolbar,
+            ImageUpload,
             Indent,
             IndentBlock,
             Italic,
@@ -251,11 +257,20 @@ const WYSWYG = ({ data = null, onChange, offsetTop = null }) => {
             Undo,
             StandardEditingMode,
         ],
+        simpleUpload: {
+            uploadUrl: "/dashboard/upload-image",
+            headers: {
+                "X-CSRF-TOKEN": document
+                    .querySelector('meta[name="csrf-token"]')
+                    .getAttribute("content"),
+            },
+        },
         balloonToolbar: [
             "bold",
             "italic",
             "|",
             "link",
+            "insertImage",
             "|",
             "bulletedList",
             "numberedList",
@@ -269,6 +284,7 @@ const WYSWYG = ({ data = null, onChange, offsetTop = null }) => {
             "italic",
             "|",
             "link",
+            "insertImage",
             "insertTable",
             "|",
             "bulletedList",
@@ -291,8 +307,20 @@ const WYSWYG = ({ data = null, onChange, offsetTop = null }) => {
             ],
         },
         fontSize: {
-            options: [10, 12, 14, "default", 18, 20, 22],
+            options: [10, 12, 14, "default", 18, 20, 22, 24, 28, 32, 38, 40],
             supportAllValues: true,
+        },
+        fullscreen: {
+            onEnterCallback: (container) =>
+                container.classList.add(
+                    "editor-container",
+                    "editor-container_classic-editor",
+                    "editor-container_include-style",
+                    "editor-container_include-block-toolbar",
+                    "editor-container_include-word-count",
+                    "editor-container_include-fullscreen",
+                    "main-container",
+                ),
         },
         heading: {
             options: [
@@ -393,6 +421,26 @@ const WYSWYG = ({ data = null, onChange, offsetTop = null }) => {
                     classes: ["category"],
                 },
                 {
+                    name: "Button Download-1",
+                    element: "a",
+                    classes: ["button-download1"],
+                },
+                {
+                    name: "Button Download-2",
+                    element: "a",
+                    classes: ["button-download2"],
+                },
+                {
+                    name: "Button Download-3",
+                    element: "a",
+                    classes: ["button-download3"],
+                },
+                {
+                    name: "Button Download-4",
+                    element: "a",
+                    classes: ["button-download4"],
+                },
+                {
                     name: "Title",
                     element: "h2",
                     classes: ["document-title"],
@@ -413,6 +461,11 @@ const WYSWYG = ({ data = null, onChange, offsetTop = null }) => {
                     classes: ["side-quote"],
                 },
                 {
+                    name: "Blockquote Highlighted",
+                    element: "blockquote",
+                    classes: ["quote-highlight"],
+                },
+                {
                     name: "Marker",
                     element: "span",
                     classes: ["marker"],
@@ -431,6 +484,36 @@ const WYSWYG = ({ data = null, onChange, offsetTop = null }) => {
                     name: "Code (bright)",
                     element: "pre",
                     classes: ["fancy-code", "fancy-code-bright"],
+                },
+                {
+                    name: "Alert - Info",
+                    element: "span",
+                    classes: ["ck-alert", "ck-alert-info"],
+                },
+                {
+                    name: "Alert - Warning",
+                    element: "span",
+                    classes: ["ck-alert", "ck-alert-warning"],
+                },
+                {
+                    name: "Alert - Success",
+                    element: "span",
+                    classes: ["ck-alert", "ck-alert-success"],
+                },
+                {
+                    name: "Alert - Danger",
+                    element: "span",
+                    classes: ["ck-alert", "ck-alert-danger"],
+                },
+                {
+                    name: "Alert - Lock",
+                    element: "span",
+                    classes: ["ck-alert", "ck-alert-lock"],
+                },
+                {
+                    name: "Lead Text",
+                    element: "p",
+                    classes: ["ck-lead"],
                 },
             ],
         },

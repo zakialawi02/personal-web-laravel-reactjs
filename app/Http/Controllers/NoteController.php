@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Note;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\NoteRequest;
-use App\Models\Tag;
+use Illuminate\Support\Facades\Storage;
 
 class NoteController extends Controller
 {
@@ -115,6 +117,28 @@ class NoteController extends Controller
         $note->update($data);
 
         return redirect()->back()->with('success', 'Note updated successfully');
+    }
+
+    public function upload(Request $request)
+    {
+        $request->validate([
+            'upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048', // 'upload' adalah nama default input file dari CKEditor 5
+        ]);
+
+        if ($request->hasFile('upload')) {
+            $file = $request->file('upload');
+            $filename = time() . '_' . Str::random(20) . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('public/uploads', $filename); // Simpan di storage/app/public/uploads
+
+            // URL yang akan dikembalikan ke CKEditor 5
+            $url = Storage::url($path);
+
+            return response()->json([
+                'url' => $url
+            ]);
+        }
+
+        return response()->json(['error' => ['message' => 'Upload failed']], 500);
     }
 
     public function destroy(Note $note)

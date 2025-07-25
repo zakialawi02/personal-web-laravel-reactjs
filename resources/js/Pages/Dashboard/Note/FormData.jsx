@@ -5,6 +5,7 @@ import ToggleSwitch from "@/Components/Element/Input/ToggleSwitch";
 import DashboardLayout from "@/Layouts/DashboardLayout";
 import { router, useForm } from "@inertiajs/react";
 import { useRef } from "react";
+import "./../../../../css/ckeditor-addons.css";
 import WYSWYG from "@/Components/Element/WYSWYG/WYSWYG";
 import InputLabel from "@/Components/Element/Input/InputLabel";
 import TextInput from "@/Components/Element/Input/TextInput";

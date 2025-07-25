@@ -1,4 +1,5 @@
-import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
+import { Head, router, useForm, usePage } from "@inertiajs/react";
+import "./../../../../css/ckeditor-addons.css";
 import HeaderNavHome from "@/Components/Fragment/HeaderNavHome";
 import {
     Calendar,
@@ -21,7 +22,7 @@ const Edit = ({ note }) => {
     const url = window.location.href;
     const { meta } = usePage().props;
     const [protectedAccess, setProtectedAccess] = useState(
-        note.shared_password !== null
+        note.shared_password !== null,
     );
     const { data, setData, errors, setError, post, processing } = useForm({
         id: note?.id ?? "",
@@ -51,7 +52,7 @@ const Edit = ({ note }) => {
 
     const handleShare = () => {
         navigator.clipboard.writeText(
-            `${meta.base_url}/s/notes/${note.sharable_link}`
+            `${meta.base_url}/s/notes/${note.sharable_link}`,
         );
         alert("Link copied to clipboard!");
     };
@@ -75,7 +76,7 @@ const Edit = ({ note }) => {
                 onError: (error) => {
                     setError(error);
                 },
-            }
+            },
         );
     };
 

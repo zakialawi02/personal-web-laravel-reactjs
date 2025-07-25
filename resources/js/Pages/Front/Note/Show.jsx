@@ -1,4 +1,6 @@
 import { Head, Link, usePage } from "@inertiajs/react";
+import "ckeditor5/ckeditor5.css";
+import "./../../../../css/ckeditor-addons.css";
 import HeaderNavHome from "@/Components/Fragment/HeaderNavHome";
 import {
     Calendar,
@@ -19,7 +21,7 @@ const Show = ({ note }) => {
     const url = window.location.href;
     const { meta } = usePage().props;
     const [protectedAccess, setProtectedAccess] = useState(
-        note.shared_password !== null
+        note.shared_password !== null,
     );
     const [error, setError] = useState("");
 
@@ -35,7 +37,7 @@ const Show = ({ note }) => {
 
     const handleShare = () => {
         navigator.clipboard.writeText(
-            `${meta.base_url}/s/notes/${note.sharable_link}`
+            `${meta.base_url}/s/notes/${note.sharable_link}`,
         );
         alert("Link copied to clipboard!");
     };
@@ -217,25 +219,22 @@ const Show = ({ note }) => {
                                     </Link>
                                 </div>
                             </div>
-                            <div id="post-content">
-                                <div
-                                    className="p-4 overflow-auto prose prose-md max-w-none"
-                                    dangerouslySetInnerHTML={{
-                                        __html: note.content,
-                                    }}
-                                    style={{
-                                        "--tw-prose-body":
-                                            "hsl(var(--foreground))",
-                                        "--tw-prose-headings":
-                                            "hsl(var(--foreground))",
-                                        "--tw-prose-links": note.color,
-                                        "--tw-prose-bold":
-                                            "hsl(var(--foreground))",
-                                        "--tw-prose-hr": "hsl(var(--border))",
-                                        "--tw-prose-quote-borders": note.color,
-                                    }}
-                                />
-                            </div>
+                            <div
+                                id="post-content"
+                                className="p-4 overflow-auto prose ck ck-content prose-md max-w-none"
+                                dangerouslySetInnerHTML={{
+                                    __html: note.content,
+                                }}
+                                style={{
+                                    "--tw-prose-body": "hsl(var(--foreground))",
+                                    "--tw-prose-headings":
+                                        "hsl(var(--foreground))",
+                                    "--tw-prose-links": note.color,
+                                    "--tw-prose-bold": "hsl(var(--foreground))",
+                                    "--tw-prose-hr": "hsl(var(--border))",
+                                    "--tw-prose-quote-borders": note.color,
+                                }}
+                            />
                         </div>
 
                         {/* Sharing Info */}

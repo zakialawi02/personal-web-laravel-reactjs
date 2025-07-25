@@ -5,6 +5,7 @@ use App\Models\Pesan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\TagController;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PesanController;
@@ -79,7 +80,7 @@ Route::prefix('dashboard')->as('admin.')->group(function () {
         Route::delete('/my-notes/{note:id}', [NoteController::class, 'destroy'])->name('note.destroy');
         Route::put('/my-notes/{note:id}/unpin', [NoteController::class, 'unpinNote'])->name('note.unpin');
         Route::put('/my-notes/{note:id}/pin', [NoteController::class, 'pinNote'])->name('note.pin');
-
+        Route::post('/upload-image', [NoteController::class, 'upload'])->name('image.upload');
 
         Route::get('/empty', function () {
             return Inertia::render('EmptyPage');
