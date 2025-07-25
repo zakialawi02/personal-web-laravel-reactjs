@@ -5,8 +5,10 @@
     display: inline;
 }
 
-body {
-    margin: 0 !important;
+@media print {
+    body {
+        margin: 0 !important;
+    }
 }
 
 .main-container {

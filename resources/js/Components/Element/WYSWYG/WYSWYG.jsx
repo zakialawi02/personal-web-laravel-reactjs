@@ -44,7 +44,6 @@ import {
     LinkImage,
     List,
     ListProperties,
-    Markdown,
     MediaEmbed,
     PageBreak,
     Paragraph,
@@ -89,6 +88,7 @@ const WYSWYG = ({ data = null, onChange, offsetTop = null }) => {
     );
     const [editorKey, setEditorKey] = useState("editor-default");
     const [offset, setOffset] = useState(48);
+    const LICENSE_KEY = "GPL"; // or <YOUR_LICENSE_KEY>.
 
     const handleChangeContent = (event, editor) => {
         const data = editor.getData();
@@ -177,6 +177,8 @@ const WYSWYG = ({ data = null, onChange, offsetTop = null }) => {
                 "indent",
                 "|",
                 "accessibilityHelp",
+                "MathType",
+                "ChemType",
                 "restrictedEditingException",
             ],
             shouldNotGroupWhenFull: shouldNotGroup,
@@ -224,7 +226,6 @@ const WYSWYG = ({ data = null, onChange, offsetTop = null }) => {
             LinkImage,
             List,
             ListProperties,
-            Markdown,
             MediaEmbed,
             PageBreak,
             Paragraph,
@@ -256,6 +257,7 @@ const WYSWYG = ({ data = null, onChange, offsetTop = null }) => {
             Underline,
             Undo,
             StandardEditingMode,
+            MathType,
         ],
         simpleUpload: {
             uploadUrl: "/dashboard/upload-image",
@@ -413,6 +415,11 @@ const WYSWYG = ({ data = null, onChange, offsetTop = null }) => {
             isVisible: true,
         },
         placeholder: "Type or paste your content here!",
+        initialData: "",
+        licenseKey: LICENSE_KEY,
+        lineHeight: {
+            supportAllValues: true,
+        },
         style: {
             definitions: [
                 {
