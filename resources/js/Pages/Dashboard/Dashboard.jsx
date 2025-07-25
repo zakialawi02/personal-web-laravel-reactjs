@@ -2,7 +2,7 @@ import Card from "@/Components/Element/Card/Card";
 import CardImagePortoDesc from "@/Components/Element/Card/CardImagePortoDesc";
 import CardNote from "@/Components/Element/Card/CardNote";
 import DashboardLayout from "@/Layouts/DashboardLayout";
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 
 function AdminView({
     totalNotes,
@@ -13,6 +13,24 @@ function AdminView({
     latestProjects,
     auth,
 }) {
+    const editNote = (data) => {
+        router.get(route("admin.note.edit", data.id));
+    };
+    const pinNote = (data) => {
+        router.put(route("admin.note.pin", data.id));
+    };
+
+    const unpinNote = (data) => {
+        router.put(route("admin.note.unpin", data.id));
+    };
+
+    const deleteNote = (data) => {
+        if (!confirm("Are you sure you want to delete this message?")) {
+            return;
+        }
+        router.delete(route("admin.note.destroy", data.id));
+    };
+
     return (
         <Card>
             <div className="text-gray-900 dark:text-gray-100">
@@ -67,6 +85,10 @@ function AdminView({
                                 key={note.id}
                                 note={note}
                                 className="rounded-lg shadow-md bg-gray-50 dark:bg-gray-700"
+                                onPin={pinNote}
+                                onUnpin={unpinNote}
+                                onDelete={deleteNote}
+                                onEdit={editNote}
                             />
                         ))
                     ) : (

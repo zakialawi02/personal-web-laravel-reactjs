@@ -91,6 +91,10 @@ const Index = ({ auth, meta, notes, tags, queryParams = null }) => {
         router.get(route("admin.note.index"), queryParams);
     };
 
+    const editNote = (data) => {
+        router.get(route("admin.note.edit", data.id));
+    };
+
     const pinNote = (data) => {
         router.put(route("admin.note.pin", data.id));
     };
@@ -264,7 +268,7 @@ const Index = ({ auth, meta, notes, tags, queryParams = null }) => {
 
                                     {tags && (
                                         <h2 className="font-semibold text-gray-900 text-md">
-                                            Filter berdasarkan Tag:
+                                            Filter by Tag:
                                             {queryParams?.tag}
                                         </h2>
                                     )}
@@ -335,19 +339,10 @@ const Index = ({ auth, meta, notes, tags, queryParams = null }) => {
                                         <CardNote
                                             key={note.id}
                                             note={note}
-                                            onEdit={(note) =>
-                                                router.visit(
-                                                    route(
-                                                        "admin.note.edit",
-                                                        note.id,
-                                                    ),
-                                                )
-                                            }
-                                            onUnpin={(note) => unpinNote(note)}
-                                            onPin={(note) => pinNote(note)}
-                                            onDelete={(note) =>
-                                                deleteNote(note)
-                                            }
+                                            onPin={pinNote}
+                                            onUnpin={unpinNote}
+                                            onDelete={deleteNote}
+                                            onEdit={editNote}
                                         />
                                     ))}
                             </div>
