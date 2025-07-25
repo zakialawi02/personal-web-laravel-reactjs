@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import ButtonBE from "@/Components/Element/Button/ButtonBE";
 import Select from "react-select";
 import WYSWYG from "@/Components/Element/WYSWYG/WYSWYG";
+import "./../../../../css/ckeditor-addons.css";
 import IterateUpload from "@/Components/Element/IterateUplaod";
 
 const FormData = ({ auth, meta, procjData = null }) => {
@@ -101,7 +102,7 @@ const FormData = ({ auth, meta, procjData = null }) => {
                     onError: (error) => {
                         setError(error);
                     },
-                }
+                },
             );
         } else {
             post(route("admin.project.store"));
@@ -115,7 +116,7 @@ const FormData = ({ auth, meta, procjData = null }) => {
         setImagePreview(
             procjData?.cover_image
                 ? `/storage/img/${procjData.cover_image}`
-                : null
+                : null,
         );
 
         let picts = procjData?.images.map((x) => `/storage/img/${x.image}`);

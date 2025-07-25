@@ -6,6 +6,7 @@ import { SlideshowLightbox } from "lightbox.js-react";
 import { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import "./../../../../css/ckeditor-addons.css";
 
 const ShowProject = ({ procjData }) => {
     const url = window.location.href;
@@ -124,7 +125,10 @@ const ShowProject = ({ procjData }) => {
                             <h3>Project Description</h3>
                         </div>
 
-                        <div id="post-content" className="py-2 text-[1.1rem]">
+                        <div
+                            id="post-content"
+                            className=" ck ck-content py-2 text-[1.1rem]"
+                        >
                             <div
                                 dangerouslySetInnerHTML={{
                                     __html: procjData.description,
