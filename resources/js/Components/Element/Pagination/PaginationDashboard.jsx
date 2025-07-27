@@ -7,7 +7,7 @@ const PaginationDashboard = ({ links }) => {
                 <Link
                     preserveState
                     preserveScroll
-                    href={link.url || ""}
+                    href={link.url || "#"}
                     key={link.label}
                     className={
                         "inline-block py-2 px-3 rounded-lg bg-backend-primary text-backend-light text-xs " +

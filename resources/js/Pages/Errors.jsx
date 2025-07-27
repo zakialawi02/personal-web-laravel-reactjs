@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Components/ui/button";
 import { Head, Link } from "@inertiajs/react";
 import { AlertTriangle, ArrowLeft, Home } from "lucide-react";
 
@@ -6,6 +6,7 @@ export default function ErrorPage({ status = 404 }) {
     const title = {
         503: "503: Service Unavailable",
         500: "500: Server Error",
+        401: "401: Unauthorized",
         404: "404: Page Not Found",
         403: "403: Forbidden",
     }[status];
@@ -13,6 +14,7 @@ export default function ErrorPage({ status = 404 }) {
     const description = {
         503: "Sorry, we are doing some maintenance. Please check back soon.",
         500: "Whoops, something went wrong on our servers.",
+        401: "Sorry, you are not authorized to access this page.",
         404: "Sorry, the page you are looking for could not be found.",
         403: "Sorry, you are forbidden from accessing this page.",
     }[status];

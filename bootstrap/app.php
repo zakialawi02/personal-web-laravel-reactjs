@@ -30,15 +30,15 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
         // Register the custom exception handler popup.
         $exceptions->respond(function (Response $response, Throwable $exception, Request $request) {
-            // if (app()->environment('production') && in_array($response->getStatusCode(), [500, 503, 404, 403])) {
-            //     return Inertia::render('Errors', ['status' => $response->getStatusCode()])
-            //         ->toResponse($request)
-            //         ->setStatusCode($response->getStatusCode());
-            // } elseif (app()->environment('production') && $response->getStatusCode() === 419) {
-            //     return back()->with([
-            //         'message' => 'The page expired, please try again.',
-            //     ]);
-            // }
+            if (app()->environment('production') && in_array($response->getStatusCode(), [500, 503, 401, 404, 403])) {
+                return Inertia::render('Errors', ['status' => $response->getStatusCode()])
+                    ->toResponse($request)
+                    ->setStatusCode($response->getStatusCode());
+            } elseif (app()->environment('production') && $response->getStatusCode() === 419) {
+                return back()->with([
+                    'message' => 'The page expired, please try again.',
+                ]);
+            }
 
             return $response;
         });

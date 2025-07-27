@@ -444,7 +444,7 @@
     padding: 16px 24px;
     margin: 20px 0;
     background-color: #fdfdfd;
-    border-left: 5px solid var(--color-secondary);
+    border-left: 5px solid theme("colors.primary");
     color: var(--color-base);
     border-radius: 6px;
     font-style: italic;
@@ -469,13 +469,13 @@
 .ck.ck-content a.button-download1 {
     display: inline-block;
     text-decoration: none;
-    color: var(--color-light);
+    color: theme("colors.light");
     padding: 10px 20px;
     margin: 0 2px;
     border-radius: 5px;
     font-weight: bold;
-    background: var(--color-info) url("@assets/icon/download1.png") no-repeat
-        10px center;
+    background: theme("colors.info") url("./../assets/icon/download1.png")
+        no-repeat 10px center;
     background-size: 20px 20px;
     padding-left: 36px;
 }
@@ -483,13 +483,13 @@
 .ck.ck-content a.button-download2 {
     display: inline-block;
     text-decoration: none;
-    color: var(--color-light);
+    color: theme("colors.light");
     padding: 10px 20px;
     margin: 0 2px;
     border-radius: 5px;
     font-weight: bold;
-    background: var(--color-accent) url("@assets/icon/download2.svg") no-repeat
-        10px center;
+    background: theme("colors.success") url("./../assets/icon/download2.svg")
+        no-repeat 10px center;
     background-size: 20px 20px;
     padding-left: 36px;
 }
@@ -497,13 +497,13 @@
 .ck.ck-content a.button-download3 {
     display: inline-block;
     text-decoration: none;
-    color: var(--color-light);
+    color: theme("colors.light");
     padding: 10px 20px;
     margin: 0 2px;
     border-radius: 5px;
     font-weight: bold;
-    background: var(--color-primary) url("@assets/icon/download3.svg") no-repeat
-        10px center;
+    background: theme("colors.accent") url("./../assets/icon/download3.svg")
+        no-repeat 10px center;
     background-size: 20px 20px;
     padding-left: 36px;
 }
@@ -511,13 +511,13 @@
 .ck.ck-content a.button-download4 {
     display: inline-block;
     text-decoration: none;
-    color: var(--color-light);
+    color: theme("colors.light");
     padding: 10px 20px;
     margin: 0 2px;
     border-radius: 5px;
     font-weight: bold;
-    background: var(--color-primary) url("@assets/icon/download4.png") no-repeat
-        10px center;
+    background: theme("colors.primary") url("./../assets/icon/download4.png")
+        no-repeat 10px center;
     background-size: 20px 20px;
     padding-left: 36px;
 }
