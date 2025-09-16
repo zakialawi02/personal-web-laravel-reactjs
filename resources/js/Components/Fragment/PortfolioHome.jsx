@@ -10,7 +10,7 @@ const Portfolio = () => {
 
     useEffect(() => {
         axios
-            .get(route("api.getPortfolio"))
+            .get(route("api.getPortfolio") + "?max=12")
             .then((response) => {
                 setPortfolios(response.data);
                 setLoading(false);
@@ -41,17 +41,19 @@ const Portfolio = () => {
                                     </div>
                                 ) : (
                                     <>
-                                        {portfolios.map((portfolio, index) => (
-                                            <CardImagePortoDesc
-                                                key={index}
-                                                to={`/project/${portfolio.id}`}
-                                                photo={`/storage/img/${portfolio.cover_image}`}
-                                                type="web"
-                                                title={portfolio.name}
-                                            >
-                                                {portfolio.description}
-                                            </CardImagePortoDesc>
-                                        ))}
+                                        {portfolios
+                                            .slice(0, 12)
+                                            .map((portfolio, index) => (
+                                                <CardImagePortoDesc
+                                                    key={index}
+                                                    to={`/project/${portfolio.id}`}
+                                                    photo={`/storage/img/${portfolio.cover_image}`}
+                                                    type="web"
+                                                    title={portfolio.name}
+                                                >
+                                                    {portfolio.description}
+                                                </CardImagePortoDesc>
+                                            ))}
                                     </>
                                 )}
                             </div>

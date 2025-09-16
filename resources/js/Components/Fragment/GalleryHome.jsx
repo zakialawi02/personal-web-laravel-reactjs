@@ -70,18 +70,20 @@ const Gallery = () => {
                                     </div>
                                 ) : (
                                     <>
-                                        {photos.map((photo, index) => (
-                                            <CardImagePorto
-                                                key={index}
-                                                photo={`/storage/img/gallery/${photo.image}`}
-                                                type={photo.type}
-                                                onClick={() => {
-                                                    setIsOpen(true);
-                                                    setIndexImg(index);
-                                                }}
-                                                cursor="pointer"
-                                            />
-                                        ))}
+                                        {photos
+                                            .slice(0, 12)
+                                            .map((photo, index) => (
+                                                <CardImagePorto
+                                                    key={index}
+                                                    photo={`/storage/img/gallery/${photo.image}`}
+                                                    type={photo.type}
+                                                    onClick={() => {
+                                                        setIsOpen(true);
+                                                        setIndexImg(index);
+                                                    }}
+                                                    cursor="pointer"
+                                                />
+                                            ))}
                                     </>
                                 )}
                             </div>

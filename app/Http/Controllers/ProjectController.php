@@ -245,7 +245,14 @@ class ProjectController extends Controller
 
     public function getPortfolio()
     {
-        $projects = Project::orderBy('created_at', 'desc')->get();
+        $limit = request('max', null);
+        $projects = Project::orderBy('created_at', 'desc');
+
+        if ($limit) {
+            $projects = $projects->limit($limit);
+        }
+
+        $projects = $projects->get();
 
         // Mapping data untuk memotong description dan menambahkan script_tag()
         $projects->transform(function ($item) {
