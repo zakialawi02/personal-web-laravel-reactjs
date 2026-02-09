@@ -143,7 +143,7 @@ const Show = ({ note }) => {
 
                     {/* Note Content */}
                     <div className="overflow-hidden border-0 rounded-lg shadow-lg bg-light">
-                        <div className="flex items-center gap-2 p-4 border-b bg-gradient-to-r from-primary/10 to-secondary/10">
+                        <div className="flex items-center gap-2 p-4 border-b bg-linear-to-r from-primary/10 to-secondary/10">
                             <div
                                 className="w-4 h-4 border-2 rounded-full shadow-sm border-background"
                                 style={{ backgroundColor: note.color }}
@@ -153,7 +153,7 @@ const Show = ({ note }) => {
                                 <Link
                                     as="button"
                                     className="inline-flex items-center px-3 py-1 text-sm font-medium transition border rounded border-dark hover:bg-white hover:text-primary"
-                                    href={route("note.edit2", [
+                                    href={route("note.publicEdit", [
                                         note.id,
                                         note.slug,
                                     ])}

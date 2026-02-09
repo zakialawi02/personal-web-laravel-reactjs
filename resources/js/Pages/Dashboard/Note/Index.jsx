@@ -153,10 +153,10 @@ const Index = ({ auth, meta, notes, tags, queryParams = null }) => {
                                     </svg>
                                 </div>
                                 <TextInput
-                                    className="block w-full pl-10 pr-12"
+                                    className="block w-full px-4 py-2 pl-10 pr-12"
                                     type="search"
                                     value={searchValue}
-                                    placeholder="Search..."
+                                    placeholder="Search Notes..."
                                     onChange={(e) =>
                                         setSearchValue(e.target.value)
                                     }

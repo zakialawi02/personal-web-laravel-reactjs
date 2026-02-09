@@ -3,7 +3,7 @@ const SelectInput = ({ className = "", children, ...props }) => {
         <select
             {...props}
             className={
-                "w-full border-gray-300 focus:border-backend-primary focus:ring-backend-primary rounded-md shadow-sm " +
+                "w-full border-gray-300 py-2 focus:border-backend-primary focus:ring-backend-primary rounded-md shadow-sm " +
                 className
             }
         >

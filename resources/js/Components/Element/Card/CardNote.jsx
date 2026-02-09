@@ -85,7 +85,7 @@ const CardNote = ({ note, onEdit, onPin, onUnpin, onDelete }) => {
                         </button>
 
                         {dropdownOpen && (
-                            <div className="absolute right-0 z-10 w-32 mt-1 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
+                            <div className="absolute right-0 z-10 w-32 mt-1 bg-white rounded-md shadow-lg ring-1 ring-black/10">
                                 {note.is_sticky ? (
                                     <button
                                         onClick={() => {

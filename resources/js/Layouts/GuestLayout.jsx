@@ -3,7 +3,7 @@ const GuestLayout = ({ className = "", children }) => {
 
     return (
         <>
-            <div className="font-Lato bg-frontend-base-100">
+            <div className="font-lato bg-frontend-base-100">
                 <main className={className}>{children}</main>
             </div>
         </>

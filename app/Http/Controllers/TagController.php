@@ -21,8 +21,7 @@ class TagController extends Controller
         $tags = Tag::orderBy(request("sort_field", 'created_at'), request("sort_direction", "desc"));
 
         if (request('search') && request()->get("search") != "") {
-            $tags = $tags->where('name', 'like', '%' . request()->get("search") . '%')
-                ->orWhere('description', 'like', '%' . request()->get("search") . '%');
+            $tags = $tags->where('name', 'like', '%' . request()->get("search") . '%');
         }
 
         $tags = $tags->paginate(25)->withQueryString();
