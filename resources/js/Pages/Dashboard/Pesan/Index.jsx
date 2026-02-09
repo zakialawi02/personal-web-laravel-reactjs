@@ -52,7 +52,7 @@ const Index = ({ auth, meta, messages, queryParams = null }) => {
                     <div className="">
                         <div className="mb-4">
                             <TextInput
-                                className="w-full"
+                                className="w-full px-4 py-2"
                                 defaultValue={queryParams.search}
                                 placeholder="Search..."
                                 onBlur={(e) =>

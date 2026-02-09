@@ -5,7 +5,7 @@ const Search = ({ className = "" }) => {
 
     return (
         <form action="" className="p-4">
-            <div className="relative w-full">
+            <div className="relative w-full px-4 py-2">
                 <input
                     type="text"
                     className={`${className}`}

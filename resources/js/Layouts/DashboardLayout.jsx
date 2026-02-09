@@ -6,7 +6,7 @@ import HeaderAdmin from "@/Components/Fragment/HeaderAdmin";
 
 const DashboardLayout = ({ user, metaTitle = "", children }) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(
-        window.innerWidth >= 768
+        window.innerWidth >= 768,
     );
 
     const toggleSidebar = () => {
@@ -33,7 +33,7 @@ const DashboardLayout = ({ user, metaTitle = "", children }) => {
         <>
             <Head title={`${metaTitle} • Dashboard`} />
 
-            <div className="font-Lato bg-backend-light">
+            <div className="font-lato bg-backend-light">
                 <SidebarAdmin
                     show={isSidebarOpen}
                     toggleSidebar={toggleSidebar}

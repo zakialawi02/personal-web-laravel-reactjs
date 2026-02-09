@@ -59,7 +59,7 @@ const Index = ({ auth, meta, tags, queryParams = null }) => {
                         </div>
                         <div className="mb-4">
                             <TextInput
-                                className="w-full"
+                                className="w-full px-4 py-2"
                                 defaultValue={queryParams.search}
                                 placeholder="Search..."
                                 onBlur={(e) =>

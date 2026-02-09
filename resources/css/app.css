@@ -1,8 +1,118 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&family=Lato&family=Montserrat");
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@source "../js/**/*.jsx";
+@source "../js/**/*.js";
+@source "../../resources/views/**/*.blade.php";
+@source "../../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
+@source "../../../storage/framework/views/*.php";
+
+@theme inline {
+    /* Screens */
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1440px;
+    --breakpoint-3xl: 1600px;
+
+    /* Font Families */
+    --font-poppins: "Poppins", sans-serif;
+    --font-lato: "Lato", sans-serif;
+    --font-montserrat: "Montserrat", sans-serif;
+
+    /* Backend Colors */
+    --color-backend-primary: #5664d2;
+    --color-backend-secondary: #4aa3ff;
+    --color-backend-accent: #2e5e93;
+    --color-backend-neutral: #f1f1f1;
+    --color-backend-base-100: #fafbff;
+    --color-backend-info: #4aa3ff;
+    --color-backend-success: #1cbb8c;
+    --color-backend-warning: #fcb92c;
+    --color-backend-error: #ff3d60;
+    --color-backend-light: #eff2f7;
+    --color-backend-dark: #192134;
+    --color-backend-muted: #393d3f;
+
+    /* Frontend Colors */
+    --color-primary: #4bb4de;
+    --color-secondary: #a2e2f8;
+    --color-accent: #345da7;
+    --color-neutral: #ded9da;
+    --color-base-100: #f2f2f2;
+    --color-info: #00b7ff;
+    --color-success: #31a640;
+    --color-warning: #edae49;
+    --color-error: #d1495b;
+    --color-light: #edf4fe;
+    --color-dark: #0d2136;
+    --color-muted: #767676;
+    --color-dark-primary: #1b2d48;
+    --color-dark-secondary: #3c649f;
+    --color-dark-accent: #83aff0;
+    --color-dark-light: #a2e2f8;
+    --color-dark-dark: #001122;
+    --color-frontend-dark: #0d2136;
+
+    /* Custom Widths */
+    --width-1\/4-custom: calc(100% / 4.1);
+    --width-1\/3-custom: calc(100% / 3.1);
+
+    /* Custom Animations */
+    --animate-scale-up: scaleUp 0.2s ease forwards;
+    --animate-scale-down: scaleDown 0.2s ease forwards;
+    --animate-floating-img: floatingImg 5s linear infinite;
+    --animate-bounce-hero-4s: bounceHero 4s linear infinite;
+    --animate-bounce-hero-6s: bounceHero 6s linear infinite;
+    --animate-bounce-hero-8s: bounceHero 8s linear infinite;
+    --animate-skeleton: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+    @keyframes scaleUp {
+        0% {
+            transform: scale(0.5);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    @keyframes scaleDown {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(0.5);
+        }
+    }
+    @keyframes floatingImg {
+        0%,
+        100% {
+            transform: translateY(0rem);
+        }
+        50% {
+            transform: translateY(-1.1rem);
+        }
+    }
+    @keyframes bounceHero {
+        0%,
+        100% {
+            transform: translateY(0rem);
+        }
+        50% {
+            transform: translateY(-1.2rem);
+        }
+    }
+}
+
+@variant dark (&:where(.dark, .dark *));
+
+@utility container {
+    margin-inline: auto;
+    padding-inline: 2rem;
+}
+
+@custom-variant hover (&:hover);
 
 @layer base {
     :root {
@@ -58,17 +168,39 @@
         --chart-4: 280 65% 60%;
         --chart-5: 340 75% 55%;
     }
+
+    body {
+        @apply font-poppins;
+    }
+
+    button:not(:disabled),
+    a:not(:disabled),
+    [role="button"]:not(:disabled) {
+        cursor: pointer;
+    }
+    button:disabled,
+    [role="button"]:disabled {
+        cursor: not-allowed;
+        opacity: 0.8 !important;
+    }
+    button:disabled:hover {
+        opacity: 0.8 !important;
+    }
+    input:is(:read-only, [readonly]) {
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
 }
 
 /*=============== SCROLL BAR ===============*/
 ::-webkit-scrollbar {
     width: 0.4rem;
     height: 0.4rem;
-    background: theme("colors.light");
+    background: var(--color-light);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: theme("colors.accent");
+    background: var(--color-accent);
     border-radius: 0.4rem;
 }
 
@@ -83,17 +215,9 @@
     }
 
     .bg-gradient-cover {
-        @apply bg-gradient-to-b from-[#ffffff38]  to-[#162f55];
+        @apply bg-gradient-to-b from-[#ffffff38] to-[#162f55];
     }
-}
 
-@layer base {
-    body {
-        @apply font-Poppins;
-    }
-}
-
-@layer components {
     #hamMenu {
         @apply text-xl cursor-pointer md:hidden text-light;
     }
@@ -128,7 +252,7 @@
     }
 
     .sosial-media a {
-        @apply text-lg text-center m-[6px] rounded-[5px] p-3 shadow-[-3px_-3px_5px_0px_theme(colors.secondary),_3px_3px_5px_0px_theme(colors.dark)] hover:shadow-[-3px_-3px_5px_0px_theme(colors.secondary)_inset,_3px_3px_5px_0px_theme(colors.dark)_inset] transition-all duration-300;
+        @apply text-lg text-center m-[6px] rounded-[5px] p-3 shadow-[-3px_-3px_5px_0px_var(--color-secondary),_3px_3px_5px_0px_var(--color-dark)] hover:shadow-[-3px_-3px_5px_0px_var(--color-secondary)_inset,_3px_3px_5px_0px_var(--color-dark)_inset] transition-all duration-300;
     }
 
     .sosial-media a i {
