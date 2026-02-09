@@ -2,7 +2,7 @@ import { forwardRef, useEffect, useRef } from "react";
 
 export default forwardRef(function TextInput(
     { type = "text", className = "", isFocused = false, ...props },
-    ref
+    ref,
 ) {
     const input = ref ? ref : useRef();
 
@@ -17,7 +17,7 @@ export default forwardRef(function TextInput(
             {...props}
             type={type}
             className={
-                "border-gray-300 focus:border-backend-primary focus:ring-backend-primary rounded-md shadow-sm " +
+                "border-gray-300 py-2 focus:border-backend-primary focus:ring-backend-primary rounded-md shadow-sm " +
                 className
             }
             ref={input}
