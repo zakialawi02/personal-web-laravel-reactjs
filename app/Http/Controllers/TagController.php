@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-use App\Http\Requests\TagRequest;
+use App\Http\Requests\Tag\TagRequest;
 
 class TagController extends Controller
 {

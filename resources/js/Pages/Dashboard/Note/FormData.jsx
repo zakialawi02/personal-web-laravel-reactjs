@@ -25,7 +25,8 @@ const FormData = ({ auth, meta, noteData = null, tagsList = [] }) => {
         is_sticky: noteData?.is_sticky ?? false,
         sharable_link: noteData?.sharable_link ?? "",
         shared_password: noteData?.shared_password ?? "",
-        user_id: noteData?.user_id ?? auth.user.id,
+        sharable_link: noteData?.sharable_link ?? "",
+        shared_password: noteData?.shared_password ?? "",
         tags: noteData?.tags?.map((t) => t.name) ?? [],
     });
 
@@ -320,7 +321,7 @@ const FormData = ({ auth, meta, noteData = null, tagsList = [] }) => {
                                                                 onClick={() =>
                                                                     navigator.clipboard
                                                                         .writeText(
-                                                                            `https://example.com/${data.sharable_link}`,
+                                                                            `${meta.base_url}/s/notes/${data.sharable_link}`,
                                                                         )
                                                                         .then(
                                                                             () =>
