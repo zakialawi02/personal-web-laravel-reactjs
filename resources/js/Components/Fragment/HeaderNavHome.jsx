@@ -93,7 +93,7 @@ const NavBar = () => {
                         {'"'}
                     </span>
                     <span
-                        className={`inline-flex C2 ${isSticky ? "" : "hidden"}`}
+                        className={`C2 ${isSticky ? "inline-flex" : "hidden"}`}
                     >
                         {"<"}
                     </span>

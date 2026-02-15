@@ -60,7 +60,7 @@ const Edit = ({ note }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         router.post(
-            route("admin.note.update2", data.id),
+            route("admin.note.updateAndBack", data.id),
             {
                 _method: "put",
                 ...data,
