@@ -33,7 +33,7 @@ const NavBar = () => {
         if (navBarRef.current && !navBarRef.current.contains(event.target)) {
             const navMenu = document.getElementById("navMenu");
             if (navBarMobile && navMenu.classList.contains("scale-y-100")) {
-                toggleMenu(); // Close the menu if it's open and the click is outside
+                toggleMenu();
             }
         }
     };
@@ -75,13 +75,15 @@ const NavBar = () => {
         <header
             ref={navBarRef}
             id="navBar"
-            className={`z-[100] w-full bg-primary  ${
-                isSticky ? "sticky top-0 shadow-md" : ""
-            } dark:bg-dark-primary`}
+            className={`z-[100] w-full transition-all duration-500 ease-out ${
+                isSticky
+                    ? "sticky top-0 bg-primary/80 dark:bg-dark-primary/80 backdrop-blur-xl shadow-lg shadow-dark/5 dark:shadow-dark-dark/20 border-b border-white/5"
+                    : "bg-transparent"
+            }`}
         >
             <div
                 id="navHead"
-                className="z-10 flex items-center justify-between w-full px-6 py-3 min-h-18 md:min-h-20 lg:px-14 font-Poppins"
+                className="z-10 flex items-center justify-between w-full px-6 py-4 min-h-18 md:min-h-20 lg:px-14 font-Poppins max-w-[1400px] mx-auto"
             >
                 <NavLogo className="inline-flex">
                     {">_"}
@@ -101,7 +103,7 @@ const NavBar = () => {
 
                 <div
                     id="hamMenu"
-                    className="ri-menu-line"
+                    className="ri-menu-line text-2xl"
                     onClick={() => toggleMenu()}
                 ></div>
 
