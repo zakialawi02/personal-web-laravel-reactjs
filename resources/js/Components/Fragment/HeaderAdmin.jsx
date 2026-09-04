@@ -6,8 +6,14 @@ import Notification from "../Element/Notification/Notification";
 import DropdownItem from "../Element/Dropdown/DropdownItem";
 
 const HeaderAdmin = ({ user, toggleSidebar }) => {
-    const { auth } = usePage().props;
-    const pathname = window.location.pathname;
+    const page = usePage();
+    const { auth } = page.props;
+    const pathname =
+        typeof window !== "undefined"
+            ? window.location.pathname
+            : page.url
+              ? page.url.split("?")[0]
+              : "";
     const url2 = pathname
         .split("/")[2]
         ?.split("-")

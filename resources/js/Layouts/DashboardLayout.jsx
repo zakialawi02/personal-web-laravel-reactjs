@@ -5,8 +5,8 @@ import SidebarAdmin from "@/Components/Fragment/SidebarAdmin";
 import HeaderAdmin from "@/Components/Fragment/HeaderAdmin";
 
 const DashboardLayout = ({ user, metaTitle = "", children }) => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(
-        window.innerWidth >= 768,
+    const [isSidebarOpen, setIsSidebarOpen] = useState(() =>
+        typeof window !== "undefined" ? window.innerWidth >= 768 : true,
     );
 
     const toggleSidebar = () => {

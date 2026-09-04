@@ -83,8 +83,8 @@ const WYSWYG = ({ data = null, onChange, offsetTop = null }) => {
     const editorContainerRef = useRef(null);
     const editorRef = useRef(null);
     const [isLayoutReady, setIsLayoutReady] = useState(false);
-    const [shouldNotGroup, setShouldNotGroup] = useState(
-        window.innerWidth >= 768,
+    const [shouldNotGroup, setShouldNotGroup] = useState(() =>
+        typeof window !== "undefined" ? window.innerWidth >= 768 : true,
     );
     const [editorKey, setEditorKey] = useState("editor-default");
     const [offset, setOffset] = useState(48);

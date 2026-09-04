@@ -1564,7 +1564,6 @@ const FormData = ({ auth, meta, procjData = null }) => {
                                     />
                                     <Select
                                         isMulti
-                                        defaultValue={selectOptions}
                                         value={selectOptions}
                                         onChange={(e) => setSelectOptions(e)}
                                         options={techStackOptions}

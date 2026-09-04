@@ -18,4 +18,7 @@ export default defineConfig({
         react(),
         tailwindcss(),
     ],
+    ssr: {
+        noExternal: ["react-lazy-load-image-component"],
+    },
 });

@@ -135,7 +135,6 @@ const AnonMessage = () => {
                                         id="pesan"
                                         required
                                         value={dataToSend.pesan}
-                                        defaultValue=""
                                         onChange={(e) =>
                                             setDataToSend({
                                                 ...dataToSend,

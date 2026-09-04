@@ -4,7 +4,13 @@ import MenuItemHome from "./MenuItemHome";
 const NavMenuHome = (props) => {
     const { event } = props;
     const { auth } = usePage().props;
-    const { pathname } = window.location;
+    const { url } = usePage();
+    const pathname =
+        typeof window !== "undefined"
+            ? window.location.pathname
+            : url
+              ? url.split("?")[0].split("#")[0]
+              : "/";
     const isHome = pathname === "/";
 
     return (

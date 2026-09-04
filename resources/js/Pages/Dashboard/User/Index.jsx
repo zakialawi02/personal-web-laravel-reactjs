@@ -359,7 +359,6 @@ const Index = ({ auth, meta, users, roles, queryParams = null }) => {
                                         type="hidden"
                                         name="id"
                                         value={data.id}
-                                        defaultValue=""
                                     />
 
                                     {/* Name Field */}

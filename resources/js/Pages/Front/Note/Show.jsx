@@ -18,8 +18,12 @@ import TextInput from "@/Components/Element/Input/TextInput";
 import ButtonBE from "@/Components/Element/Button/ButtonBE";
 
 const Show = ({ note }) => {
-    const url = window.location.href;
-    const { meta } = usePage().props;
+    const page = usePage();
+    const url =
+        typeof window !== "undefined"
+            ? window.location.href
+            : page.props.ziggy?.location || page.url;
+    const { meta } = page.props;
     const [error, setError] = useState("");
 
     const formatDate = (dateString) => {

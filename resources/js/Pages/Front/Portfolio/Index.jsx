@@ -2,12 +2,16 @@ import DarkModeToogle from "@/Components/Element/Button/DarkModeToogle";
 import HeaderNavHome from "@/Components/Fragment/HeaderNavHome";
 import CardImagePortoDesc from "@/Components/Element/Card/CardImagePortoDesc";
 import SkeletonOneLine from "@/Components/Element/Skeleton/SkeletonOneLine";
-import { Head } from "@inertiajs/react";
+import { Head, usePage } from "@inertiajs/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 const Index = () => {
-    const url = window.location.href;
+    const { url: pageUrl, props } = usePage();
+    const url =
+        typeof window !== "undefined"
+            ? window.location.href
+            : props.ziggy?.location || pageUrl;
     const [loading, setLoading] = useState(true);
     const [portfolios, setPortfolios] = useState([]);
 

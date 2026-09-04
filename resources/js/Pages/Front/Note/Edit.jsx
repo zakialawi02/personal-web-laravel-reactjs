@@ -19,8 +19,12 @@ import InputError from "@/Components/Element/Input/InputError";
 import WYSWYG from "@/Components/Element/WYSWYG/WYSWYG";
 
 const Edit = ({ note }) => {
-    const url = window.location.href;
-    const { meta } = usePage().props;
+    const page = usePage();
+    const url =
+        typeof window !== "undefined"
+            ? window.location.href
+            : page.props.ziggy?.location || page.url;
+    const { meta } = page.props;
     const [protectedAccess, setProtectedAccess] = useState(
         note.shared_password !== null,
     );

@@ -7,15 +7,15 @@
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
         <link type="image/png" href="/favicon.png" rel="icon" />
-        <meta name="description" content="Personal Web Zaki Alawi, a web developer & software engineer with full-stack experience using Laravel, React, JavaScript, and PostgreSQL/MySQL. He specializes in REST APIs, SPAs, third-party integrations, performance optimization, and modern backend architecture." />
-        <meta name="keywords" content="Laravel, ReactJs, WebGIS, Web Developer, Fullstack Developer, application, openlayers, leaflet, wms, wfs, geoserver, mapping, aerial mapping, photogrametric mapping, geospatial, geodetic, web developer, software engineer, laravel developer, react developer, full-stack developer, REST API, SPA, backend engineer, frontend engineer, JavaScript, PostgreSQL, MySQL, Git, integrasi API" />
+        <meta name="description" content="Ahmad Zaki Alawi is a Software Engineer & Full-Stack Web Developer specializing in scalable web applications, robust REST APIs, modern frontends, and WebGIS solutions using Laravel, React, and PostgreSQL/MySQL." />
+        <meta name="keywords" content="Ahmad Zaki Alawi, Software Engineer, Full-Stack Developer, Web Developer, Laravel, React, JavaScript, TypeScript, REST API, PostgreSQL, MySQL, WebGIS" />
         <meta name="author" content="Ahmad Zaki Alawi" />
 
-        <meta property="og:title" content="Ahmad Zaki Alawi" />
+        <meta property="og:title" content="Ahmad Zaki Alawi — Software Engineer & Full-Stack Developer" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={{ url()->current() }} />
-        <meta property="og:image" content="/favicon.png" />
-        <meta property="og:description" content="Personal Web Zaki Alawi, a web developer & software engineer with full-stack experience using Laravel, React, JavaScript, and PostgreSQL/MySQL. He specializes in REST APIs, SPAs, third-party integrations, performance optimization, and modern backend architecture." />
+        <meta property="og:image" content="/assets/img/pasfoto.jpg" />
+        <meta property="og:description" content="Ahmad Zaki Alawi is a Software Engineer & Full-Stack Web Developer specializing in scalable web applications, robust REST APIs, modern frontends, and WebGIS solutions using Laravel, React, and PostgreSQL/MySQL." />
 
         <meta name="robots" content="index, follow" />
 

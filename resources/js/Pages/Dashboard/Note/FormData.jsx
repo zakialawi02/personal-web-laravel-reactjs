@@ -25,8 +25,6 @@ const FormData = ({ auth, meta, noteData = null, tagsList = [] }) => {
         is_sticky: noteData?.is_sticky ?? false,
         sharable_link: noteData?.sharable_link ?? "",
         shared_password: noteData?.shared_password ?? "",
-        sharable_link: noteData?.sharable_link ?? "",
-        shared_password: noteData?.shared_password ?? "",
         tags: noteData?.tags?.map((t) => t.name) ?? [],
     });
 

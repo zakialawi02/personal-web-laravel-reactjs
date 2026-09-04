@@ -1,6 +1,6 @@
 import HeaderNavHome from "@/Components/Fragment/HeaderNavHome";
 import DarkModeToogle from "@/Components/Element/Button/DarkModeToogle";
-import { Head } from "@inertiajs/react";
+import { Head, usePage } from "@inertiajs/react";
 // import "lightbox.js-react/dist/index.css";
 import { SlideshowLightbox } from "lightbox.js-react";
 import { useEffect, useState } from "react";
@@ -9,7 +9,11 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import "./../../../../css/ckeditor-addons.css";
 
 const ShowProject = ({ procjData }) => {
-    const url = window.location.href;
+    const { url: pageUrl, props } = usePage();
+    const url =
+        typeof window !== "undefined"
+            ? window.location.href
+            : props.ziggy?.location || pageUrl;
     const [techStack, setTechStack] = useState([]);
 
     useEffect(() => {
