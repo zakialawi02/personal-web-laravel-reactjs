@@ -25,3 +25,6 @@ node_modules
 bootstrap/ssr
 public/build
 *.zip
+
+# berkas lokal server (dibuat aaPanel, berisi open_basedir) — jangan di-commit
+.user.ini
