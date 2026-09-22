@@ -13,6 +13,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,6 +107,7 @@ Route::get('/s/notes/{note:sharable_link}', [NoteController::class, 'showShared'
 Route::get('/project/{project:id}', [ProjectController::class, 'show'])->name('project.show');
 
 Route::post('/storePesan', [PesanController::class, 'storePesan'])->name('storePesan');
+Route::post('/contact/send', [ContactController::class, 'send'])->middleware('throttle:5,1')->name('contact.send');
 
 
 require __DIR__ . '/auth.php';
