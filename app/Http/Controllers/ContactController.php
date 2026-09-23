@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ContactMessageMail;
+use App\Rules\Recaptcha;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -15,12 +16,20 @@ class ContactController extends Controller
      */
     public function send(Request $request): JsonResponse
     {
-        $validated = $request->validate([
+        $rules = [
             'name'    => 'required|string|max:100',
             'email'   => 'required|email:filter|max:150',
             'subject' => 'nullable|string|max:150',
             'message' => 'required|string|min:5|max:5000',
-        ], [
+        ];
+
+        // reCAPTCHA ditegakkan hanya kalau kuncinya sudah diisi di .env.
+        // Selama belum dikonfigurasi, form tetap berfungsi (tidak memblokir pengunjung).
+        if (filled(config('services.recaptcha.secret_key'))) {
+            $rules['recaptcha_token'] = ['required', new Recaptcha()];
+        }
+
+        $validated = $request->validate($rules, [
             'name.required'    => 'Name is required.',
             'name.max'         => 'Name may not be greater than 100 characters.',
             'email.required'   => 'Email address is required.',
@@ -30,6 +39,7 @@ class ContactController extends Controller
             'message.required' => 'Message is required.',
             'message.min'      => 'Message must be at least 5 characters.',
             'message.max'      => 'Message may not be greater than 5000 characters.',
+            'recaptcha_token.required' => 'Please complete the reCAPTCHA verification and try again.',
         ]);
 
         try {
