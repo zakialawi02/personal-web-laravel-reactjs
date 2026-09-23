@@ -28,3 +28,4 @@ public/build
 
 # berkas lokal server (dibuat aaPanel, berisi open_basedir) — jangan di-commit
 .user.ini
+.env.testing

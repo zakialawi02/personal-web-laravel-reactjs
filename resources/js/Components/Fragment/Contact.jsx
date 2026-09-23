@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Alert from "../Element/Alert/Alert";
+
+const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
 const Contact = () => {
     const [data, setData] = useState({
@@ -16,6 +18,72 @@ const Contact = () => {
         color: "success",
         message: "",
     });
+    const [captchaError, setCaptchaError] = useState("");
+
+    // reCAPTCHA v2 — dirender manual (explicit) supaya aman saat SSR & SPA navigation.
+    const recaptchaRef = useRef(null);
+    const widgetIdRef = useRef(null);
+
+    useEffect(() => {
+        let cancelled = false;
+        let tries = 0;
+        let timer = null;
+
+        if (!RECAPTCHA_SITE_KEY) {
+            setCaptchaError("reCAPTCHA is not configured on the server.");
+            return;
+        }
+
+        // PENTING: panggil render() lewat grecaptcha.ready(). Kalau dipanggil langsung
+        // saat skrip selesai dimuat, API-nya belum siap dan widget tidak terender
+        // (gejala: window.grecaptcha ada tapi #recaptcha-widget tetap kosong).
+        const renderWidget = () => {
+            if (cancelled || widgetIdRef.current !== null || !recaptchaRef.current) return;
+            const g = window.grecaptcha;
+            if (!g || typeof g.ready !== "function") return;
+
+            g.ready(() => {
+                if (cancelled || widgetIdRef.current !== null || !recaptchaRef.current) return;
+                try {
+                    widgetIdRef.current = g.render(recaptchaRef.current, {
+                        sitekey: RECAPTCHA_SITE_KEY,
+                        theme: "light",
+                    });
+                    setCaptchaError("");
+                } catch {
+                    setCaptchaError("Failed to display reCAPTCHA. Please reload the page.");
+                }
+            });
+        };
+
+        if (!document.getElementById("recaptcha-script")) {
+            const s = document.createElement("script");
+            s.id = "recaptcha-script";
+            s.src = "https://www.google.com/recaptcha/api.js?render=explicit";
+            s.async = true;
+            s.defer = true;
+            s.onload = renderWidget;
+            s.onerror = () => setCaptchaError("Failed to load reCAPTCHA. Please check your connection and reload the page.");
+            document.head.appendChild(s);
+        } else {
+            renderWidget();
+        }
+
+        // Jaring pengaman: kalau API belum siap saat onload, ulangi tiap 250 ms (maks ~12 s).
+        timer = setInterval(() => {
+            tries += 1;
+            if (cancelled || widgetIdRef.current !== null || tries > 48) {
+                clearInterval(timer);
+                return;
+            }
+            renderWidget();
+        }, 250);
+
+        return () => {
+            cancelled = true;
+            if (timer) clearInterval(timer);
+        };
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -35,9 +103,26 @@ const Contact = () => {
         setProcessing(true);
         setErrors({});
 
+        // Ambil token v2 tepat sebelum submit (token sekali pakai, jangan diambil saat mount).
+        const token =
+            window.grecaptcha && widgetIdRef.current !== null
+                ? window.grecaptcha.getResponse(widgetIdRef.current)
+                : "";
+
+        if (!token) {
+            setCaptchaError('Please tick "I\'m not a robot" before sending your message.');
+            setAlert({
+                show: true,
+                color: "error",
+                message: 'Please tick "I\'m not a robot" before sending your message.',
+            });
+            setProcessing(false);
+            return;
+        }
+
         try {
             const url = typeof route === "function" ? route("contact.send") : "/contact/send";
-            const response = await axios.post(url, data);
+            const response = await axios.post(url, { ...data, recaptcha_token: token });
 
             setAlert({
                 show: true,
@@ -56,11 +141,14 @@ const Contact = () => {
             });
         } catch (error) {
             if (error.response?.status === 422) {
-                setErrors(error.response.data.errors || {});
+                const errs = error.response.data.errors || {};
+                setErrors(errs);
                 setAlert({
                     show: true,
                     color: "error",
-                    message: "Please check the form fields and try again.",
+                    message:
+                        errs.recaptcha_token?.[0] ||
+                        "Please check the form fields and try again.",
                 });
             } else if (error.response?.status === 429) {
                 setAlert({
@@ -78,6 +166,14 @@ const Contact = () => {
                 });
             }
         } finally {
+            // Token v2 hanya bisa dipakai sekali → selalu reset widget setelah request.
+            if (window.grecaptcha && widgetIdRef.current !== null) {
+                try {
+                    window.grecaptcha.reset(widgetIdRef.current);
+                } catch {
+                    /* diabaikan */
+                }
+            }
             setProcessing(false);
         }
     };
@@ -249,6 +345,14 @@ const Contact = () => {
                                         <p className="mt-1 text-xs text-red-300">
                                             {errors.message[0]}
                                         </p>
+                                    )}
+                                </div>
+
+                                {/* reCAPTCHA v2 checkbox */}
+                                <div>
+                                    <div ref={recaptchaRef} id="recaptcha-widget"></div>
+                                    {captchaError && (
+                                        <p className="mt-1 text-xs text-red-300">{captchaError}</p>
                                     )}
                                 </div>
 
